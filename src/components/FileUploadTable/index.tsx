@@ -58,12 +58,13 @@ const FileUploadTable = () => {
       </div>
       <div
         className={cn({
-          [styles.table]: true,
+          [styles.content]: true,
           [styles.bordered]: !dataSource,
         })}
       >
         {dataSource && (
           <Table
+            className={styles.content}
             columns={mapHeadersToColumns(dataSource?.headers ?? [])}
             dataSource={mapBodyToRows(
               dataSource?.headers ?? [],
