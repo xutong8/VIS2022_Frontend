@@ -1,6 +1,6 @@
-import React from 'react';
 import './App.css';
 import FileUploadTable from './components/FileUploadTable';
+import '@/styles/index.less';
 
 function App() {
   return (
