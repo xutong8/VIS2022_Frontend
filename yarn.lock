@@ -50,6 +50,11 @@
     lodash "^4.17.21"
     resize-observer-polyfill "^1.5.0"
 
+"@antv/algorithm@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.npmmirror.com/@antv/algorithm/-/algorithm-0.0.6.tgz#6ab68b1961afd87727ad09433b97f90326b3b328"
+  integrity sha512-g/abjTXHwzebghN8QPuk3z5nM/C9Wf1Toq6iHK6lwZXdUMGHxxhuO5RAkkYcR2Vib550zdQy6PLldmAWhgOjQA==
+
 "@antv/algorithm@^0.1.8":
   version "0.1.21"
   resolved "https://registry.npmmirror.com/@antv/algorithm/-/algorithm-0.1.21.tgz#21b0b0af6e5981a8a61ce0709931206f5935e748"
@@ -181,6 +186,22 @@
     ml-matrix "^6.5.0"
     tslib "^2.1.0"
 
+"@antv/g6-core@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmmirror.com/@antv/g6-core/-/g6-core-0.0.7.tgz#6e8496fd6bacd8d698c92151c9a7765693c307c6"
+  integrity sha512-6ixXCqxsrKgovdf14KglKT6dQFb4LbzZgQaMj9s5NsfJWgwN9aYWyU2qbsyWgHkp/AOyW+vef+w2Vlk42qXFwg==
+  dependencies:
+    "@antv/algorithm" "^0.0.6"
+    "@antv/dom-util" "^2.0.1"
+    "@antv/event-emitter" "~0.1.0"
+    "@antv/g-base" "^0.5.1"
+    "@antv/g-math" "^0.1.1"
+    "@antv/matrix-util" "^3.1.0-beta.2"
+    "@antv/path-util" "^2.0.3"
+    "@antv/scale" "^0.3.1"
+    "@antv/util" "~2.0.5"
+    ml-matrix "^6.5.0"
+
 "@antv/g6-element@0.5.5":
   version "0.5.5"
   resolved "https://registry.npmmirror.com/@antv/g6-element/-/g6-element-0.5.5.tgz#67c30f9271c39ab76281209d298689ee4f533a89"
@@ -232,7 +253,19 @@
     "@antv/util" "^2.0.9"
     insert-css "^2.0.0"
 
-"@antv/g6@^4.5.5":
+"@antv/g6-react-node@^1.4.4":
+  version "1.4.4"
+  resolved "https://registry.npmmirror.com/@antv/g6-react-node/-/g6-react-node-1.4.4.tgz#5c50dd1d7cb3dae38eebf9b85c39eef9844e5415"
+  integrity sha512-UXCV6iSz0GUQljWd8EH/kq7VfWHE/Rpip7wUIRVxviyvCbG6+9Ix+092+r7lBeBOpc932mfxr4REl/Mdf/GVoA==
+  dependencies:
+    "@antv/g-base" "^0.5.1"
+    "@antv/g6" "^4.0.0"
+    "@antv/g6-core" "^0.0.7"
+    "@types/yoga-layout" "^1.9.3"
+    react "^16.12.0"
+    yoga-layout-prebuilt "^1.10.0"
+
+"@antv/g6@^4.0.0", "@antv/g6@^4.5.5":
   version "4.5.5"
   resolved "https://registry.npmmirror.com/@antv/g6/-/g6-4.5.5.tgz#0a85a3ceb572b0e32c4845c05fdc1c2b77d6ee17"
   integrity sha512-rSe1j4ihrV6HfgL/fFs4T9VtycMc/OqZKZx6RAVRviQZA1VNblvddY+2ERPTbNwaljM+XQODCUFRHY3CspT7vg==
@@ -265,7 +298,7 @@
     gl-matrix "^3.3.0"
     tslib "^2.0.3"
 
-"@antv/matrix-util@^3.1.0-beta.1", "@antv/matrix-util@^3.1.0-beta.3":
+"@antv/matrix-util@^3.1.0-beta.1", "@antv/matrix-util@^3.1.0-beta.2", "@antv/matrix-util@^3.1.0-beta.3":
   version "3.1.0-beta.3"
   resolved "https://registry.npmmirror.com/@antv/matrix-util/-/matrix-util-3.1.0-beta.3.tgz#e061de8fa7be04605a155c69cc5ce9082eedddee"
   integrity sha512-W2R6Za3A6CmG51Y/4jZUM/tFgYSq7vTqJL1VD9dKrvwxS4sE0ZcXINtkp55CdyBwJ6Cwm8pfoRpnD4FnHahN0A==
@@ -283,7 +316,7 @@
     "@antv/util" "^2.0.9"
     tslib "^2.0.3"
 
-"@antv/scale@^0.3.4":
+"@antv/scale@^0.3.1", "@antv/scale@^0.3.4":
   version "0.3.14"
   resolved "https://registry.npmmirror.com/@antv/scale/-/scale-0.3.14.tgz#0718f8651368e5c98db5612065132a8c8bbcde48"
   integrity sha512-G19Mh9VYPX/Z5PXKJrORIYCjrA+Fmko6ZB4HN6Y8K0T9FeKaSJq+idIe7AUJhIIXDCrFk4LzW+t908NsORqxPg==
@@ -2248,6 +2281,16 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@types/yoga-layout@1.9.2":
+  version "1.9.2"
+  resolved "https://registry.npmmirror.com/@types/yoga-layout/-/yoga-layout-1.9.2.tgz#efaf9e991a7390dc081a0b679185979a83a9639a"
+  integrity sha512-S9q47ByT2pPvD65IvrWp7qppVMpk9WGMbVq9wbWZOHg6tnXSD4vyhao6nOSBwwfDdV2p3Kx9evA9vI+XWTfDvw==
+
+"@types/yoga-layout@^1.9.3":
+  version "1.9.4"
+  resolved "https://registry.npmmirror.com/@types/yoga-layout/-/yoga-layout-1.9.4.tgz#fad54fef623464dacd9e765d854f0e76ff1184f7"
+  integrity sha512-RRHc1+8Hc5mf/2lZKnom6kCnqcNS07s8keahniWTOva0KELF6RgDJmaEcvGEKUUJgN4UgessmEsWuidaOycIOw==
+
 "@typescript-eslint/eslint-plugin@^5.5.0":
   version "5.11.0"
   resolved "https://registry.npmmirror.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.11.0.tgz#3b866371d8d75c70f9b81535e7f7d3aa26527c7a"
@@ -3768,6 +3811,11 @@ d3-timer@^1.0.9:
   version "1.0.10"
   resolved "https://registry.npmmirror.com/d3-timer/-/d3-timer-1.0.10.tgz#dfe76b8a91748831b13b6d9c793ffbd508dd9de5"
   integrity sha512-B1JDm0XDaQC+uvo4DT79H0XmBskgS3l6Ve+1SBCfxgmtIb1AVrPIoqd+nPSv+loMX8szQ0sVUhGngL7D5QPiXw==
+
+d3-timer@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/d3-timer/-/d3-timer-3.0.1.tgz#6284d2a2708285b1abb7e201eda4380af35e63b0"
+  integrity sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==
 
 dagre@^0.8.5:
   version "0.8.5"
@@ -7590,7 +7638,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8110,6 +8158,15 @@ react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmmirror.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
+
+react@^16.12.0:
+  version "16.14.0"
+  resolved "https://registry.npmmirror.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 react@^17.0.2:
   version "17.0.2"
@@ -9834,3 +9891,10 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmmirror.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+yoga-layout-prebuilt@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.npmmirror.com/yoga-layout-prebuilt/-/yoga-layout-prebuilt-1.10.0.tgz#2936fbaf4b3628ee0b3e3b1df44936d6c146faa6"
+  integrity sha512-YnOmtSbv4MTf7RGJMK0FvZ+KD8OEe/J5BNnR0GHhD8J/XcG/Qvxgszm0Un6FTHWW4uHlTgP0IztiXQnGyIR45g==
+  dependencies:
+    "@types/yoga-layout" "1.9.2"

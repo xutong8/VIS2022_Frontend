@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./index.less";
 import G6 from "@antv/g6";
+import { NODE_NAME_CARD } from '@/constants';
 
 const FlowChart = () => {
   const data = {
@@ -8,43 +9,63 @@ const FlowChart = () => {
       {
         id: "0",
         label: "0",
+        type: NODE_NAME_CARD,
+        data: [
+          {
+            name: 'name0_0',
+            value: 'value0_0'
+          },
+          {
+            name: 'name0_1',
+            value: 'value0_1'
+          },
+        ]
       },
       {
         id: "1",
         label: "1",
+        type: NODE_NAME_CARD,
+        data: [
+          {
+            name: 'name1_0',
+            value: 'value1_0'
+          },
+          {
+            name: 'name1_1',
+            value: 'value1_1'
+          },
+        ]
       },
       {
         id: "2",
         label: "2",
+        type: NODE_NAME_CARD,
+        data: [
+          {
+            name: 'name2_0',
+            value: 'value2_0',
+          },
+          {
+            name: 'name2_1',
+            value: 'value2_1'
+          },
+        ]
       },
       {
         id: "3",
         label: "3",
-      },
-      {
-        id: "4",
-        label: "4",
-      },
-      {
-        id: "5",
-        label: "5",
-      },
-      {
-        id: "6",
-        label: "6",
-      },
-      {
-        id: "7",
-        label: "7",
-      },
-      {
-        id: "8",
-        label: "8",
-      },
-      {
-        id: "9",
-        label: "9",
-      },
+        type: NODE_NAME_CARD,
+        data: [
+          {
+            name: 'name3_0',
+            value: 'value3_0'
+          },
+          {
+            name: 'name3_1',
+            value: 'value3_1'
+          },
+        ]
+      }
     ],
     edges: [
       {
@@ -57,44 +78,8 @@ const FlowChart = () => {
       },
       {
         source: "1",
-        target: "4",
-      },
-      {
-        source: "0",
-        target: "3",
-      },
-      {
-        source: "3",
-        target: "4",
-      },
-      {
-        source: "4",
-        target: "5",
-      },
-      {
-        source: "4",
-        target: "6",
-      },
-      {
-        source: "5",
-        target: "7",
-      },
-      {
-        source: "5",
-        target: "8",
-      },
-      {
-        source: "8",
-        target: "9",
-      },
-      {
-        source: "2",
-        target: "9",
-      },
-      {
-        source: "3",
-        target: "9",
-      },
+        target: "3"
+      }
     ],
   };
 
@@ -116,11 +101,10 @@ const FlowChart = () => {
         align: "UL",
         controlPoints: true,
         nodesepFunc: () => 1,
-        ranksepFunc: () => 1,
+        ranksepFunc: () => 50,
       },
       defaultNode: {
-        size: [20, 10],
-        type: "rect",
+        size: [120, 120],
         style: {
           lineWidth: 2,
           stroke: "#5B8FF9",
@@ -136,7 +120,7 @@ const FlowChart = () => {
             path: "M 0,0 L 8,4 L 8,-4 Z",
             fill: "#e2e2e2",
           },
-          radius: 10,
+          radius: 15,
         },
       },
     });
