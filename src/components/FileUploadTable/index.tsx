@@ -9,37 +9,41 @@ export interface IDataSource {
   body: string[][];
 }
 
-const FileUploadTable = () => {
+export interface IFileUploadTableProps {
+  setClusters: (clusters: string[][]) => void;
+}
+
+const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
+  const { setClusters } = props;
   const [dataSource, setDataSource] = useState<IDataSource>();
   const handleChange = (info: UploadChangeParam) => {
     // TODO: 考虑上传的状态，分为uploading、done和error
     if (info.file.status === "done") {
-      // const mockData = {
-      //   headers: ["id", "name", "age", "address"],
-      //   body: [
-      //     ["22051100", "zhangsan1", "21", "Hang Zhou"],
-      //     ["22051101", "zhangsan2", "22", "Shang Hai"],
-      //     ["22051102", "zhangsan3", "23", "Bei Jing"],
-      //     ["22051103", "zhangsan4", "24", "Su Zhou"],
-      //   ],
-      // };
-      // setDataSource(mockData);
       const res = info.file.response ?? {};
       const columns = res?.columns ?? {};
       setDataSource(columns);
+      const dim_clusters = res?.dim_clusters ?? [];
+      const sem_clusters = res?.sem_clusters ?? [];
+      const clusters = [...dim_clusters, ...sem_clusters];
+      setClusters(clusters);
     }
   };
 
   const mapHeadersToColumns = (headers: string[]) => {
+    const MAX_STR_LEN = 20;
     return headers.map((header) => ({
       title: header,
       dataIndex: header,
       key: header,
       render(text: string) {
         return (
-          <div>{text.length < 8 ? text : String(text).slice(0, 8)}</div>
-        )
-      }
+          <div>
+            {text.length < MAX_STR_LEN
+              ? text
+              : String(text).slice(0, MAX_STR_LEN)}
+          </div>
+        );
+      },
     }));
   };
 
@@ -62,6 +66,7 @@ const FileUploadTable = () => {
           showUploadList={false}
           action="http://127.0.0.1:8000/gateway/upload"
           onChange={handleChange}
+          className={styles.btn}
         >
           Upload
         </Upload>

@@ -2,13 +2,21 @@
   display: flex;
   border: 1px solid gray;
   padding: 8px;
-  width: 680px;
+  flex: 1 0 0;
+  flex-direction: column;
 
   .fileupload {
-    width: 200px;
     display: flex;
     align-items: center;
-    margin-right: 16px;
+
+    .btn {
+      flex: 1 0 0;
+      :global {
+        .ant-upload {
+          width: 100%;
+        }
+      }
+    }
   }
 
   .content {
