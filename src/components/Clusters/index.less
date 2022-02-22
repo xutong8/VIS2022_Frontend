@@ -4,10 +4,28 @@
   padding: 8px;
   flex: 1 0 0;
 
+  :global {
+    .ant-list-items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-list {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .cluster {
-    overflow: auto;
     display: flex;
-    flex-direction: column;
     margin: 0 8px;
+
+    .cell {
+      width: 93px;
+      height: 55px;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px;
+      box-sizing: border-box;
+    }
   }
 }
