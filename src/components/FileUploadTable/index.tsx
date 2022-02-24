@@ -36,6 +36,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       title: header,
       dataIndex: header,
       key: header,
+      width: 150,
       render(text: string) {
         return (
           <div>
@@ -88,6 +89,9 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
             )}
             pagination={{
               pageSize: 5
+            }}
+            scroll={{
+              x: 2100
             }}
             rowKey={(record: any, index: any) => index}
           />
