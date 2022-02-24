@@ -3,7 +3,7 @@ import { Table, Upload } from "antd";
 import { useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
-import { clustersMerge } from '@/utils';
+import { clustersMerge } from "@/utils";
 
 export interface IDataSource {
   headers: string[];
@@ -23,9 +23,18 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       const res = info.file.response ?? {};
       const columns = res?.columns ?? {};
       setDataSource(columns);
-      const dim_clusters = res?.dim_clusters ?? [];
-      const sem_clusters = res?.sem_clusters ?? [];
+      const dim_clusters = [
+        ...(res?.dim_clusters ?? []),
+        ...(res?.dim_clusters ?? []),
+        ...(res?.dim_clusters ?? []),
+      ];
+      const sem_clusters = [
+        ...(res?.sem_clusters ?? []),
+        ...(res?.sem_clusters ?? []),
+        ...(res?.sem_clusters ?? []),
+      ];
       const clusters = [...dim_clusters, ...sem_clusters];
+      console.log(clustersMerge(clusters));
       setClusters(clustersMerge(clusters));
     }
   };
@@ -36,7 +45,6 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       title: header,
       dataIndex: header,
       key: header,
-      width: 150,
       render(text: string) {
         return (
           <div>
@@ -81,17 +89,17 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       >
         {dataSource && (
           <Table
-            className={styles.content}
+            className={styles.table}
             columns={mapHeadersToColumns(dataSource?.headers ?? [])}
             dataSource={mapBodyToRows(
               dataSource?.headers ?? [],
               dataSource?.body ?? []
             )}
             pagination={{
-              pageSize: 5
+              pageSize: 5,
             }}
             scroll={{
-              x: 2100
+              x: 1600,
             }}
             rowKey={(record: any, index: any) => index}
           />
