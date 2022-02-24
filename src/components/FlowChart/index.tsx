@@ -1,134 +1,56 @@
 import { useEffect, useRef } from "react";
 import styles from "./index.less";
-import G6 from "@antv/g6";
-import { NODE_NAME_CARD } from '@/constants';
+import * as dagre from "dagre";
+export interface IFlowChartProps {
+  graphData: any;
+}
 
-const FlowChart = () => {
-  const data = {
-    nodes: [
-      {
-        id: "0",
-        label: "0",
-        type: NODE_NAME_CARD,
-        data: [
-          {
-            name: 'name0_0',
-            value: 'value0_0'
-          },
-          {
-            name: 'name0_1',
-            value: 'value0_1'
-          },
-        ]
-      },
-      {
-        id: "1",
-        label: "1",
-        type: NODE_NAME_CARD,
-        data: [
-          {
-            name: 'name1_0',
-            value: 'value1_0'
-          },
-          {
-            name: 'name1_1',
-            value: 'value1_1'
-          },
-        ]
-      },
-      {
-        id: "2",
-        label: "2",
-        type: NODE_NAME_CARD,
-        data: [
-          {
-            name: 'name2_0',
-            value: 'value2_0',
-          },
-          {
-            name: 'name2_1',
-            value: 'value2_1'
-          },
-        ]
-      },
-      {
-        id: "3",
-        label: "3",
-        type: NODE_NAME_CARD,
-        data: [
-          {
-            name: 'name3_0',
-            value: 'value3_0'
-          },
-          {
-            name: 'name3_1',
-            value: 'value3_1'
-          },
-        ]
-      }
-    ],
-    edges: [
-      {
-        source: "0",
-        target: "1",
-      },
-      {
-        source: "0",
-        target: "2",
-      },
-      {
-        source: "1",
-        target: "3"
-      }
-    ],
+const FlowChart: React.FC<IFlowChartProps> = (props) => {
+  const { graphData } = props;
+
+  const layoutGraph = () => {
+    const g = new dagre.graphlib.Graph();
+    g.setGraph({});
+    g.setDefaultEdgeLabel(function () {
+      return {};
+    });
+    g.setNode("kspacey", { label: "Kevin Spacey", width: 144, height: 100 });
+    g.setNode("swilliams", { label: "Saul Williams", width: 160, height: 100 });
+    g.setNode("bpitt", { label: "Brad Pitt", width: 108, height: 100 });
+    g.setNode("hford", { label: "Harrison Ford", width: 168, height: 100 });
+    g.setNode("lwilson", { label: "Luke Wilson", width: 144, height: 100 });
+    g.setNode("kbacon", { label: "Kevin Bacon", width: 121, height: 100 });
+    g.setEdge("kspacey", "swilliams");
+    g.setEdge("swilliams", "kbacon");
+    g.setEdge("bpitt", "kbacon");
+    g.setEdge("hford", "lwilson");
+    g.setEdge("lwilson", "kbacon");
+    dagre.layout(g);
+    g.nodes().forEach(function (v: any) {
+      console.log("Node " + v + ": ", g.node(v));
+    });
+    // const nodes = (graphData.nodes as any[]).map((node) => ({
+    //   ...node,
+    //   width: 200,
+    //   height: 100,
+    // }));
+    // console.log(nodes);
+    // nodes.forEach((node) => {
+    //   graph.setNode(node.id, node);
+    // });
+    // const edges = graphData.edges as any[];
+    // edges.forEach((edge) => {
+    //   graph.setEdge(edge.from, edge.to);
+    // });
   };
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // 第一步，实例化graph
   useEffect(() => {
-    const container = containerRef.current;
-    const width = container?.clientWidth ?? 0;
-    const height = container?.clientHeight ?? 0;
+    if (graphData?.nodes && graphData?.edges) {
+      layoutGraph();
+    }
+  }, [graphData]);
 
-    const graph = new G6.Graph({
-      container: styles.container,
-      width,
-      height,
-      layout: {
-        type: "dagre",
-        rankdir: "LR",
-        align: "UL",
-        controlPoints: true,
-        nodesepFunc: () => 1,
-        ranksepFunc: () => 50,
-      },
-      defaultNode: {
-        size: [120, 120],
-        style: {
-          lineWidth: 2,
-          stroke: "#5B8FF9",
-          fill: "#C6E5FF",
-        },
-      },
-      defaultEdge: {
-        type: "polyline",
-        size: 1,
-        color: "#e2e2e2",
-        style: {
-          endArrow: {
-            path: "M 0,0 L 8,4 L 8,-4 Z",
-            fill: "#e2e2e2",
-          },
-          radius: 15,
-        },
-      },
-    });
-    graph.data(data);
-    graph.render();
-  }, []);
-
-  return <div id={styles.container} ref={containerRef}></div>;
+  return <div id={styles.container}></div>;
 };
 
 export default FlowChart;

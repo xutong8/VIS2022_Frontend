@@ -23,18 +23,9 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       const res = info.file.response ?? {};
       const columns = res?.columns ?? {};
       setDataSource(columns);
-      const dim_clusters = [
-        ...(res?.dim_clusters ?? []),
-        ...(res?.dim_clusters ?? []),
-        ...(res?.dim_clusters ?? []),
-      ];
-      const sem_clusters = [
-        ...(res?.sem_clusters ?? []),
-        ...(res?.sem_clusters ?? []),
-        ...(res?.sem_clusters ?? []),
-      ];
+      const dim_clusters = res?.dim_clusters ?? [];
+      const sem_clusters = res?.sem_clusters ?? [];
       const clusters = [...dim_clusters, ...sem_clusters];
-      console.log(clustersMerge(clusters));
       setClusters(clustersMerge(clusters));
     }
   };

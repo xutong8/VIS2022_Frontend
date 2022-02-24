@@ -1,19 +1,28 @@
 import styles from "./index.less";
 import { Button, List } from "antd";
 import { httpRequest } from "@/services";
+import { NODE_NAME_CARD } from "@/constants";
 export interface IClustersProps {
   clusters: string[][];
+  setGraphData: (graphData: any) => void;
 }
 
 const Clusters: React.FC<IClustersProps> = (props) => {
-  const { clusters } = props;
+  const { clusters, setGraphData } = props;
 
   // fetch search
   const fetchSearch = () => {
     httpRequest
       .post("/search")
       .then((res: any) => {
-        console.log("res: ", res);
+        const data = res?.data ?? {};
+        const nodes = ((data?.nodes ?? []) as any[]).map(node => ({...node, type: NODE_NAME_CARD}));
+        const edges = ((data?.edges ?? []) as any[]).map(edge => ({source: edge.from, target: edge.to}));
+        const graphData = {
+          nodes,
+          edges
+        };
+        setGraphData(graphData);
       })
       .catch((err) => {
         console.error("err: ", err);

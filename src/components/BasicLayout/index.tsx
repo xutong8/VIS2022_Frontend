@@ -7,12 +7,13 @@ import ChartContainer from "../ChartContainer";
 
 const BasicLayout = () => {
   const [clusters, setClusters] = useState<string[][]>([]);
+  const [graphData, setGraphData] = useState<any>(null);
 
   return (
     <div className={styles.layout}>
       <div className={styles.item}>
         <FileUploadTable setClusters={setClusters} />
-        <Clusters clusters={clusters} />
+        <Clusters clusters={clusters} setGraphData={setGraphData} />
       </div>
       <div
         className={styles.item}
@@ -22,7 +23,7 @@ const BasicLayout = () => {
           <ChartContainer />
         </div>
         <div className={styles.item}>
-          <FlowChart />
+          <FlowChart graphData={graphData} />
         </div>
       </div>
     </div>

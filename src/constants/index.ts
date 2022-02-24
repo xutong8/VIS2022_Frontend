@@ -1,3 +1,8 @@
 const NODE_NAME_CARD = "card";
 
-export { NODE_NAME_CARD };
+enum NodeType {
+  D = "D",
+  V = "V",
+}
+
+export { NODE_NAME_CARD, NodeType };

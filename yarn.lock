@@ -265,7 +265,7 @@
     react "^16.12.0"
     yoga-layout-prebuilt "^1.10.0"
 
-"@antv/g6@^4.0.0", "@antv/g6@^4.5.5":
+"@antv/g6@^4.0.0":
   version "4.5.5"
   resolved "https://registry.npmmirror.com/@antv/g6/-/g6-4.5.5.tgz#0a85a3ceb572b0e32c4845c05fdc1c2b77d6ee17"
   integrity sha512-rSe1j4ihrV6HfgL/fFs4T9VtycMc/OqZKZx6RAVRviQZA1VNblvddY+2ERPTbNwaljM+XQODCUFRHY3CspT7vg==
