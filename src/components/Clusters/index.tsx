@@ -16,11 +16,17 @@ const Clusters: React.FC<IClustersProps> = (props) => {
       .post("/search")
       .then((res: any) => {
         const data = res?.data ?? {};
-        const nodes = ((data?.nodes ?? []) as any[]).map(node => ({...node, type: NODE_NAME_CARD}));
-        const edges = ((data?.edges ?? []) as any[]).map(edge => ({source: edge.from, target: edge.to}));
+        const nodes = ((data?.nodes ?? []) as any[]).map((node) => ({
+          ...node,
+          type: NODE_NAME_CARD,
+        }));
+        const edges = ((data?.edges ?? []) as any[]).map((edge) => ({
+          source: edge.from,
+          target: edge.to,
+        }));
         const graphData = {
           nodes,
-          edges
+          edges,
         };
         setGraphData(graphData);
       })
@@ -51,7 +57,9 @@ const Clusters: React.FC<IClustersProps> = (props) => {
           </div>
         )}
       />
-      <Button onClick={handleClick} className={styles.btn}>查询</Button>
+      <Button onClick={handleClick} className={styles.btn}>
+        查询
+      </Button>
     </div>
   );
 };
