@@ -4,12 +4,14 @@ import { NodeType } from "@/constants";
 import ReactFlow, { isNode } from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "../Headers";
+import Scatter from "../Scatter";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
 const nodeTypes = {
   headersNode: Headers,
+  scatterNode: Scatter
 };
 
 const nodeBoundingRect = {
@@ -78,7 +80,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         label: `node_${index}`,
         ...node,
       },
-      type: node.node_type === NodeType.D ? "headersNode" : undefined,
+      type: node.node_type === NodeType.D ? "headersNode" : "scatterNode",
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];

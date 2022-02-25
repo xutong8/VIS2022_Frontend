@@ -14,7 +14,6 @@ const Headers = ({
   data: any;
   isConnectable: any;
 }) => {
-  console.log("data: ", data);
   return (
     <>
       <Handle
@@ -22,7 +21,6 @@ const Headers = ({
         /*@ts-ignore*/
         position="left"
         style={{ background: "#555" }}
-        onConnect={(params: any) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
       <div className={styles.headers}>
