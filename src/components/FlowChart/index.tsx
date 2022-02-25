@@ -1,8 +1,67 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.less";
-import * as dagre from "dagre";
-import { select } from "d3";
 import { NodeType } from "@/constants";
+import ReactFlow, { isNode } from "react-flow-renderer";
+import dagre from "dagre";
+import Headers from "../Headers";
+
+const dagreGraph = new dagre.graphlib.Graph();
+dagreGraph.setDefaultEdgeLabel(() => ({}));
+
+const nodeTypes = {
+  headersNode: Headers,
+};
+
+const nodeBoundingRect = {
+  [NodeType.D]: {
+    width: 240,
+    height: 200,
+  },
+  [NodeType.V]: {
+    width: 450,
+    height: 450,
+  },
+} as {
+  [key: string]: any;
+};
+
+const getLayoutedElements = (elements: any[], direction = "TB") => {
+  const isHorizontal = direction === "LR";
+  dagreGraph.setGraph({ rankdir: direction });
+
+  elements.forEach((el) => {
+    if (isNode(el)) {
+      const node_type = el.data.node_type as string;
+      const layout = nodeBoundingRect[node_type];
+      dagreGraph.setNode(el.id, { width: layout.width, height: layout.height });
+    } else {
+      dagreGraph.setEdge(el.source, el.target);
+    }
+  });
+
+  dagre.layout(dagreGraph);
+
+  return elements.map((el) => {
+    if (isNode(el)) {
+      const nodeWithPosition = dagreGraph.node(el.id);
+      /*@ts-ignore */
+      el.targetPosition = isHorizontal ? "left" : "top";
+      /*@ts-ignore */
+      el.sourcePosition = isHorizontal ? "right" : "bottom";
+      const node_type = el.data.node_type as string;
+      const layout = nodeBoundingRect[node_type];
+      const nodeWidth = layout.width;
+      const nodeHeight = layout.height;
+
+      el.position = {
+        x: nodeWithPosition.x - nodeWidth / 2 + Math.random() / 1000,
+        y: nodeWithPosition.y - nodeHeight / 2,
+      };
+    }
+
+    return el;
+  });
+};
 export interface IFlowChartProps {
   graphData: any;
 }
@@ -11,77 +70,25 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
   const { graphData } = props;
 
   const layoutGraph = () => {
-    const graph = new dagre.graphlib.Graph();
-    graph.setGraph({});
-    graph.setDefaultEdgeLabel(function () {
-      return {};
-    });
-
-    console.log("graphData: ", graphData);
-
-    const nodes = graphData.nodes as any[];
-    const nodesRef = select(`.${styles.nodes}`);
-
-    // 创建node节点
-    nodesRef
-      .selectAll("div")
-      .data(nodes)
-      .join(
-        (enter) =>
-          enter
-            .append("div")
-            .attr("id", (_, index: number) => `node_${index}`)
-            .attr("class", styles.node),
-        (update) => update,
-        (exit) => exit.remove()
-      );
-
-    // 类型为D的节点添加header
-    nodesRef
-      .selectAll("div")
-      .filter((d: any) => d.node_type === NodeType.D)
-      .selectAll("div")
-      .data((d: any) => d?.data?.headers ?? [])
-      .join("div")
-      .attr("class", styles.header)
-      .text((d: any) => d);
-
-    // 类型为V的节点添加散点图
-    // nodesRef
-    //   .selectAll("div")
-    //   .filter((d: any) => d.node_type === NodeType.V)
-    //   .selectAll("div");
-
-    // 计算宽度和高度
-    const nodeAllDom = nodesRef.selectAll("g").nodes() as HTMLElement[];
-    nodeAllDom.forEach((nodeDom: HTMLElement, index: number) => {
-      const bounding = nodeDom.getBoundingClientRect();
-      const width = bounding.width;
-      const height = bounding.height;
-      const node = nodes[index];
-      const newNode = {
+    const nodes = (graphData?.nodes ?? []) as any[];
+    const newNodes = nodes.map((node, index: number) => ({
+      id: node.id,
+      position: [0, 0],
+      data: {
+        label: `node_${index}`,
         ...node,
-        width,
-        height,
-        label: "",
-      };
-      nodes[index] = newNode;
-      graph.setNode(newNode.id, newNode);
-    });
-
-    const edges = graphData.edges as any[];
-    edges.forEach((edge) => {
-      graph.setEdge(edge.from, edge.to);
-    });
-
-    dagre.layout(graph);
-
-    graph.nodes().forEach(function (v: any) {
-      console.log("Node " + v + ": ", graph.node(v));
-    });
-    graph.edges().forEach(function (e: any) {
-      console.log("Edge " + e.v + " -> " + e.w + ": ", graph.edge(e));
-    });
+      },
+      type: node.node_type === NodeType.D ? "headersNode" : undefined,
+      ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
+    }));
+    const edges = (graphData?.edges ?? []) as any[];
+    const newEdges = edges.map((edge, index: number) => ({
+      id: `edge_${index}`,
+      source: edge.source,
+      target: edge.target,
+      animated: true,
+    }));
+    setElements([...newNodes, ...newEdges]);
   };
 
   useEffect(() => {
@@ -90,13 +97,15 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     }
   }, [graphData]);
 
+  const [elements, setElements] = useState<any[]>([]);
+
   return (
     <div id={styles.container}>
-      <svg className={styles.graph}>
-        <foreignObject width="100%" height="100%">
-          <div className={styles.nodes}></div>
-        </foreignObject>
-      </svg>
+      <ReactFlow
+        elements={getLayoutedElements(elements, "LR")}
+        nodeTypes={nodeTypes}
+        defaultZoom={0.5}
+      />
     </div>
   );
 };
