@@ -1,14 +1,15 @@
 import styles from "./index.less";
 import { useRef, useEffect } from "react";
 import * as echarts from "echarts";
-
+import cn from 'classnames';
 export interface IScatterChartProps {
   dataSource: any[];
+  className?: string;
 }
 
 const ScatterChart: React.FC<IScatterChartProps> = (props) => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const { dataSource } = props;
+  const { dataSource, className = "" } = props;
 
   useEffect(() => {
     if (dataSource.length === 0) return;
@@ -40,7 +41,10 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     scatter.setOption(options);
   }, [dataSource]);
 
-  return <div ref={chartRef} className={styles.chart}></div>;
+  return <div ref={chartRef} className={cn({
+    [styles.chart]: true,
+    [className]: true
+  })}></div>;
 };
 
 export default ScatterChart;

@@ -2,6 +2,7 @@ import styles from "./index.less";
 import { memo, useEffect, useRef } from "react";
 import { Handle } from "react-flow-renderer";
 import * as echarts from "echarts";
+import ScatterChart from "@/components/ScatterChart";
 
 const Scatter = ({
   data,
@@ -10,32 +11,6 @@ const Scatter = ({
   data: any;
   isConnectable: any;
 }) => {
-  const chartRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const chartDom = chartRef.current as HTMLDivElement;
-    const scatter = echarts.init(chartDom);
-    const options = {
-      xAxis: {},
-      yAxis: {},
-      series: [
-        {
-          symbolSize: 20,
-          data: [...data.data.data.map((item: any) => [item.x, item.y, item.color])],
-          type: "scatter",
-          itemStyle: {
-            normal: {
-              color: function (arg: any) {
-                const colors = arg.data[2] as number[];
-                return `rgb(${255 * colors[0]}, ${255 * colors[1]}, ${255 * colors[2]})`;
-              },
-            },
-          },
-        },
-      ],
-    };
-    scatter.setOption(options);
-  }, [data]);
 
   return (
     <>
@@ -46,7 +21,7 @@ const Scatter = ({
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
-      <div ref={chartRef} className={styles.chart}></div>
+      <ScatterChart dataSource={data.data.data} className={styles.chart} />
       <Handle
         type="source"
         /*@ts-ignore*/
