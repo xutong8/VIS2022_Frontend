@@ -1,6 +1,6 @@
 import styles from "./index.less";
 import React, { memo } from "react";
-import Ellipsis from "../Ellipsis";
+import Ellipsis from "../../Ellipsis";
 import { Handle } from "react-flow-renderer";
 
 export interface IHeadersProps {

@@ -5,10 +5,11 @@ import { NODE_NAME_CARD } from "@/constants";
 export interface IClustersProps {
   clusters: string[][];
   setGraphData: (graphData: any) => void;
+  setVisList: (visList: any[]) => void;
 }
 
 const Clusters: React.FC<IClustersProps> = (props) => {
-  const { clusters, setGraphData } = props;
+  const { clusters, setGraphData, setVisList } = props;
 
   // fetch search
   const fetchSearch = () => {
@@ -29,6 +30,8 @@ const Clusters: React.FC<IClustersProps> = (props) => {
           edges,
         };
         setGraphData(graphData);
+        const visList = data?.vis_list ?? [];
+        setVisList(visList);
       })
       .catch((err) => {
         console.error("err: ", err);

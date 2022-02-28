@@ -5,4 +5,8 @@ enum NodeType {
   V = "V",
 }
 
-export { NODE_NAME_CARD, NodeType };
+enum ChartType {
+  SCATTER = "scatter",
+}
+
+export { NODE_NAME_CARD, NodeType, ChartType };

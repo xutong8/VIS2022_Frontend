@@ -3,15 +3,15 @@ import styles from "./index.less";
 import { NodeType } from "@/constants";
 import ReactFlow, { isNode } from "react-flow-renderer";
 import dagre from "dagre";
-import Headers from "../Headers";
-import Scatter from "../Scatter";
+import Headers from "./Headers";
+import Scatter from "./Scatter";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
 const nodeTypes = {
   headersNode: Headers,
-  scatterNode: Scatter
+  scatterNode: Scatter,
 };
 
 const nodeBoundingRect = {
@@ -80,6 +80,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         label: `node_${index}`,
         ...node,
       },
+      className:
+        node?.stress ?? false
+          ? styles["stressed-node"]
+          : styles["ordinary-node"],
       type: node.node_type === NodeType.D ? "headersNode" : "scatterNode",
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
@@ -89,6 +93,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       source: edge.source,
       target: edge.target,
       animated: true,
+      className: edge?.stress ?? false ? styles["stressed-edge"] : "",
     }));
     setElements([...newNodes, ...newEdges]);
   };
