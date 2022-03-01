@@ -7,6 +7,7 @@ enum NodeType {
 
 enum ChartType {
   SCATTER = "scatter",
+  LINE = "line",
 }
 
 export { NODE_NAME_CARD, NodeType, ChartType };

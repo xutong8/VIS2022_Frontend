@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./index.less";
-import { NodeType } from "@/constants";
+import { ChartType, NodeType } from "@/constants";
 import ReactFlow, { isNode } from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "./Headers";
@@ -84,7 +84,12 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         node?.stress ?? false
           ? styles["stressed-node"]
           : styles["ordinary-node"],
-      type: node.node_type === NodeType.D ? "headersNode" : "scatterNode",
+      type:
+        node.node_type === NodeType.D
+          ? "headersNode"
+          : ChartType.SCATTER === (node?.data?.chart_type ?? ChartType.SCATTER)
+          ? "scatterNode"
+          : undefined,
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];

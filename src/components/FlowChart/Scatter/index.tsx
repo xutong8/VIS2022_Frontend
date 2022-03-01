@@ -1,7 +1,6 @@
 import styles from "./index.less";
-import { memo, useEffect, useRef } from "react";
+import { memo } from "react";
 import { Handle } from "react-flow-renderer";
-import * as echarts from "echarts";
 import ScatterChart from "@/components/ScatterChart";
 
 const Scatter = ({
