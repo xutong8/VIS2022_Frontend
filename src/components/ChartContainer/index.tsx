@@ -2,6 +2,8 @@ import styles from "./index.less";
 import React, { useState } from "react";
 import { ChartType } from "@/constants";
 import ScatterChart from "@/components/ScatterChart";
+import LineChart from "../LineChart";
+import { generateLineChartProps } from "@/utils";
 export interface IChartContainerProps {
   visList: any[];
   graphData: any;
@@ -74,6 +76,13 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <ScatterChart dataSource={item.data} />
             </div>
           );
+        } else if(item.chart_type === ChartType.LINE) {
+          const lineProps = generateLineChartProps(item.data);
+          return (
+            <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <LineChart dataSource={lineProps.series} xTicks={lineProps.xTicks} />
+            </div>
+          )
         }
       })}
     </div>

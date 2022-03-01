@@ -5,6 +5,7 @@ import ReactFlow, { isNode } from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "./Headers";
 import Scatter from "./Scatter";
+import Line from './Line';
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -12,6 +13,7 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 const nodeTypes = {
   headersNode: Headers,
   scatterNode: Scatter,
+  lineNode: Line
 };
 
 const nodeBoundingRect = {
@@ -89,7 +91,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
           ? "headersNode"
           : ChartType.SCATTER === (node?.data?.chart_type ?? ChartType.SCATTER)
           ? "scatterNode"
-          : undefined,
+          : "lineNode",
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];

@@ -29,3 +29,31 @@ function clustersMerge(clusters: string[][]) {
 }
 
 export { clustersMerge, clustersLarge };
+
+// linechart生成x_ticks
+function generateLineChartProps(data: any[]): any {
+  const xTicks = [] as any[];
+  data.forEach((item) => {
+    xTicks.push(item.x);
+  });
+  const series = [] as any[];
+  data.forEach((item) => {
+    const y = (item?.y ?? []) as any[];
+    y.forEach((val, index) => {
+      if (!series[index]) {
+        series[index] = [];
+      }
+      series[index] = [...series[index], val];
+    });
+  });
+
+  return {
+    xTicks,
+    series: series.map((data) => ({
+      type: "line",
+      data,
+    })),
+  };
+}
+
+export { generateLineChartProps };
