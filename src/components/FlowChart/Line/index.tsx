@@ -6,7 +6,7 @@ import { generateLineChartProps } from "@/utils";
 
 const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
   const lineChartProps = generateLineChartProps(data.data.data);
-  console.log('data: ', data.data.data);
+  console.log("data: ", data.data.data);
   return (
     <>
       <Handle
@@ -16,7 +16,10 @@ const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
-      <LineChart xTicks={lineChartProps.xTicks} dataSource={lineChartProps.series} />
+      <LineChart
+        xTicks={lineChartProps.xTicks}
+        dataSource={lineChartProps.series}
+      />
       <Handle
         type="source"
         /*@ts-ignore*/
