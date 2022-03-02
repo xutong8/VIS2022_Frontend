@@ -6,6 +6,7 @@ import dagre from "dagre";
 import Headers from "./Headers";
 import Scatter from "./Scatter";
 import Line from './Line';
+import Bar from './Bar';
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -13,7 +14,8 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 const nodeTypes = {
   headersNode: Headers,
   scatterNode: Scatter,
-  lineNode: Line
+  lineNode: Line,
+  barNode: Bar
 };
 
 const nodeBoundingRect = {
@@ -75,6 +77,22 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
 
   const layoutGraph = () => {
     const nodes = (graphData?.nodes ?? []) as any[];
+    const getNodeType = (node: any) => {
+      const node_type = node?.data?.chart_type ?? ChartType.SCATTER;
+      switch(node_type) {
+        case ChartType.SCATTER:
+          return 'scatterNode';
+        case ChartType.LINE:
+          return 'lineNode';
+        case ChartType.BAR:
+          return 'barNode';
+        case ChartType.CAT_LINE:
+          return 'lineNode';
+        default:
+          return 'scatterNode';
+      }
+    }
+
     const newNodes = nodes.map((node, index: number) => ({
       id: node.id,
       position: [0, 0],
@@ -89,9 +107,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       type:
         node.node_type === NodeType.D
           ? "headersNode"
-          : ChartType.SCATTER === (node?.data?.chart_type ?? ChartType.SCATTER)
-          ? "scatterNode"
-          : "lineNode",
+          : getNodeType(node),
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
