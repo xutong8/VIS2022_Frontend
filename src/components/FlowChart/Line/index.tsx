@@ -18,6 +18,7 @@ const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
       <LineChart
         xTicks={lineChartProps.xTicks}
         dataSource={lineChartProps.series}
+        className={styles.chart}
       />
       <Handle
         type="source"

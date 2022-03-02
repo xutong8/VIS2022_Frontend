@@ -5,8 +5,8 @@ import ReactFlow, { isNode } from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "./Headers";
 import Scatter from "./Scatter";
-import Line from './Line';
-import Bar from './Bar';
+import Line from "./Line";
+import Bar from "./Bar";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -15,7 +15,7 @@ const nodeTypes = {
   headersNode: Headers,
   scatterNode: Scatter,
   lineNode: Line,
-  barNode: Bar
+  barNode: Bar,
 };
 
 const nodeBoundingRect = {
@@ -79,19 +79,19 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     const nodes = (graphData?.nodes ?? []) as any[];
     const getNodeType = (node: any) => {
       const node_type = node?.data?.chart_type ?? ChartType.SCATTER;
-      switch(node_type) {
+      switch (node_type) {
         case ChartType.SCATTER:
-          return 'scatterNode';
+          return "scatterNode";
         case ChartType.LINE:
-          return 'lineNode';
+          return "lineNode";
         case ChartType.BAR:
-          return 'barNode';
+          return "barNode";
         case ChartType.CAT_LINE:
-          return 'lineNode';
+          return "lineNode";
         default:
-          return 'scatterNode';
+          return "scatterNode";
       }
-    }
+    };
 
     const newNodes = nodes.map((node, index: number) => ({
       id: node.id,
@@ -104,10 +104,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         node?.stress ?? false
           ? styles["stressed-node"]
           : styles["ordinary-node"],
-      type:
-        node.node_type === NodeType.D
-          ? "headersNode"
-          : getNodeType(node),
+      type: node.node_type === NodeType.D ? "headersNode" : getNodeType(node),
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];

@@ -20,6 +20,7 @@ const Bar = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
         xTicks={barChartProps.xTicks}
         dataSource={barChartProps.series}
         legend={legend}
+        className={styles.chart}
       />
       <Handle
         type="source"
