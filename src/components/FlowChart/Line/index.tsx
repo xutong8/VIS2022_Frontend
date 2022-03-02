@@ -6,7 +6,6 @@ import { generateLineChartProps } from "@/utils";
 
 const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
   const lineChartProps = generateLineChartProps(data.data.data);
-  console.log("data: ", data.data.data);
   return (
     <>
       <Handle

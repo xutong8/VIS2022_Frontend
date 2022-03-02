@@ -5,18 +5,20 @@ import { Tooltip } from "antd";
 
 export interface IEllipsisProps {
   text: string;
+  max_len?: number;
 }
 
 const Ellipsis: React.FC<IEllipsisProps> = (props) => {
   const text = String(props.text);
+  const { max_len = 5 } = props;
 
   return (
     <div style={{ whiteSpace: "nowrap" }}>
-      {text.length < 5 ? (
+      {text.length < max_len ? (
         text
       ) : (
         <Tooltip title={text}>
-          <span style={{ margin: "0 2px" }}>{text.slice(0, 5)}</span>
+          <span style={{ margin: "0 2px" }}>{text.slice(0, max_len)}</span>
           <QuestionCircleOutlined />
         </Tooltip>
       )}

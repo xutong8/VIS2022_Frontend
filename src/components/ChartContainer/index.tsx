@@ -83,6 +83,14 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <LineChart dataSource={lineProps.series} xTicks={lineProps.xTicks} />
             </div>
           )
+        } else if(item.chart_type === ChartType.CAT_LINE) {
+          const lineProps = generateLineChartProps(item.data);
+          const yaxis = item.yaxis;
+          return (
+            <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <LineChart yaxis={yaxis} formatter={true} dataSource={lineProps.series} xTicks={lineProps.xTicks} />
+            </div>
+          )
         }
       })}
     </div>

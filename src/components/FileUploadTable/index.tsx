@@ -4,6 +4,7 @@ import { useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
 import { clustersMerge } from "@/utils";
+import Ellipsis from "../Ellipsis";
 
 export interface IDataSource {
   headers: string[];
@@ -37,13 +38,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       dataIndex: header,
       key: header,
       render(text: string) {
-        return (
-          <div>
-            {text.length < MAX_STR_LEN
-              ? text
-              : String(text).slice(0, MAX_STR_LEN)}
-          </div>
-        );
+        return <Ellipsis text={text} max_len={MAX_STR_LEN} />;
       },
     }));
   };
