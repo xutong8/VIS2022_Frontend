@@ -27,17 +27,26 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
     const line = echarts.init(chartDom, undefined);
     const options = {
       grid: {
-        top: 20,
-        bottom: 40,
+        top: 50,
+        bottom: 30,
         left: 50,
         right: 20,
       },
+      legend: {
+        show: true,
+        formatter: (text: string) => {
+          const max_len = 6;
+          return text.length < max_len
+            ? text
+            : text.slice(0, max_len - 3) + "...";
+        },
+      },
       xAxis: {
         type: "category",
-        data: xTicks.map(xTick => xTick.text),
+        data: xTicks.map((xTick) => xTick.text),
         axisLabel: {
           formatter: (text: any) => {
-            const tick = xTicks.find(xTick => text === xTick.text);
+            const tick = xTicks.find((xTick) => text === xTick.text);
             return tick.x;
           },
         },

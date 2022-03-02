@@ -76,21 +76,29 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <ScatterChart dataSource={item.data} />
             </div>
           );
-        } else if(item.chart_type === ChartType.LINE) {
-          const lineProps = generateLineChartProps(item.data);
+        } else if (item.chart_type === ChartType.LINE) {
+          const lineProps = generateLineChartProps(item.data, item.legend);
           return (
             <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <LineChart dataSource={lineProps.series} xTicks={lineProps.xTicks} />
+              <LineChart
+                dataSource={lineProps.series}
+                xTicks={lineProps.xTicks}
+              />
             </div>
-          )
-        } else if(item.chart_type === ChartType.CAT_LINE) {
-          const lineProps = generateLineChartProps(item.data);
+          );
+        } else if (item.chart_type === ChartType.CAT_LINE) {
+          const lineProps = generateLineChartProps(item.data, item.legend);
           const yaxis = item.yaxis;
           return (
             <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <LineChart yaxis={yaxis} formatter={true} dataSource={lineProps.series} xTicks={lineProps.xTicks} />
+              <LineChart
+                yaxis={yaxis}
+                formatter={true}
+                dataSource={lineProps.series}
+                xTicks={lineProps.xTicks}
+              />
             </div>
-          )
+          );
         }
       })}
     </div>

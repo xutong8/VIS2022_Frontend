@@ -5,7 +5,7 @@ import LineChart from "@/components/LineChart";
 import { generateLineChartProps } from "@/utils";
 
 const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
-  const lineChartProps = generateLineChartProps(data.data.data);
+  const lineChartProps = generateLineChartProps(data.data.data, data.data.legend);
   return (
     <>
       <Handle

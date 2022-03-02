@@ -31,7 +31,7 @@ function clustersMerge(clusters: string[][]) {
 export { clustersMerge, clustersLarge };
 
 // linechart生成x_ticks
-function generateLineChartProps(data: any[]): any {
+function generateLineChartProps(data: any[], legend: any[]): any {
   const xTicks = [] as any[];
   data.forEach((item) => {
     xTicks.push({
@@ -52,9 +52,10 @@ function generateLineChartProps(data: any[]): any {
 
   return {
     xTicks,
-    series: series.map((data) => ({
+    series: series.map((data, index: number) => ({
       type: "line",
       data,
+      name: legend[index]
     })),
   };
 }
