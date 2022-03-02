@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { ChartType } from "@/constants";
 import ScatterChart from "@/components/ScatterChart";
 import LineChart from "../LineChart";
-import { generateLineChartProps } from "@/utils";
+import { generateBarChartProps, generateLineChartProps } from "@/utils";
+import BarChart from "../BarChart";
 export interface IChartContainerProps {
   visList: any[];
   graphData: any;
@@ -96,6 +97,17 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 formatter={true}
                 dataSource={lineProps.series}
                 xTicks={lineProps.xTicks}
+              />
+            </div>
+          );
+        } else if (item.chart_type === ChartType.BAR) {
+          const barProps = generateBarChartProps(item.data, item.legend);
+          return (
+            <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <BarChart
+                xTicks={barProps.xTicks}
+                dataSource={barProps.series}
+                legend={item.legend}
               />
             </div>
           );

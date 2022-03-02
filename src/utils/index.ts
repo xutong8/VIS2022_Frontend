@@ -30,13 +30,13 @@ function clustersMerge(clusters: string[][]) {
 
 export { clustersMerge, clustersLarge };
 
-// linechart生成x_ticks
+// 生成linechart props
 function generateLineChartProps(data: any[], legend: any[]): any {
   const xTicks = [] as any[];
   data.forEach((item) => {
     xTicks.push({
       text: item.text,
-      x: item.x
+      x: item.x,
     });
   });
   const series = [] as any[];
@@ -55,9 +55,41 @@ function generateLineChartProps(data: any[], legend: any[]): any {
     series: series.map((data, index: number) => ({
       type: "line",
       data,
-      name: legend[index]
+      name: legend[index],
     })),
   };
 }
 
 export { generateLineChartProps };
+
+// 生成barchart props
+function generateBarChartProps(data: any[], legend: string[]) {
+  const xTicks = [] as any[];
+  data.forEach((item) => {
+    xTicks.push(item.x);
+  });
+
+  const series = [] as any[];
+  legend.forEach((text, legendIndex) => {
+    const item = {
+      name: text,
+      type: "bar",
+      emphasis: {
+        focus: "series",
+      },
+    } as any;
+    const item_data = [] as any;
+    data.forEach((obj) => {
+      item_data.push(obj.y[legendIndex]);
+    });
+    item.data = item_data;
+    series.push(item);
+  });
+
+  return {
+    xTicks,
+    series,
+  };
+}
+
+export { generateBarChartProps };
