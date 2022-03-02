@@ -2,8 +2,6 @@ import styles from "./index.less";
 import { useRef, useEffect } from "react";
 import * as echarts from "echarts";
 import cn from "classnames";
-import { Tooltip } from "antd";
-import Ellipsis from "../Ellipsis";
 
 export interface ILineChartProps {
   xTicks: any[];
@@ -36,7 +34,17 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
       },
       xAxis: {
         type: "category",
-        data: xTicks,
+        data: xTicks.map(xTick => xTick.text),
+        axisLabel: {
+          formatter: (text: any) => {
+            const tick = xTicks.find(xTick => text === xTick.text);
+            return tick.x;
+          },
+        },
+      },
+      tooltip: {
+        trigger: "axis",
+        show: true,
       },
       yAxis: {
         type: !formatter ? "value" : "category",

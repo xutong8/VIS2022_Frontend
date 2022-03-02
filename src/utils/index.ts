@@ -34,7 +34,10 @@ export { clustersMerge, clustersLarge };
 function generateLineChartProps(data: any[]): any {
   const xTicks = [] as any[];
   data.forEach((item) => {
-    xTicks.push(item.x);
+    xTicks.push({
+      text: item.text,
+      x: item.x
+    });
   });
   const series = [] as any[];
   data.forEach((item) => {
