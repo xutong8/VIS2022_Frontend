@@ -20,7 +20,7 @@ const Scatter = ({
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
-      <ScatterChart dataSource={data.data.data} className={styles.chart} />
+      <ScatterChart dataSource={data.data.data} className={styles.chart} legend={data.data.legend} />
       <Handle
         type="source"
         /*@ts-ignore*/

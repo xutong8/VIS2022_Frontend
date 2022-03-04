@@ -93,3 +93,13 @@ function generateBarChartProps(data: any[], legend: string[]) {
 }
 
 export { generateBarChartProps };
+
+// 判断两个数组是否相等
+export function isSameArray(arr1: any[], arr2: any[]) {
+  if (arr1.length !== arr2.length) return false;
+  const len = arr1.length;
+  for (let i = 0; i < len; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
