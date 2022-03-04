@@ -1,10 +1,20 @@
-.headers {
+.content {
   display: flex;
   width: 230px;
   padding: 8px 0;
   overflow: auto;
+  flex-direction: column;
 
-  .header {
-    margin: 0 2px;
+  .item {
+    display: flex;
+  }
+
+  .list {
+    display: flex;
+
+    .column {
+      display: flex;
+      margin: 0 2px;
+    }
   }
 }

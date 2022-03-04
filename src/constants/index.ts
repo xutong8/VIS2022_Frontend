@@ -12,4 +12,14 @@ enum ChartType {
   BAR = "bar",
 }
 
-export { NODE_NAME_CARD, NodeType, ChartType };
+const initial_list = [
+  "headers",
+  "T",
+  "input",
+  "output mode",
+  "new columns",
+  "args",
+  "parameters",
+];
+
+export { NODE_NAME_CARD, NodeType, ChartType, initial_list };
