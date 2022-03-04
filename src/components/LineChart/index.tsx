@@ -9,6 +9,8 @@ export interface ILineChartProps {
   className?: string;
   formatter?: boolean;
   yaxis?: any;
+  xlabel?: string;
+  ylabel?: string;
 }
 
 const LineChart: React.FC<ILineChartProps> = (props) => {
@@ -19,6 +21,8 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
     xTicks,
     formatter = false,
     yaxis = {},
+    xlabel = "",
+    ylabel = "",
   } = props;
 
   useEffect(() => {
@@ -42,6 +46,7 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
         },
       },
       xAxis: {
+        name: xlabel,
         type: "category",
         data: xTicks.map((xTick) => xTick.text),
         axisLabel: {
@@ -56,6 +61,7 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
         show: true,
       },
       yAxis: {
+        name: ylabel,
         type: !formatter ? "value" : "category",
         axisLabel: {
           ...(!formatter

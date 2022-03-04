@@ -74,7 +74,11 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
         if (item.chart_type === ChartType.SCATTER) {
           return (
             <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <ScatterChart dataSource={item.data} />
+              <ScatterChart
+                dataSource={item.data}
+                xlabel={item.xlabel}
+                ylabel={item.ylabel}
+              />
             </div>
           );
         } else if (item.chart_type === ChartType.LINE) {
@@ -84,6 +88,8 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <LineChart
                 dataSource={lineProps.series}
                 xTicks={lineProps.xTicks}
+                xlabel={item.xlabel}
+                ylabel={item.ylabel}
               />
             </div>
           );
@@ -108,6 +114,8 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 xTicks={barProps.xTicks}
                 dataSource={barProps.series}
                 legend={item.legend}
+                xlabel={item.xlabel}
+                ylabel={item.ylabel}
               />
             </div>
           );

@@ -8,11 +8,20 @@ export interface IBarChartProps {
   dataSource: any[];
   legend: string[];
   className?: string;
+  xlabel?: string;
+  ylabel?: string;
 }
 
 const BarChart: React.FC<IBarChartProps> = (props) => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const { dataSource, className = "", xTicks, legend } = props;
+  const {
+    dataSource,
+    className = "",
+    xTicks,
+    legend,
+    xlabel = "",
+    ylabel = "",
+  } = props;
 
   useEffect(() => {
     if (dataSource.length === 0) return;
@@ -38,9 +47,11 @@ const BarChart: React.FC<IBarChartProps> = (props) => {
       xAxis: {
         type: "category",
         data: xTicks,
+        name: xlabel
       },
       yAxis: {
         type: "value",
+        name: ylabel
       },
       tooltip: {
         trigger: "axis",

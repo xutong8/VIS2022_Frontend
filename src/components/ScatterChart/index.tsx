@@ -1,23 +1,29 @@
 import styles from "./index.less";
 import { useRef, useEffect } from "react";
 import * as echarts from "echarts";
-import cn from 'classnames';
+import cn from "classnames";
 export interface IScatterChartProps {
   dataSource: any[];
   className?: string;
+  xlabel?: string;
+  ylabel?: string;
 }
 
 const ScatterChart: React.FC<IScatterChartProps> = (props) => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const { dataSource, className = "" } = props;
+  const { dataSource, className = "", xlabel = "", ylabel = "" } = props;
 
   useEffect(() => {
     if (dataSource.length === 0) return;
     const chartDom = chartRef.current as HTMLDivElement;
     const scatter = echarts.init(chartDom);
     const options = {
-      xAxis: {},
-      yAxis: {},
+      xAxis: {
+        name: xlabel,
+      },
+      yAxis: {
+        name: ylabel,
+      },
       series: [
         {
           symbolSize: 20,
@@ -41,10 +47,15 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     scatter.setOption(options);
   }, [dataSource]);
 
-  return <div ref={chartRef} className={cn({
-    [styles.chart]: true,
-    [className]: true
-  })}></div>;
+  return (
+    <div
+      ref={chartRef}
+      className={cn({
+        [styles.chart]: true,
+        [className]: true,
+      })}
+    ></div>
+  );
 };
 
 export default ScatterChart;
