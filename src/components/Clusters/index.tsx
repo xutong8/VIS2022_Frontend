@@ -45,7 +45,7 @@ const Clusters: React.FC<IClustersProps> = (props) => {
   return (
     <div className={styles.clusters}>
       <List
-        itemLayout="vertical"
+        itemLayout="horizontal"
         pagination={{
           pageSize: 5,
         }}

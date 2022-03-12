@@ -131,7 +131,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       <ReactFlow
         elements={getLayoutedElements(elements, "LR")}
         nodeTypes={nodeTypes}
-        defaultZoom={0.5}
+        minZoom={0.2}
       />
     </div>
   );

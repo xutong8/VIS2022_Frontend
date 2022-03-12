@@ -1,3 +1,4 @@
+// cluster deprecated
 function clustersLarge(clusters: string[], len: number) {
   const size = clusters.length;
   if (size < len) {
