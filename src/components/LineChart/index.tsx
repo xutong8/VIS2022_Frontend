@@ -69,7 +69,7 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
             : {
                 formatter: (value: string) => {
                   value = value + "";
-                  const text = yaxis[value];
+                  const text = String(yaxis?.[value] ?? '');
                   const max_len = 5;
                   return text.length < max_len
                     ? text
