@@ -22,7 +22,13 @@
   .cluster {
     display: flex;
     margin: 0 8px;
-    overflow-y: auto;
+    align-items: center;
+    
+    .item {
+      flex: 1 0 0;
+      display: flex;
+      overflow-y: auto;
+    }
 
     .cell {
       flex-shrink: 0;

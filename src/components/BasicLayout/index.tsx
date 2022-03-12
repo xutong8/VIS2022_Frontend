@@ -12,11 +12,12 @@ const BasicLayout = () => {
   return (
     <div className={styles.layout}>
       <div className={styles.item}>
-        <FileUploadTable setClusters={setClusters} />
+        <FileUploadTable clusters={clusters} setClusters={setClusters} />
         <Clusters
           clusters={clusters}
           setGraphData={setGraphData}
           setVisList={setVisList}
+          setClusters={setClusters}
         />
       </div>
       <div

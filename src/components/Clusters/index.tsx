@@ -2,14 +2,16 @@ import styles from "./index.less";
 import { Button, List } from "antd";
 import { httpRequest } from "@/services";
 import { NODE_NAME_CARD } from "@/constants";
+import { useMemo } from "react";
 export interface IClustersProps {
   clusters: string[][];
+  setClusters: (clusters: string[][]) => void;
   setGraphData: (graphData: any) => void;
   setVisList: (visList: any[]) => void;
 }
 
 const Clusters: React.FC<IClustersProps> = (props) => {
-  const { clusters, setGraphData, setVisList } = props;
+  const { clusters, setClusters, setGraphData, setVisList } = props;
 
   // fetch search
   const fetchSearch = () => {
@@ -42,6 +44,17 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     fetchSearch();
   };
 
+  const dataSource = useMemo(() => clusters.map((cluster, id: number) => {
+    const newCluster = [...cluster] as any;
+    newCluster.id = id;
+    return newCluster;
+  }), [clusters]);
+
+  const handleDelete = (id: number) => {
+    const newClusters = dataSource.filter((cluster: any) => cluster.id !== id);
+    setClusters(newClusters);
+  };
+
   return (
     <div className={styles.clusters}>
       <List
@@ -49,14 +62,19 @@ const Clusters: React.FC<IClustersProps> = (props) => {
         pagination={{
           pageSize: 5,
         }}
-        dataSource={clusters}
+        dataSource={dataSource}
         renderItem={(cluster: string[]) => (
           <div className={styles.cluster}>
-            {cluster.map((item: string, index: number) => (
-              <div key={index} className={styles.cell}>
-                {item}
-              </div>
-            ))}
+            <div className={styles.item}>
+              {cluster.map((item: string, index: number) => (
+                <div key={index} className={styles.cell}>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <Button type="primary" onClick={() => handleDelete((cluster as any).id)}>
+              Delete
+            </Button>
           </div>
         )}
       />
