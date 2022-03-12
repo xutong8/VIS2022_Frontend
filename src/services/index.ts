@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/gateway";
+const BASE_URL = "http://10.76.0.166:8000/gateway";
 
 const instance = axios.create({
   baseURL: BASE_URL
@@ -29,4 +29,4 @@ const httpRequest = {
   },
 };
 
-export { httpRequest };
+export { httpRequest, BASE_URL };

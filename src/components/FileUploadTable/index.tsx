@@ -5,6 +5,7 @@ import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
 import { clustersMerge } from "@/utils";
 import Ellipsis from "../Ellipsis";
+import { BASE_URL } from "@/services";
 
 export interface IDataSource {
   headers: string[];
@@ -60,7 +61,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
         <Upload
           listType="picture-card"
           showUploadList={false}
-          action="http://127.0.0.1:8000/gateway/upload"
+          action={`${BASE_URL}/upload`}
           onChange={handleChange}
           className={styles.btn}
         >
