@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Table, Upload, Button } from "antd";
+import { Table, Upload, Button, Drawer } from "antd";
 import { useMemo, useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
@@ -71,12 +71,42 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
   const hasSelected = selectedRowKeys.length > 0;
 
   const handleAdd = () => {
-    const newClusters = [...clusters, tableBody.filter((item: any) => selectedRowKeys.includes(item.id)).map((item: any) => item.attribute)];
+    const newClusters = [
+      ...clusters,
+      tableBody
+        .filter((item: any) => selectedRowKeys.includes(item.id))
+        .map((item: any) => item.attribute),
+    ];
     setClusters(newClusters);
+  };
+
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
+
+  const openDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const closeDrawer = () => {
+    setDrawerVisible(false);
   };
 
   return (
     <div className={styles.container}>
+      <Drawer
+        title="Menu Checkbox"
+        placement="left"
+        onClose={closeDrawer}
+        visible={drawerVisible}
+      >
+        <div className={styles.drawer}>
+          <div className={styles.vislist}>
+            <p className={styles.basicDesc}>VIS: </p>
+          </div>
+        </div>
+      </Drawer>
+      <div className={styles.menu}>
+        <Button onClick={openDrawer}>Open</Button>
+      </div>
       <div className={styles.fileupload}>
         <Upload
           listType="picture-card"
