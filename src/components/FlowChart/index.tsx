@@ -33,7 +33,7 @@ const nodeBoundingRect = {
 
 const getLayoutedElements = (elements: any[], direction = "TB") => {
   const isHorizontal = direction === "LR";
-  dagreGraph.setGraph({ rankdir: direction });
+  dagreGraph.setGraph({ rankdir: direction, ranksep: 400, nodesep: 400 });
 
   elements.forEach((el) => {
     if (isNode(el)) {
