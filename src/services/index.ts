@@ -1,9 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const BASE_URL = "http://10.76.0.166:8000/gateway";
+const isTest = process.env.NODE_ENV === "test";
+
+const BASE_URL = isTest
+  ? "http://127.0.0.1:8000/gateway"
+  : "http://10.76.0.166:8000/gateway";
 
 const instance = axios.create({
-  baseURL: BASE_URL
+  baseURL: BASE_URL,
 });
 
 const httpRequest = {

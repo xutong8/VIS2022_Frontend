@@ -16,7 +16,9 @@ const Clusters: React.FC<IClustersProps> = (props) => {
   // fetch search
   const fetchSearch = () => {
     httpRequest
-      .post("/search")
+      .post("/search", {
+        dim_clusters: clusters
+      })
       .then((res: any) => {
         const data = res?.data ?? {};
         const nodes = ((data?.nodes ?? []) as any[]).map((node) => ({
