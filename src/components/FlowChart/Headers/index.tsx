@@ -82,9 +82,11 @@ const Headers = ({
       <div className={styles.content}>
         {initial_list.map((key) => {
           const item = data?.data?.[key];
-          if(typeof item === 'undefined') return null;
-          if(Array.isArray(item) && item.length === 0) return null;
-          if(typeof item === 'object' && Object.keys(item).length === 0) return null;
+          if (!item) return null;
+          if (typeof item === "undefined") return null;
+          if (Array.isArray(item) && item.length === 0) return null;
+          if (typeof item === "object" && Object.keys(item).length === 0)
+            return null;
           return (
             <div className={styles.item} key={key}>
               {typeof item === "string" && <Text desc={key} text={item} />}

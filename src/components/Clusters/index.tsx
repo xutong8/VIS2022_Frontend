@@ -1,8 +1,18 @@
 import styles from "./index.less";
 import { Button, List } from "antd";
 import { httpRequest } from "@/services";
-import { NODE_NAME_CARD } from "@/constants";
-import { useMemo } from "react";
+import {
+  fdlist,
+  fdmap,
+  NODE_NAME_CARD,
+  statlist,
+  statmap,
+  tdlist,
+  tdmap,
+  tmap,
+} from "@/constants";
+import { useContext, useMemo } from "react";
+import { RootContext } from "@/store";
 export interface IClustersProps {
   clusters: string[][];
   setClusters: (clusters: string[][]) => void;
@@ -13,11 +23,38 @@ export interface IClustersProps {
 const Clusters: React.FC<IClustersProps> = (props) => {
   const { clusters, setClusters, setGraphData, setVisList } = props;
 
+  const store = useContext(RootContext);
+
   // fetch search
   const fetchSearch = () => {
     httpRequest
       .post("/search", {
-        dim_clusters: clusters
+        dim_clusters: clusters,
+        vlist: store?.rootState?.vlist ?? [],
+        tlist: (store?.rootState?.tlist ?? []).map(titem => (tmap as any)[titem]),
+        slist: {
+          ...tdlist.reduce(
+            (prev, cur) => ({
+              ...prev,
+              [(tdmap as any)[cur]]: store?.rootState?.tdlist.includes(cur),
+            }),
+            {}
+          ),
+          ...fdlist.reduce(
+            (prev, cur) => ({
+              ...prev,
+              [(fdmap as any)[cur]]: store?.rootState?.fdlist.includes(cur),
+            }),
+            {}
+          ),
+          ...statlist.reduce(
+            (prev, cur) => ({
+              ...prev,
+              [(statmap as any)[cur]]: store?.rootState?.statlist.includes(cur),
+            }),
+            {}
+          ),
+        },
       })
       .then((res: any) => {
         const data = res?.data ?? {};
@@ -46,11 +83,15 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     fetchSearch();
   };
 
-  const dataSource = useMemo(() => clusters.map((cluster, id: number) => {
-    const newCluster = [...cluster] as any;
-    newCluster.id = id;
-    return newCluster;
-  }), [clusters]);
+  const dataSource = useMemo(
+    () =>
+      clusters.map((cluster, id: number) => {
+        const newCluster = [...cluster] as any;
+        newCluster.id = id;
+        return newCluster;
+      }),
+    [clusters]
+  );
 
   const handleDelete = (id: number) => {
     const newClusters = dataSource.filter((cluster: any) => cluster.id !== id);
@@ -74,7 +115,10 @@ const Clusters: React.FC<IClustersProps> = (props) => {
                 </div>
               ))}
             </div>
-            <Button type="primary" onClick={() => handleDelete((cluster as any).id)}>
+            <Button
+              type="primary"
+              onClick={() => handleDelete((cluster as any).id)}
+            >
               Delete
             </Button>
           </div>
