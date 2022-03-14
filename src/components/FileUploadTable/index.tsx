@@ -1,10 +1,13 @@
 import styles from "./index.less";
 import { Table, Upload, Button, Drawer } from "antd";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
 import Ellipsis from "../Ellipsis";
 import { BASE_URL } from "@/services";
+import { RootContext } from "@/store";
+import CheckBox from "../CheckBox";
+import { vlist, tlist, tdlist, fdlist, statlist } from "@/constants";
 
 export interface IDataSource {
   headers: string[];
@@ -90,6 +93,8 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
     setDrawerVisible(false);
   };
 
+  const store = useContext(RootContext);
+
   return (
     <div className={styles.container}>
       <Drawer
@@ -97,10 +102,93 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
         placement="left"
         onClose={closeDrawer}
         visible={drawerVisible}
+        size="large"
       >
         <div className={styles.drawer}>
-          <div className={styles.vislist}>
-            <p className={styles.basicDesc}>VIS: </p>
+          <CheckBox
+            className={cn({
+              [styles.vislist]: true,
+              [styles.baselist]: true,
+            })}
+            desc="VIS"
+            options={vlist}
+            value={store?.rootState?.vlist ?? []}
+            onChange={(checkedValue: string[]) => {
+              store?.setRootState({
+                ...(store?.rootState ?? {}),
+                vlist: checkedValue,
+              });
+            }}
+          />
+          <CheckBox
+            className={cn({
+              [styles.tlist]: true,
+              [styles.baselist]: true,
+            })}
+            desc="transformation"
+            options={tlist}
+            value={store?.rootState?.tlist ?? []}
+            onChange={(checkedValue: string[]) => {
+              store?.setRootState({
+                ...(store?.rootState ?? {}),
+                tlist: checkedValue,
+              });
+            }}
+          />
+          <div
+            className={cn({
+              [styles.score]: true,
+              [styles.baselist]: true,
+            })}
+          >
+            <p className={styles.desc}>Score: </p>
+            <div className={styles.content}>
+              <CheckBox
+                className={cn({
+                  [styles.tdlist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="2-dimension"
+                options={tdlist}
+                value={store?.rootState?.tdlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    tdlist: checkedValue,
+                  });
+                }}
+              />
+              <CheckBox
+                className={cn({
+                  [styles.fdlist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="1-dimension"
+                options={fdlist}
+                value={store?.rootState?.fdlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    fdlist: checkedValue,
+                  });
+                }}
+              />
+              <CheckBox
+                className={cn({
+                  [styles.stat]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="statistics"
+                options={statlist}
+                value={store?.rootState?.statlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    statlist: checkedValue,
+                  });
+                }}
+              />
+            </div>
           </div>
         </div>
       </Drawer>
