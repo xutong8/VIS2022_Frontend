@@ -3,6 +3,23 @@
   flex: 1 0 0;
   overflow: hidden;
   border: 1px solid gray;
+  position: relative;
+
+  .header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    padding: 8px 16px;
+    z-index: 1;
+
+    .plus {
+      border: 1px solid black;
+      border-radius: 50%;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+  }
 
   .graph {
     flex: 1 0 0;
@@ -25,6 +42,11 @@
       border: 1px solid black;
     }
   }
+
+  .flowchart {
+    position: relative;
+    z-index: 0;
+  }
 }
 
 .stressed-node {
@@ -38,5 +60,23 @@
 .stressed-edge {
   path {
     stroke: red;
+  }
+}
+
+.popoverContent {
+  display: flex;
+  flex-direction: column;
+
+  .btn {
+    margin: 8px 0;
+  }
+}
+
+.popoverTitle {
+  display: flex;
+  align-items: center;
+
+  .close {
+    margin-left: 4px;
   }
 }

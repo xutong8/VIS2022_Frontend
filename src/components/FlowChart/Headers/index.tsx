@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import React, { memo, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import Ellipsis from "../../Ellipsis";
 import { Handle } from "react-flow-renderer";
 import {
@@ -25,9 +25,12 @@ import {
   Input,
   Button,
   Space,
+  Popover,
 } from "antd";
 import cn from "classnames";
 import { httpRequest } from "@/services";
+import { CloseOutlined } from "@ant-design/icons";
+import { ChartTypeContext } from "@/store/chartType";
 
 const { Option } = Select;
 const { Group } = Radio;
@@ -261,6 +264,131 @@ const Headers = ({
 
   const kwargsRef = useRef<any>(null);
 
+  const [popVisible, setPopVisible] = useState<boolean>(false);
+
+  const store = useContext(ChartTypeContext);
+  const chartType = store?.chartType ?? "";
+  const para = store?.para ?? {};
+  const setPara = store?.setPara ?? (() => {});
+
+  const renderChannel = () => {
+    switch (chartType) {
+      case "scatter":
+        return (
+          <>
+            <Button
+              type="primary"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  xy: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              xy
+            </Button>
+            <Button
+              type="ghost"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  color: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              color
+            </Button>
+          </>
+        );
+      case "line":
+        return (
+          <>
+            <Button
+              type="ghost"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  x: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              x
+            </Button>
+            <Button
+              type="primary"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  y: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              y
+            </Button>
+          </>
+        );
+      case "bar":
+        return (
+          <>
+            <Button
+              type="primary"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  x: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              x
+            </Button>
+            <Button
+              type="primary"
+              className={styles.btn}
+              onClick={() => {
+                setPara({
+                  ...para,
+                  y: data?.id ?? "",
+                });
+                setPopVisible(false);
+              }}
+            >
+              y
+            </Button>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const popoverContent = (
+    <div className={styles.popoverContent}>{renderChannel()}</div>
+  );
+
+  const contentRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const dom = contentRef.current as HTMLDivElement;
+    const callback = function (event: Event) {
+      event.preventDefault();
+      return false;
+    };
+    dom.addEventListener("contextmenu", callback);
+
+    return () => {
+      dom.removeEventListener("contextmenu", callback);
+    };
+  }, []);
+
   return (
     <>
       <Handle
@@ -467,31 +595,49 @@ const Headers = ({
           </div>
         </div>
       </Modal>
-      <div
-        className={cn({
-          [styles.content]: true,
-          nowheel: true,
-        })}
-        onDoubleClick={handleDoubleClick}
+      <Popover
+        visible={popVisible}
+        title={
+          <div className={styles.popoverTitle}>
+            <div>Please choose a channel</div>
+            <CloseOutlined
+              className={styles.close}
+              onClick={() => setPopVisible(false)}
+            />
+          </div>
+        }
+        content={popoverContent}
       >
-        {initial_list.map((key) => {
-          const item = data?.data?.[key];
-          if (!item) return null;
-          if (typeof item === "undefined") return null;
-          if (Array.isArray(item) && item.length === 0) return null;
-          if (typeof item === "object" && Object.keys(item).length === 0)
-            return null;
-          return (
-            <div className={styles.item} key={key}>
-              {typeof item === "string" && <Text desc={key} text={item} />}
-              {Array.isArray(item) && <List desc={key} data={item} />}
-              {typeof item === "object" && !Array.isArray(item) && (
-                <Obj desc={key} data={item} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+        <div
+          className={cn({
+            [styles.content]: true,
+            nowheel: true,
+          })}
+          ref={contentRef}
+          onDoubleClick={handleDoubleClick}
+          onContextMenu={(event) => {
+            setPopVisible(true);
+          }}
+        >
+          {initial_list.map((key) => {
+            const item = data?.data?.[key];
+            if (!item) return null;
+            if (typeof item === "undefined") return null;
+            if (Array.isArray(item) && item.length === 0) return null;
+            if (typeof item === "object" && Object.keys(item).length === 0)
+              return null;
+            return (
+              <div className={styles.item} key={key}>
+                {typeof item === "string" && <Text desc={key} text={item} />}
+                {Array.isArray(item) && <List desc={key} data={item} />}
+                {typeof item === "object" && !Array.isArray(item) && (
+                  <Obj desc={key} data={item} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </Popover>
       <Handle
         type="source"
         /*@ts-ignore*/

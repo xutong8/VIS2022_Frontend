@@ -7,6 +7,10 @@ import Headers from "./Headers";
 import Scatter from "./Scatter";
 import Line from "./Line";
 import Bar from "./Bar";
+import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
+import { Button, Popover } from "antd";
+import { ChartTypeContext } from "@/store/chartType";
+import { httpRequest } from "@/services";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -134,14 +138,140 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
 
   const [elements, setElements] = useState<any[]>([]);
 
-  return (
-    <div id={styles.container}>
-      <ReactFlow
-        elements={getLayoutedElements(elements, "LR")}
-        nodeTypes={nodeTypes}
-        minZoom={0.2}
-      />
+  const [chartType, setChartType] = useState<any>("");
+  const [popVisible, setPopVisible] = useState<boolean>(false);
+
+  const popoverContent = (
+    <div className={styles.popoverContent}>
+      <Button
+        type="primary"
+        className={styles.btn}
+        onClick={() => {
+          setChartType("scatter");
+          setPopVisible(false);
+        }}
+      >
+        Scatter
+      </Button>
+      <Button
+        type="primary"
+        style={{ background: "red", borderColor: "red" }}
+        className={styles.btn}
+        onClick={() => {
+          setChartType("bar");
+          setPopVisible(false);
+        }}
+      >
+        Bar
+      </Button>
+      <Button
+        type="primary"
+        style={{ background: "orange", borderColor: "orange" }}
+        className={styles.btn}
+        onClick={() => {
+          setChartType("line");
+          setPopVisible(false);
+        }}
+      >
+        Line
+      </Button>
     </div>
+  );
+
+  const handleConfirm = () => {
+    if (chartType === "scatter") {
+      if (!para.xy) return;
+    }
+
+    if (chartType === "line") {
+      if (!para.y) return;
+    }
+
+    if (chartType === "bar") {
+      if (!para.x || !para.y) return;
+    }
+
+    httpRequest
+      .post("/addV", {
+        ttype: chartType,
+        channels: para,
+      })
+      .then((res: any) => {
+        console.log("res: ", res);
+      })
+      .finally(() => {
+        // 确定之后需要清空状态
+        setChartType("");
+        setPara({});
+      });
+  };
+
+  const [para, setPara] = useState<any>({});
+
+  const disabled = () => {
+    if (chartType === "") return true;
+
+    if (chartType === "scatter") {
+      if (!para.xy) return true;
+    }
+
+    if (chartType === "line") {
+      if (!para.y) return true;
+    }
+
+    if (chartType === "bar") {
+      if (!para.x || !para.y) return true;
+    }
+
+    return false;
+  };
+
+  return (
+    <ChartTypeContext.Provider
+      value={{
+        chartType,
+        setChartType,
+        para,
+        setPara,
+      }}
+    >
+      <div id={styles.container}>
+        <div className={styles.header}>
+          <Popover
+            visible={popVisible}
+            title={
+              <div className={styles.popoverTitle}>
+                <div>Please choose a chart type</div>
+                <CloseOutlined
+                  className={styles.close}
+                  onClick={() => setPopVisible(false)}
+                />
+              </div>
+            }
+            content={popoverContent}
+          >
+            <PlusOutlined
+              className={styles.plus}
+              onMouseEnter={() => setPopVisible(true)}
+            />
+          </Popover>
+          <Button
+            onClick={handleConfirm}
+            type="primary"
+            size="small"
+            disabled={disabled()}
+          >
+            Confirm
+          </Button>
+        </div>
+        <ReactFlow
+          elements={getLayoutedElements(elements, "LR")}
+          nodeTypes={nodeTypes}
+          minZoom={0.2}
+          className={styles.flowchart}
+        />
+      </div>
+    </ChartTypeContext.Provider>
   );
 };
 
