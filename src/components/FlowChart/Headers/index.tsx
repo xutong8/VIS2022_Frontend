@@ -6,8 +6,10 @@ import {
   actions,
   default_action,
   default_i_type,
+  default_o_type,
   initial_list,
   i_types,
+  o_types,
   tlist,
 } from "@/constants";
 import Modal from "antd/lib/modal/Modal";
@@ -91,6 +93,7 @@ const Headers = ({
     setItype(default_i_type);
     setHeaders(initialHeaders);
     setLikeTypes(intitalLikeTypes);
+    setOtype(default_o_type);
   };
 
   const handleOk = () => {
@@ -185,6 +188,14 @@ const Headers = ({
   const intitalLikeTypes = ["int", "float"];
   const [likeTypes, setLikeTypes] = useState<any[]>(intitalLikeTypes);
 
+  // o_type
+  const [otype, setOtype] = useState<string>(default_o_type);
+
+  // o_type change
+  const handleOtypeChange = (e: RadioChangeEvent) => {
+    setOtype(e.target.value);
+  };
+
   return (
     <>
       <Handle
@@ -240,6 +251,16 @@ const Headers = ({
                   </Group>
                 </div>
                 {renderParaI()}
+                <div className={styles.paraItem}>
+                  <div className={styles.desc}>o_type: </div>
+                  <Group value={otype} onChange={handleOtypeChange}>
+                    {o_types.map((item: string) => (
+                      <Radio value={item} key={item}>
+                        {item}
+                      </Radio>
+                    ))}
+                  </Group>
+                </div>
               </>
             )}
           </div>

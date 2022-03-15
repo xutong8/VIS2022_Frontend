@@ -84,6 +84,9 @@ const default_action = actions[0];
 const i_types = ['==', 'like', 'all', 'num'];
 const default_i_type = i_types[0];
 
+const o_types = ['float', 'int'];
+const default_o_type = o_types[0];
+
 export {
   NODE_NAME_CARD,
   NodeType,
@@ -108,5 +111,8 @@ export {
   default_action,
   // i_types
   i_types,
-  default_i_type
+  default_i_type,
+  // o_types
+  o_types,
+  default_o_type
 };
