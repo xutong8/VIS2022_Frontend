@@ -193,11 +193,12 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
 
     httpRequest
       .post("/addV", {
-        ttype: chartType,
+        vtype: chartType,
         channels: para,
       })
       .then((res: any) => {
-        console.log("res: ", res);
+        const graphData = res?.data?.result ?? {};
+        setGraphData(graphData);
       })
       .finally(() => {
         // 确定之后需要清空状态
