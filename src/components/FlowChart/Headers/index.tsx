@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import React, { memo, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import Ellipsis from "../../Ellipsis";
 import { Handle } from "react-flow-renderer";
 import {
@@ -11,9 +11,23 @@ import {
   i_types,
   o_types,
   tlist,
+  tmap,
 } from "@/constants";
 import Modal from "antd/lib/modal/Modal";
-import { InputNumber, Select, Radio, RadioChangeEvent, Checkbox } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  InputNumber,
+  Select,
+  Radio,
+  RadioChangeEvent,
+  Checkbox,
+  Form,
+  Input,
+  Button,
+  Space,
+} from "antd";
+import cn from "classnames";
+import { httpRequest } from "@/services";
 
 const { Option } = Select;
 const { Group } = Radio;
@@ -94,9 +108,53 @@ const Headers = ({
     setHeaders(initialHeaders);
     setLikeTypes(intitalLikeTypes);
     setOtype(default_o_type);
+    setArgs([]);
   };
 
   const handleOk = () => {
+    const getPara = () => {
+      if (tlist.includes(action)) {
+        if (action.toUpperCase() === "DBSCAN") {
+          return {
+            eps: val1,
+            min_samples: val2,
+          };
+        } else {
+          return {
+            n_components: val1,
+          };
+        }
+      } else {
+        const kwargs = (kwargsRef.current?.getFieldsValue(true)?.kwargs ??
+          []) as any[];
+
+        return {
+          i_type: itype,
+          i: headers,
+          o_type: otype,
+          args,
+          kwargs: kwargs.reduce(
+            (prev, cur) => ({ ...prev, [cur.key]: cur.value }),
+            {}
+          ),
+        };
+      }
+    };
+
+    httpRequest
+      .post("/addT", {
+        pid: data?.id ?? "",
+        t: tlist.includes(action) ? (tmap as any)[action] : action,
+        para: getPara(),
+      })
+      .then((res: any) => {
+        const setGraphData = data.setGraphData;
+        setGraphData(res?.data?.result ?? {});
+      })
+      .finally(() => {
+        setModalVisible(false);
+        reset();
+      });
     setModalVisible(false);
     reset();
   };
@@ -196,6 +254,13 @@ const Headers = ({
     setOtype(e.target.value);
   };
 
+  const [args, setArgs] = useState<any[]>([]);
+  const handleArgsFinish = (args: string[]) => {
+    setArgs(args);
+  };
+
+  const kwargsRef = useRef<any>(null);
+
   return (
     <>
       <Handle
@@ -229,14 +294,23 @@ const Headers = ({
           <div className={styles.para}>
             {tlist.includes(action) ? (
               <>
-                <div className={styles.paraItem}>
-                  <div className={styles.desc}>Key1: </div>
-                  <InputNumber value={val1} onChange={handleVal1Change} />
-                </div>
-                <div className={styles.paraItem}>
-                  <div className={styles.desc}>Key2: </div>
-                  <InputNumber value={val2} onChange={handleVal2Change} />
-                </div>
+                {action === "DBSCAN" ? (
+                  <>
+                    <div className={styles.paraItem}>
+                      <div className={styles.desc}>eps: </div>
+                      <InputNumber value={val1} onChange={handleVal1Change} />
+                    </div>
+                    <div className={styles.paraItem}>
+                      <div className={styles.desc}>min_samples: </div>
+                      <InputNumber value={val2} onChange={handleVal2Change} />
+                    </div>
+                  </>
+                ) : (
+                  <div className={styles.paraItem}>
+                    <div className={styles.desc}>n_components: </div>
+                    <InputNumber value={val1} onChange={handleVal1Change} />
+                  </div>
+                )}
               </>
             ) : (
               <>
@@ -261,12 +335,145 @@ const Headers = ({
                     ))}
                   </Group>
                 </div>
+                <div
+                  className={styles.paraItem}
+                  style={{ flexDirection: "column", alignItems: "normal" }}
+                >
+                  <div className={styles.desc} style={{ margin: "12px 0" }}>
+                    args:{" "}
+                  </div>
+                  <Form name="args_form" onValuesChange={handleArgsFinish}>
+                    <Form.List
+                      name="args"
+                      rules={[
+                        {
+                          validator: async (_, args) => {
+                            if (!args || args.length < 1) {
+                              return Promise.reject(
+                                new Error("At least 1 args")
+                              );
+                            }
+                          },
+                        },
+                      ]}
+                    >
+                      {(fields, { add, remove }, { errors }) => (
+                        <>
+                          {fields.map((field, index) => (
+                            <Form.Item required={false} key={field.key}>
+                              <Form.Item
+                                {...field}
+                                validateTrigger={["onChange", "onBlur"]}
+                                rules={[
+                                  {
+                                    required: true,
+                                    whitespace: true,
+                                    message: "Please input an arg",
+                                  },
+                                ]}
+                                noStyle
+                              >
+                                <Input
+                                  placeholder="arg value"
+                                  style={{ width: "60%" }}
+                                />
+                              </Form.Item>
+                              {fields.length > 1 ? (
+                                <MinusCircleOutlined
+                                  onClick={() => remove(field.name)}
+                                />
+                              ) : null}
+                            </Form.Item>
+                          ))}
+                          <Form.Item>
+                            <Button
+                              type="dashed"
+                              onClick={() => add()}
+                              style={{ width: "60%" }}
+                              icon={<PlusOutlined />}
+                            >
+                              Add field
+                            </Button>
+                            <Form.ErrorList errors={errors} />
+                          </Form.Item>
+                        </>
+                      )}
+                    </Form.List>
+                  </Form>
+                </div>
+                <div
+                  className={styles.paraItem}
+                  style={{ flexDirection: "column", alignItems: "normal" }}
+                >
+                  <div className={styles.desc} style={{ margin: "12px 0" }}>
+                    kwargs:{" "}
+                  </div>
+                  <Form name="kwargs_form" ref={kwargsRef} autoComplete="off">
+                    <Form.List name="kwargs">
+                      {(fields, { add, remove }) => (
+                        <>
+                          {fields.map(({ key, name, ...restField }) => (
+                            <Space
+                              key={key}
+                              style={{ display: "flex", marginBottom: 8 }}
+                              align="baseline"
+                            >
+                              <Form.Item
+                                {...restField}
+                                name={[name, "key"]}
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Missing key",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="key" />
+                              </Form.Item>
+                              <Form.Item
+                                {...restField}
+                                name={[name, "value"]}
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Missing value",
+                                  },
+                                ]}
+                              >
+                                <Input placeholder="value" />
+                              </Form.Item>
+                              <MinusCircleOutlined
+                                onClick={() => remove(name)}
+                              />
+                            </Space>
+                          ))}
+                          <Form.Item>
+                            <Button
+                              type="dashed"
+                              onClick={() => add()}
+                              block
+                              icon={<PlusOutlined />}
+                            >
+                              Add field
+                            </Button>
+                          </Form.Item>
+                        </>
+                      )}
+                    </Form.List>
+                  </Form>
+                </div>
               </>
             )}
           </div>
         </div>
       </Modal>
-      <div className={styles.content} onDoubleClick={handleDoubleClick}>
+      <div
+        className={cn({
+          [styles.content]: true,
+          nowheel: true,
+        })}
+        onDoubleClick={handleDoubleClick}
+      >
         {initial_list.map((key) => {
           const item = data?.data?.[key];
           if (!item) return null;

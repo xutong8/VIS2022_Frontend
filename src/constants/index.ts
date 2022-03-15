@@ -84,7 +84,7 @@ const default_action = actions[0];
 const i_types = ['==', 'like', 'all', 'num'];
 const default_i_type = i_types[0];
 
-const o_types = ['float', 'int'];
+const o_types = ['new_table', 'append', 'replace'];
 const default_o_type = o_types[0];
 
 export {

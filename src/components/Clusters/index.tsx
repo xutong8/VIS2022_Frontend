@@ -31,7 +31,9 @@ const Clusters: React.FC<IClustersProps> = (props) => {
       .post("/search", {
         dim_clusters: clusters,
         vlist: store?.rootState?.vlist ?? [],
-        tlist: (store?.rootState?.tlist ?? []).map(titem => (tmap as any)[titem]),
+        tlist: (store?.rootState?.tlist ?? []).map(
+          (titem) => (tmap as any)[titem]
+        ),
         slist: {
           ...tdlist.reduce(
             (prev, cur) => ({
@@ -62,10 +64,7 @@ const Clusters: React.FC<IClustersProps> = (props) => {
           ...node,
           type: NODE_NAME_CARD,
         }));
-        const edges = ((data?.edges ?? []) as any[]).map((edge) => ({
-          source: edge.from,
-          target: edge.to,
-        }));
+        const edges = (data?.edges ?? []) as any[];
         const graphData = {
           nodes,
           edges,

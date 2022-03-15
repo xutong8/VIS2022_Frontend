@@ -32,7 +32,7 @@ const BasicLayout = () => {
           />
         </div>
         <div className={styles.item}>
-          <FlowChart graphData={graphData} />
+          <FlowChart graphData={graphData} setGraphData={setGraphData} />
         </div>
       </div>
     </div>

@@ -70,10 +70,11 @@ const getLayoutedElements = (elements: any[], direction = "TB") => {
 };
 export interface IFlowChartProps {
   graphData: any;
+  setGraphData: (graphData: any) => void;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
-  const { graphData } = props;
+  const { graphData, setGraphData } = props;
 
   const layoutGraph = () => {
     const nodes = (graphData?.nodes ?? []) as any[];
@@ -99,6 +100,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       data: {
         label: `node_${index}`,
         ...node,
+        setGraphData,
       },
       className:
         node?.stress ?? false
@@ -108,13 +110,19 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
-    const newEdges = edges.map((edge, index: number) => ({
-      id: `edge_${index}`,
-      source: edge.source,
-      target: edge.target,
-      animated: true,
-      className: edge?.stress ?? false ? styles["stressed-edge"] : "",
-    }));
+    const newEdges = edges
+      .map((edge) => ({
+        ...edge,
+        source: edge.from,
+        target: edge.to,
+      }))
+      .map((edge, index: number) => ({
+        id: `edge_${index}`,
+        source: edge.source,
+        target: edge.target,
+        animated: true,
+        className: edge?.stress ?? false ? styles["stressed-edge"] : "",
+      }));
     setElements([...newNodes, ...newEdges]);
   };
 
