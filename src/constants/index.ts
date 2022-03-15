@@ -78,6 +78,12 @@ const statmap = {
   "heavy tail": "sta_heavytail",
 };
 
+const actions = [...tlist, "select", "sum", "mul", "astype", "rank"];
+const default_action = actions[0];
+
+const i_types = ['==', 'like', 'all', 'num'];
+const default_i_type = i_types[0];
+
 export {
   NODE_NAME_CARD,
   NodeType,
@@ -96,5 +102,11 @@ export {
   fdmap,
   // statistics
   statlist,
-  statmap
+  statmap,
+  // actions
+  actions,
+  default_action,
+  // i_types
+  i_types,
+  default_i_type
 };
