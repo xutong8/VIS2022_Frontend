@@ -11,7 +11,7 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   return (
     <div className={styles.layout}>
-      <div className={styles.item} style={{ width: 340, maxWidth: 340 }}>
+      <div className={styles.item} style={{ width: 510, maxWidth: 510 }}>
         <FileUploadTable clusters={clusters} setClusters={setClusters} />
         <Clusters
           clusters={clusters}
