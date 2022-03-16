@@ -9,7 +9,7 @@ export interface IScatterChartProps {
   className?: string;
   xlabel?: string;
   ylabel?: string;
-  symbolSize?: number
+  symbolSize?: number;
 }
 
 const ScatterChart: React.FC<IScatterChartProps> = (props) => {
@@ -20,7 +20,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     xlabel = "",
     ylabel = "",
     legend,
-    symbolSize = 20
+    symbolSize = 20,
   } = props;
 
   const keys = Object.keys(legend);
