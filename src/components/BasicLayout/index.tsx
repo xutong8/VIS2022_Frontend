@@ -4,6 +4,7 @@ import FlowChart from "@/components/FlowChart";
 import Clusters from "@/components/Clusters";
 import { useState } from "react";
 import ChartContainer from "../ChartContainer";
+import cn from 'classnames';
 
 const BasicLayout = () => {
   const [clusters, setClusters] = useState<string[][]>([]);
@@ -11,7 +12,10 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   return (
     <div className={styles.layout}>
-      <div className={styles.item} style={{ width: 510, maxWidth: 510 }}>
+      <div className={cn({
+        [styles.item]: true,
+        [styles.left]: true
+      })} >
         <FileUploadTable clusters={clusters} setClusters={setClusters} />
         <Clusters
           clusters={clusters}
