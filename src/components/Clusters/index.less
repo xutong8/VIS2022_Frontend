@@ -12,14 +12,12 @@
       display: flex;
       flex-direction: column;
     }
-  }
 
-  :global(.ant-list) {
-    width: 100%;
-    flex:  1 0 0;
-    overflow-x: auto;
-    padding: 8px 0;
-    &:extend(.scrollbar all);
+    .ant-list {
+      width: 100%;
+      flex:  1 0 0;
+      padding: 8px 0;
+    }
   }
 
   .cluster {
@@ -31,6 +29,8 @@
       flex: 1 0 0;
       display: flex;
       overflow-y: auto;
+
+      &:extend(.scrollbar all);
     }
 
     .cell {
