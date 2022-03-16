@@ -64,8 +64,8 @@
 
 .menu {
   position: fixed;
-  top: 0;
-  left: 5px;
+  top: 5px;
+  left: 8px;
   z-index: 1;
 }
 
@@ -75,6 +75,11 @@
 }
 
 .card {
-  flex-shrink: 0;
-  height: 780px;
+  margin-bottom: 16px !important;
+  :global {
+    .ant-card-body {
+      flex-shrink: 0;
+      height: 780px;
+    }
+  }
 }
