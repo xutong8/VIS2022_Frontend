@@ -230,7 +230,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
                 }}
                 size="small"
                 pagination={{
-                  pageSize: 5,
+                  pageSize: 15,
                 }}
                 scroll={{
                   x: 1000,
