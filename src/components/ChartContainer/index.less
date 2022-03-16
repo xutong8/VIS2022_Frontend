@@ -1,3 +1,5 @@
+@import url('../../styles/base.less');
+
 .chartContainer {
   display: flex;
   width: 300px;
@@ -6,9 +8,12 @@
   overflow-y: auto;
   flex-direction: column;
   padding: 8px;
+  background-color: #fff;
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+    &:extend(.scrollbar all);
 }
