@@ -99,7 +99,7 @@ const Clusters: React.FC<IClustersProps> = (props) => {
   };
 
   return (
-    <Card title="Attribute Groups">
+    <Card title="Attribute Groups" className={styles.card}>
       <div className={styles.clusters}>
         <List
           itemLayout="horizontal"
