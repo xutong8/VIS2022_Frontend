@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Table, Upload, Button, Drawer } from "antd";
+import { Table, Upload, Button, Drawer, Card } from "antd";
 import { useContext, useMemo, useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
@@ -8,6 +8,7 @@ import { BASE_URL } from "@/services";
 import { RootContext } from "@/store";
 import CheckBox from "../CheckBox";
 import { vlist, tlist, tdlist, fdlist, statlist } from "@/constants";
+import { MenuOutlined, UploadOutlined } from "@ant-design/icons";
 
 export interface IDataSource {
   headers: string[];
@@ -97,151 +98,159 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
   const store = useContext(RootContext);
 
   return (
-    <div className={styles.container}>
-      <Drawer
-        title="Menu Checkbox"
-        placement="left"
-        onClose={closeDrawer}
-        visible={drawerVisible}
-        size="large"
+    <>
+      <div className={styles.menu}>
+        <MenuOutlined onClick={openDrawer} />
+      </div>
+      <Card
+        title="Data Table"
+        extra={
+          <div className={styles.fileupload}>
+            <Upload
+              showUploadList={false}
+              action={`${BASE_URL}/upload`}
+              onChange={handleChange}
+              className={styles.btn}
+            >
+              <Button icon={<UploadOutlined />}>Upload</Button>
+            </Upload>
+          </div>
+        }
       >
-        <div className={styles.drawer}>
-          <CheckBox
-            className={cn({
-              [styles.vislist]: true,
-              [styles.baselist]: true,
-            })}
-            desc="VIS"
-            options={vlist}
-            value={store?.rootState?.vlist ?? []}
-            onChange={(checkedValue: string[]) => {
-              store?.setRootState({
-                ...(store?.rootState ?? {}),
-                vlist: checkedValue,
-              });
-            }}
-          />
-          <CheckBox
-            className={cn({
-              [styles.tlist]: true,
-              [styles.baselist]: true,
-            })}
-            desc="transformation"
-            options={tlist}
-            value={store?.rootState?.tlist ?? []}
-            onChange={(checkedValue: string[]) => {
-              store?.setRootState({
-                ...(store?.rootState ?? {}),
-                tlist: checkedValue,
-              });
-            }}
-          />
+        <div className={styles.container}>
+          <Drawer
+            title="Menu Checkbox"
+            placement="left"
+            onClose={closeDrawer}
+            visible={drawerVisible}
+            size="large"
+          >
+            <div className={styles.drawer}>
+              <CheckBox
+                className={cn({
+                  [styles.vislist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="VIS"
+                options={vlist}
+                value={store?.rootState?.vlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    vlist: checkedValue,
+                  });
+                }}
+              />
+              <CheckBox
+                className={cn({
+                  [styles.tlist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="transformation"
+                options={tlist}
+                value={store?.rootState?.tlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    tlist: checkedValue,
+                  });
+                }}
+              />
+              <div
+                className={cn({
+                  [styles.score]: true,
+                  [styles.baselist]: true,
+                })}
+              >
+                <p className={styles.desc}>Score: </p>
+                <div className={styles.content}>
+                  <CheckBox
+                    className={cn({
+                      [styles.tdlist]: true,
+                      [styles.baselist]: true,
+                    })}
+                    desc="2-dimension"
+                    options={tdlist}
+                    value={store?.rootState?.tdlist ?? []}
+                    onChange={(checkedValue: string[]) => {
+                      store?.setRootState({
+                        ...(store?.rootState ?? {}),
+                        tdlist: checkedValue,
+                      });
+                    }}
+                  />
+                  <CheckBox
+                    className={cn({
+                      [styles.fdlist]: true,
+                      [styles.baselist]: true,
+                    })}
+                    desc="1-dimension"
+                    options={fdlist}
+                    value={store?.rootState?.fdlist ?? []}
+                    onChange={(checkedValue: string[]) => {
+                      store?.setRootState({
+                        ...(store?.rootState ?? {}),
+                        fdlist: checkedValue,
+                      });
+                    }}
+                  />
+                  <CheckBox
+                    className={cn({
+                      [styles.stat]: true,
+                      [styles.baselist]: true,
+                    })}
+                    desc="statistics"
+                    options={statlist}
+                    value={store?.rootState?.statlist ?? []}
+                    onChange={(checkedValue: string[]) => {
+                      store?.setRootState({
+                        ...(store?.rootState ?? {}),
+                        statlist: checkedValue,
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </Drawer>
           <div
             className={cn({
-              [styles.score]: true,
-              [styles.baselist]: true,
+              [styles.content]: true,
+              [styles.bordered]: !dataSource,
             })}
           >
-            <p className={styles.desc}>Score: </p>
-            <div className={styles.content}>
-              <CheckBox
-                className={cn({
-                  [styles.tdlist]: true,
-                  [styles.baselist]: true,
-                })}
-                desc="2-dimension"
-                options={tdlist}
-                value={store?.rootState?.tdlist ?? []}
-                onChange={(checkedValue: string[]) => {
-                  store?.setRootState({
-                    ...(store?.rootState ?? {}),
-                    tdlist: checkedValue,
-                  });
+            {dataSource && (
+              <Table
+                className={styles.table}
+                columns={mapHeadersToColumns(dataSource?.headers ?? [])}
+                dataSource={tableBody}
+                rowSelection={{
+                  selectedRowKeys,
+                  onChange: handleSelectionChange,
                 }}
-              />
-              <CheckBox
-                className={cn({
-                  [styles.fdlist]: true,
-                  [styles.baselist]: true,
-                })}
-                desc="1-dimension"
-                options={fdlist}
-                value={store?.rootState?.fdlist ?? []}
-                onChange={(checkedValue: string[]) => {
-                  store?.setRootState({
-                    ...(store?.rootState ?? {}),
-                    fdlist: checkedValue,
-                  });
+                size="small"
+                pagination={{
+                  pageSize: 5,
                 }}
-              />
-              <CheckBox
-                className={cn({
-                  [styles.stat]: true,
-                  [styles.baselist]: true,
-                })}
-                desc="statistics"
-                options={statlist}
-                value={store?.rootState?.statlist ?? []}
-                onChange={(checkedValue: string[]) => {
-                  store?.setRootState({
-                    ...(store?.rootState ?? {}),
-                    statlist: checkedValue,
-                  });
+                scroll={{
+                  x: 1000,
                 }}
+                rowKey={(record: any) => record.id}
               />
-            </div>
+            )}
+            {!dataSource && "请上传数据"}
+          </div>
+          <div className={styles.add}>
+            <Button type="primary" onClick={handleAdd} disabled={!hasSelected}>
+              Add
+            </Button>
+            <span className={styles.desc}>
+              {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
+            </span>
           </div>
         </div>
-      </Drawer>
-      <div className={styles.menu}>
-        <Button onClick={openDrawer}>Open</Button>
-      </div>
-      <div className={styles.fileupload}>
-        <Upload
-          listType="picture-card"
-          showUploadList={false}
-          action={`${BASE_URL}/upload`}
-          onChange={handleChange}
-          className={styles.btn}
-        >
-          Upload
-        </Upload>
-      </div>
-      <div className={styles.add}>
-        <Button type="primary" onClick={handleAdd} disabled={!hasSelected}>
-          Add
-        </Button>
-        <span className={styles.desc}>
-          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
-        </span>
-      </div>
-      <div
-        className={cn({
-          [styles.content]: true,
-          [styles.bordered]: !dataSource,
-        })}
-      >
-        {dataSource && (
-          <Table
-            className={styles.table}
-            columns={mapHeadersToColumns(dataSource?.headers ?? [])}
-            dataSource={tableBody}
-            rowSelection={{
-              selectedRowKeys,
-              onChange: handleSelectionChange,
-            }}
-            pagination={{
-              pageSize: 5,
-            }}
-            scroll={{
-              x: 1000,
-            }}
-            rowKey={(record: any) => record.id}
-          />
-        )}
-        {!dataSource && "请上传数据"}
-      </div>
-    </div>
+      </Card>
+    </>
   );
 };
 

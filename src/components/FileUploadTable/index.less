@@ -1,31 +1,9 @@
 .container {
   display: flex;
-  border: 1px solid gray;
-  padding: 8px;
   flex: 1 0 0;
   flex-direction: column;
 
-  .menu {
-    margin-bottom: 8px;
-    flex-shrink: 0;
-  }
-
-  .fileupload {
-    display: flex;
-    align-items: center;
-
-    .btn {
-      flex: 1 0 0;
-      :global {
-        .ant-upload {
-          width: 100%;
-        }
-      }
-    }
-  }
-
   .add {
-    margin-bottom: 16px;
 
     .desc {
       margin-left: 12px;
@@ -44,7 +22,6 @@
   }
 
   .bordered {
-    border: 1px dashed gainsboro;
     align-items: center;
     justify-content: center;
     font-weight: 450;
@@ -58,7 +35,6 @@
   .baselist {
     margin: 12px 0;
     padding: 16px 8px;
-    border: 1px dashed black;
     display: flex;
   }
 
@@ -82,4 +58,16 @@
       flex-direction: column;
     }
   }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 5px;
+  z-index: 1;
+}
+
+.fileupload {
+  display: flex;
+  height: 36px;
 }
