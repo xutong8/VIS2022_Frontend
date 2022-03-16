@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Button, List } from "antd";
+import { Button, Card, List } from "antd";
 import { httpRequest } from "@/services";
 import {
   fdlist,
@@ -98,35 +98,38 @@ const Clusters: React.FC<IClustersProps> = (props) => {
   };
 
   return (
-    <div className={styles.clusters}>
-      <List
-        itemLayout="horizontal"
-        pagination={{
-          pageSize: 5,
-        }}
-        dataSource={dataSource}
-        renderItem={(cluster: string[]) => (
-          <div className={styles.cluster}>
-            <div className={styles.item}>
-              {cluster.map((item: string, index: number) => (
-                <div key={index} className={styles.cell}>
-                  {item}
-                </div>
-              ))}
+    <Card title="Attribute Groups">
+      <div className={styles.clusters}>
+        <List
+          itemLayout="horizontal"
+          pagination={{
+            pageSize: 5,
+            size: 'small'
+          }}
+          dataSource={dataSource}
+          renderItem={(cluster: string[]) => (
+            <div className={styles.cluster}>
+              <div className={styles.item}>
+                {cluster.map((item: string, index: number) => (
+                  <div key={index} className={styles.cell}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <Button
+                type="primary"
+                onClick={() => handleDelete((cluster as any).id)}
+              >
+                Delete
+              </Button>
             </div>
-            <Button
-              type="primary"
-              onClick={() => handleDelete((cluster as any).id)}
-            >
-              Delete
-            </Button>
-          </div>
-        )}
-      />
-      <Button onClick={handleClick} className={styles.btn}>
-        Query
-      </Button>
-    </div>
+          )}
+        />
+        <Button onClick={handleClick} className={styles.btn}>
+          Query
+        </Button>
+      </div>
+    </Card>
   );
 };
 

@@ -103,6 +103,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
         <MenuOutlined onClick={openDrawer} />
       </div>
       <Card
+        className={styles.card}
         title="Data Table"
         extra={
           <div className={styles.fileupload}>
