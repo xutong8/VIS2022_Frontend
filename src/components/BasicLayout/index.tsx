@@ -20,7 +20,7 @@ const BasicLayout = () => {
           setClusters={setClusters}
         />
       </div>
-      <div className={styles.item} style={{ flexDirection: "row" }}>
+      <div className={styles.right}>
         <div className={styles.charts}>
           <ChartContainer
             visList={visList}

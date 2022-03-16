@@ -5,6 +5,7 @@ import ScatterChart from "@/components/ScatterChart";
 import LineChart from "../LineChart";
 import { generateBarChartProps, generateLineChartProps } from "@/utils";
 import BarChart from "../BarChart";
+import { Card } from "antd";
 export interface IChartContainerProps {
   visList: any[];
   graphData: any;
@@ -69,60 +70,62 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
   };
 
   return (
-    <div className={styles.chartContainer}>
-      {visList.map((item, index: number) => {
-        if (item.chart_type === ChartType.SCATTER) {
-          return (
-            <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <ScatterChart
-                dataSource={item.data}
-                xlabel={item.xlabel}
-                ylabel={item.ylabel}
-                legend={item.legend}
-              />
-            </div>
-          );
-        } else if (item.chart_type === ChartType.LINE) {
-          const lineProps = generateLineChartProps(item.data, item.legend);
-          return (
-            <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <LineChart
-                dataSource={lineProps.series}
-                xTicks={lineProps.xTicks}
-                xlabel={item.xlabel}
-                ylabel={item.ylabel}
-              />
-            </div>
-          );
-        } else if (item.chart_type === ChartType.CAT_LINE) {
-          const lineProps = generateLineChartProps(item.data, item.legend);
-          const yaxis = item.yaxis;
-          return (
-            <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <LineChart
-                yaxis={yaxis}
-                formatter={true}
-                dataSource={lineProps.series}
-                xTicks={lineProps.xTicks}
-              />
-            </div>
-          );
-        } else if (item.chart_type === ChartType.BAR) {
-          const barProps = generateBarChartProps(item.data, item.legend);
-          return (
-            <div key={index} onClick={() => handleClick(item.paths, index)}>
-              <BarChart
-                xTicks={barProps.xTicks}
-                dataSource={barProps.series}
-                legend={item.legend}
-                xlabel={item.xlabel}
-                ylabel={item.ylabel}
-              />
-            </div>
-          );
-        }
-      })}
-    </div>
+    <Card title="Chart Container" className={styles.card}>
+      <div className={styles.chartContainer}>
+        {visList.map((item, index: number) => {
+          if (item.chart_type === ChartType.SCATTER) {
+            return (
+              <div key={index} onClick={() => handleClick(item.paths, index)}>
+                <ScatterChart
+                  dataSource={item.data}
+                  xlabel={item.xlabel}
+                  ylabel={item.ylabel}
+                  legend={item.legend}
+                />
+              </div>
+            );
+          } else if (item.chart_type === ChartType.LINE) {
+            const lineProps = generateLineChartProps(item.data, item.legend);
+            return (
+              <div key={index} onClick={() => handleClick(item.paths, index)}>
+                <LineChart
+                  dataSource={lineProps.series}
+                  xTicks={lineProps.xTicks}
+                  xlabel={item.xlabel}
+                  ylabel={item.ylabel}
+                />
+              </div>
+            );
+          } else if (item.chart_type === ChartType.CAT_LINE) {
+            const lineProps = generateLineChartProps(item.data, item.legend);
+            const yaxis = item.yaxis;
+            return (
+              <div key={index} onClick={() => handleClick(item.paths, index)}>
+                <LineChart
+                  yaxis={yaxis}
+                  formatter={true}
+                  dataSource={lineProps.series}
+                  xTicks={lineProps.xTicks}
+                />
+              </div>
+            );
+          } else if (item.chart_type === ChartType.BAR) {
+            const barProps = generateBarChartProps(item.data, item.legend);
+            return (
+              <div key={index} onClick={() => handleClick(item.paths, index)}>
+                <BarChart
+                  xTicks={barProps.xTicks}
+                  dataSource={barProps.series}
+                  legend={item.legend}
+                  xlabel={item.xlabel}
+                  ylabel={item.ylabel}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+    </Card>
   );
 };
 

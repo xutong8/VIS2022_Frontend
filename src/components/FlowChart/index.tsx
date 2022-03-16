@@ -8,7 +8,7 @@ import Scatter from "./Scatter";
 import Line from "./Line";
 import Bar from "./Bar";
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
-import { Button, Popover } from "antd";
+import { Button, Card, Popover } from "antd";
 import { ChartTypeContext } from "@/store/chartType";
 import { httpRequest } from "@/services";
 
@@ -228,16 +228,11 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
   };
 
   return (
-    <ChartTypeContext.Provider
-      value={{
-        chartType,
-        setChartType,
-        para,
-        setPara,
-      }}
-    >
-      <div id={styles.container}>
-        <div className={styles.header}>
+    <Card
+      title="FlowChart"
+      className={styles.card}
+      extra={
+        <div className={styles.title}>
           <Popover
             visible={popVisible}
             title={
@@ -265,14 +260,26 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
             Confirm
           </Button>
         </div>
-        <ReactFlow
-          elements={getLayoutedElements(elements, "LR")}
-          nodeTypes={nodeTypes}
-          minZoom={0.2}
-          className={styles.flowchart}
-        />
-      </div>
-    </ChartTypeContext.Provider>
+      }
+    >
+      <ChartTypeContext.Provider
+        value={{
+          chartType,
+          setChartType,
+          para,
+          setPara,
+        }}
+      >
+        <div id={styles.container}>
+          <ReactFlow
+            elements={getLayoutedElements(elements, "LR")}
+            nodeTypes={nodeTypes}
+            minZoom={0.2}
+            className={styles.flowchart}
+          />
+        </div>
+      </ChartTypeContext.Provider>
+    </Card>
   );
 };
 

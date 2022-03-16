@@ -15,7 +15,16 @@
     &:extend(.scrollbar all);
   }
 
+  .right {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: row;
+  }
+
   .charts {
     display: flex;
+    margin-right: 8px;
+    overflow-y: auto;
+    &:extend(.scrollbar all);
   }
 }
