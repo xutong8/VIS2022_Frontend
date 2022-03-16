@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Table, Upload, Button, Drawer, Card } from "antd";
+import { Table, Upload, Button, Drawer, Card, Empty } from "antd";
 import { useContext, useMemo, useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
@@ -239,7 +239,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
                 rowKey={(record: any) => record.id}
               />
             )}
-            {!dataSource && "请上传数据"}
+            {!dataSource && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
           </div>
           <div className={styles.add}>
             <Button type="primary" onClick={handleAdd} disabled={!hasSelected}>
