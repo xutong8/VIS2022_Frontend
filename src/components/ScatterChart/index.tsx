@@ -27,7 +27,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
   const series = keys.map((key: any) => {
     const color = legend[key];
     const data = dataSource
-      .map((item: any) => [item.x, item.y, item.color])
+      .map((item: any) => [item.x, item.y, item.color, item.text])
       .filter((item) => isSameArray(item[2], color));
     return {
       name: key,
@@ -57,6 +57,10 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       },
       yAxis: {
         name: ylabel,
+      },
+      tooltip: {
+        position: 'top',
+        formatter: (param: any) => param.data[3]
       },
       legend: {
         show: true,
