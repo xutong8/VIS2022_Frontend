@@ -13,6 +13,7 @@ import {
 } from "@/constants";
 import { useContext, useMemo } from "react";
 import { RootContext } from "@/store";
+import { CloseOutlined } from "@ant-design/icons";
 export interface IClustersProps {
   clusters: string[][];
   setClusters: (clusters: string[][]) => void;
@@ -116,12 +117,9 @@ const Clusters: React.FC<IClustersProps> = (props) => {
                   </div>
                 ))}
               </div>
-              <Button
-                type="primary"
-                onClick={() => handleDelete((cluster as any).id)}
-              >
-                Delete
-              </Button>
+              <CloseOutlined
+                  onClick={() => handleDelete((cluster as any).id)}
+                />
             </div>
           )}
         />
