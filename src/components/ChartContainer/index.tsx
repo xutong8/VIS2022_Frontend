@@ -81,6 +81,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                   xlabel={item.xlabel}
                   ylabel={item.ylabel}
                   legend={item.legend}
+                  symbolSize={10}
                 />
               </div>
             );

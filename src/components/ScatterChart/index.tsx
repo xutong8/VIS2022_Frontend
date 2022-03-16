@@ -9,6 +9,7 @@ export interface IScatterChartProps {
   className?: string;
   xlabel?: string;
   ylabel?: string;
+  symbolSize?: number
 }
 
 const ScatterChart: React.FC<IScatterChartProps> = (props) => {
@@ -19,6 +20,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     xlabel = "",
     ylabel = "",
     legend,
+    symbolSize = 20
   } = props;
 
   const keys = Object.keys(legend);
@@ -29,7 +31,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       .filter((item) => isSameArray(item[2], color));
     return {
       name: key,
-      symbolSize: 20,
+      symbolSize,
       data,
       type: "scatter",
       itemStyle: {
