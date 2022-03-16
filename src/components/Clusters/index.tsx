@@ -124,7 +124,7 @@ const Clusters: React.FC<IClustersProps> = (props) => {
         )}
       />
       <Button onClick={handleClick} className={styles.btn}>
-        查询
+        Query
       </Button>
     </div>
   );

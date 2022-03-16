@@ -24,11 +24,11 @@ const nodeTypes = {
 
 const nodeBoundingRect = {
   [NodeType.D]: {
-    width: 240,
+    width: 550,
     height: 400,
   },
   [NodeType.V]: {
-    width: 450,
+    width: 550,
     height: 450,
   },
 } as {

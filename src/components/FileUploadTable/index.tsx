@@ -43,6 +43,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
       title: header,
       dataIndex: header,
       key: header,
+      width: 80,
       render(text: string) {
         return <Ellipsis text={text} max_len={MAX_STR_LEN} />;
       },
@@ -233,7 +234,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
               pageSize: 5,
             }}
             scroll={{
-              x: 1600,
+              x: 1000,
             }}
             rowKey={(record: any) => record.id}
           />

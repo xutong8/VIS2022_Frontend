@@ -11,7 +11,7 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   return (
     <div className={styles.layout}>
-      <div className={styles.item}>
+      <div className={styles.item} style={{ width: 340, maxWidth: 340 }}>
         <FileUploadTable clusters={clusters} setClusters={setClusters} />
         <Clusters
           clusters={clusters}
@@ -20,10 +20,7 @@ const BasicLayout = () => {
           setClusters={setClusters}
         />
       </div>
-      <div
-        className={styles.item}
-        style={{ flexDirection: "row", flex: "2 0 0" }}
-      >
+      <div className={styles.item} style={{ flexDirection: "row" }}>
         <div className={styles.charts}>
           <ChartContainer
             visList={visList}
