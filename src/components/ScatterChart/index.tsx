@@ -114,12 +114,14 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
   }, [dataSource]);
 
   return (
-    <div className={styles.container}>
+    <div className={cn({
+      [styles.container]: true,
+      [className]: true
+    })}>
       <div
         ref={chartRef}
         className={cn({
           [styles.chart]: true,
-          [className]: true,
         })}
       />
       {legend && legend.hasOwnProperty("__Max") ? (
