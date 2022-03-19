@@ -10,6 +10,7 @@ export interface IScatterChartProps {
   xlabel?: string;
   ylabel?: string;
   symbolSize?: number;
+  visualMapClassName?: string;
 }
 
 const ScatterChart: React.FC<IScatterChartProps> = (props) => {
@@ -21,6 +22,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     ylabel = "",
     legend,
     symbolSize = 20,
+    visualMapClassName = "",
   } = props;
 
   const keys = Object.keys(legend);
@@ -114,10 +116,12 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
   }, [dataSource]);
 
   return (
-    <div className={cn({
-      [styles.container]: true,
-      [className]: true
-    })}>
+    <div
+      className={cn({
+        [styles.container]: true,
+        [className]: true,
+      })}
+    >
       <div
         ref={chartRef}
         className={cn({
@@ -126,11 +130,16 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       />
       {legend && legend.hasOwnProperty("__Max") ? (
         <div
-          className={styles.visualMap}
+          className={cn({
+            [styles.visualMap]: true,
+            [visualMapClassName]: true,
+          })}
           style={{
-            backgroundImage: `linear-gradient(${toColor(legend["__Max"])}, ${toColor(legend["__Min"])})`,
+            backgroundImage: `linear-gradient(${toColor(
+              legend["__Max"]
+            )}, ${toColor(legend["__Min"])})`,
           }}
-        ></div>
+        />
       ) : null}
     </div>
   );

@@ -10,7 +10,6 @@ const Scatter = ({
   data: any;
   isConnectable: any;
 }) => {
-
   return (
     <>
       <Handle
@@ -20,7 +19,12 @@ const Scatter = ({
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
-      <ScatterChart dataSource={data.data.data} className={styles.chart} legend={data.data.legend} />
+      <ScatterChart
+        dataSource={data.data.data}
+        className={styles.chart}
+        visualMapClassName={styles.visualMap}
+        legend={data.data.legend}
+      />
       <Handle
         type="source"
         /*@ts-ignore*/
