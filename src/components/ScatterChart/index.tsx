@@ -79,6 +79,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       }),
       series,
     };
+    chartDom.removeAttribute("_echarts_instance_");
     scatter.setOption(options);
   }, [dataSource, xlabel, ylabel, series, keys, legend]);
 

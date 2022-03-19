@@ -95,6 +95,7 @@ const BarChart: React.FC<IBarChartProps> = (props) => {
       },
       series: [...dataSource],
     };
+    chartDom.removeAttribute("_echarts_instance_");
     bar.setOption(options);
   }, [dataSource, xTicks, xlabel, ylabel, legend]);
 
