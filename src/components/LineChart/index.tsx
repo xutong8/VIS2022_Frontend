@@ -115,7 +115,7 @@ const LineChart: React.FC<ILineChartProps> = (props) => {
       series: [...dataSource],
     };
     line.setOption(options);
-  }, [dataSource, xTicks]);
+  }, [dataSource, xTicks, formatter, xlabel, ylabel, yaxis]);
 
   return (
     <div

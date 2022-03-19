@@ -96,7 +96,7 @@ const BarChart: React.FC<IBarChartProps> = (props) => {
       series: [...dataSource],
     };
     bar.setOption(options);
-  }, [dataSource, xTicks]);
+  }, [dataSource, xTicks, xlabel, ylabel, legend]);
 
   return (
     <div

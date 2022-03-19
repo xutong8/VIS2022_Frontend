@@ -80,7 +80,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       series,
     };
     scatter.setOption(options);
-  }, [dataSource]);
+  }, [dataSource, xlabel, ylabel, series, keys, legend]);
 
   return (
     <div
