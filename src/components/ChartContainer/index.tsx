@@ -17,10 +17,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   const handleClick = (paths: any, index: number) => {
-    const stressEdges = ((paths?.edges ?? []) as any[]).map((edge) => ({
-      source: edge.from,
-      target: edge.to,
-    }));
+    const stressEdges = ((paths?.edges ?? []) as any[]);
     const edges = ((graphData?.edges ?? []) as any[]).map((edge) => ({
       ...edge,
       stress: false,

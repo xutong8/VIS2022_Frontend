@@ -115,11 +115,6 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     }));
     const edges = (graphData?.edges ?? []) as any[];
     const newEdges = edges
-      .map((edge) => ({
-        ...edge,
-        source: edge.from,
-        target: edge.to,
-      }))
       .map((edge, index: number) => ({
         id: `edge_${index}`,
         source: edge.source,

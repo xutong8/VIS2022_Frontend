@@ -59,8 +59,8 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
         name: ylabel,
       },
       tooltip: {
-        position: 'top',
-        formatter: (param: any) => param.data[3]
+        position: "top",
+        formatter: (param: any) => param.data[3],
       },
       legend: {
         show: true,
