@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./index.less";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 export interface IEllipsisProps {
@@ -19,7 +18,7 @@ const Ellipsis: React.FC<IEllipsisProps> = (props) => {
       ) : (
         <Tooltip title={text}>
           <span style={{ margin: "0 2px" }}>{text.slice(0, max_len)}</span>
-          <QuestionCircleOutlined />
+          ...
         </Tooltip>
       )}
     </div>

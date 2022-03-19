@@ -47,7 +47,7 @@ const List: React.FC<IListProps> = (props) => {
       <div className={styles.list}>
         {data.map((item: string) => (
           <div key={item} className={styles.column}>
-            <Ellipsis text={item} />
+            <Ellipsis text={item} max_len={100} />
           </div>
         ))}
       </div>
@@ -85,7 +85,7 @@ const Obj: React.FC<IObjProps> = (props) => {
         {keys.map((key: string) => (
           <div key={key} className={styles.column}>
             <div>{key}-</div>
-            <Ellipsis text={data[key]} />
+            <Ellipsis text={data[key]} max_len={100} />
           </div>
         ))}
       </div>
@@ -153,9 +153,12 @@ const Headers = ({
       .then((res: any) => {
         const setGraphData = data.setGraphData;
         const graphData = res?.data?.result ?? {};
-        const highlight = res?.data?.highlight ?? '';
+        const highlight = res?.data?.highlight ?? "";
         const nodes = graphData?.nodes ?? [];
-        const newNodes = nodes.map((node: any) => ({...node, stress: node.id === highlight}));
+        const newNodes = nodes.map((node: any) => ({
+          ...node,
+          stress: node.id === highlight,
+        }));
         graphData.nodes = newNodes;
         setGraphData(graphData);
       })
