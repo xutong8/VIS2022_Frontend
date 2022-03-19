@@ -152,7 +152,12 @@ const Headers = ({
       })
       .then((res: any) => {
         const setGraphData = data.setGraphData;
-        setGraphData(res?.data?.result ?? {});
+        const graphData = res?.data?.result ?? {};
+        const highlight = res?.data?.highlight ?? '';
+        const nodes = graphData?.nodes ?? [];
+        const newNodes = nodes.map((node: any) => ({...node, stress: node.id === highlight}));
+        graphData.nodes = newNodes;
+        setGraphData(graphData);
       })
       .finally(() => {
         setModalVisible(false);

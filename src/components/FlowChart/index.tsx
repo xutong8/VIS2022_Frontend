@@ -193,6 +193,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       })
       .then((res: any) => {
         const graphData = res?.data?.result ?? {};
+        const highlight = res?.data?.highlight ?? '';
+        const nodes = graphData?.nodes ?? [];
+        const newNodes = nodes.map((node: any) => ({...node, stress: node.id === highlight}));
+        graphData.nodes = newNodes;
         setGraphData(graphData);
       })
       .finally(() => {
