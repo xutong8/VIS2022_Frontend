@@ -247,6 +247,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
             }
             content={popoverContent}
           >
+            <span style={{ marginRight: 8 }}>New Visualization</span>
             <PlusOutlined
               className={styles.plus}
               onMouseEnter={() => setPopVisible(true)}
