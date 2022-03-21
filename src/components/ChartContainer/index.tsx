@@ -16,7 +16,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
   const { visList, graphData, setGraphData } = props;
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
-  const handleClick = (paths: any, index: number) => {
+  const handleDBClick = (paths: any, index: number) => {
     const stressEdges = (paths?.edges ?? []) as any[];
     const edges = ((graphData?.edges ?? []) as any[]).map((edge) => ({
       ...edge,
@@ -72,7 +72,10 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
         {visList.map((item, index: number) => {
           if (item.chart_type === ChartType.SCATTER) {
             return (
-              <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <div
+                key={index}
+                onDoubleClick={() => handleDBClick(item.paths, index)}
+              >
                 <ScatterChart
                   dataSource={item.data}
                   xlabel={item.xlabel}
@@ -85,7 +88,10 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
           } else if (item.chart_type === ChartType.LINE) {
             const lineProps = generateLineChartProps(item.data, item.legend);
             return (
-              <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <div
+                key={index}
+                onDoubleClick={() => handleDBClick(item.paths, index)}
+              >
                 <LineChart
                   dataSource={lineProps.series}
                   xTicks={lineProps.xTicks}
@@ -98,7 +104,10 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
             const lineProps = generateLineChartProps(item.data, item.legend);
             const yaxis = item.yaxis;
             return (
-              <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <div
+                key={index}
+                onDoubleClick={() => handleDBClick(item.paths, index)}
+              >
                 <LineChart
                   yaxis={yaxis}
                   formatter={true}
@@ -110,7 +119,10 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
           } else if (item.chart_type === ChartType.BAR) {
             const barProps = generateBarChartProps(item.data, item.legend);
             return (
-              <div key={index} onClick={() => handleClick(item.paths, index)}>
+              <div
+                key={index}
+                onDoubleClick={() => handleDBClick(item.paths, index)}
+              >
                 <BarChart
                   xTicks={barProps.xTicks}
                   dataSource={barProps.series}
