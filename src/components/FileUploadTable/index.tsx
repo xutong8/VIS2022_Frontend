@@ -1,13 +1,10 @@
 import styles from "./index.less";
-import { Table, Upload, Button, Drawer, Card, Empty } from "antd";
-import { useContext, useMemo, useState } from "react";
+import { Table, Upload, Button, Card, Empty } from "antd";
+import { useMemo, useState } from "react";
 import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
 import Ellipsis from "../Ellipsis";
 import { BASE_URL } from "@/services";
-import { RootContext } from "@/store";
-import CheckBox from "../CheckBox";
-import { vlist, tlist, tdlist, fdlist, statlist } from "@/constants";
 import { MenuOutlined, UploadOutlined } from "@ant-design/icons";
 
 export interface IDataSource {
@@ -18,10 +15,11 @@ export interface IDataSource {
 export interface IFileUploadTableProps {
   setClusters: (clusters: string[][]) => void;
   clusters: string[][];
+  editing: boolean;
 }
 
 const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
-  const { setClusters, clusters } = props;
+  const { setClusters, clusters, editing } = props;
   const [dataSource, setDataSource] = useState<IDataSource>();
   const handleChange = (info: UploadChangeParam) => {
     // TODO: 考虑上传的状态，分为uploading、done和error
@@ -85,23 +83,8 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
     setClusters(newClusters);
   };
 
-  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
-
-  const openDrawer = () => {
-    setDrawerVisible(true);
-  };
-
-  const closeDrawer = () => {
-    setDrawerVisible(false);
-  };
-
-  const store = useContext(RootContext);
-
   return (
     <>
-      <div className={styles.menu}>
-        <MenuOutlined onClick={openDrawer} />
-      </div>
       <Card
         className={styles.card}
         title="Data Table"
@@ -119,101 +102,6 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
         }
       >
         <div className={styles.container}>
-          <Drawer
-            title="Menu Checkbox"
-            placement="left"
-            onClose={closeDrawer}
-            visible={drawerVisible}
-            size="large"
-          >
-            <div className={styles.drawer}>
-              <CheckBox
-                className={cn({
-                  [styles.vislist]: true,
-                  [styles.baselist]: true,
-                })}
-                desc="VIS"
-                options={vlist}
-                value={store?.rootState?.vlist ?? []}
-                onChange={(checkedValue: string[]) => {
-                  store?.setRootState({
-                    ...(store?.rootState ?? {}),
-                    vlist: checkedValue,
-                  });
-                }}
-              />
-              <CheckBox
-                className={cn({
-                  [styles.tlist]: true,
-                  [styles.baselist]: true,
-                })}
-                desc="transformation"
-                options={tlist}
-                value={store?.rootState?.tlist ?? []}
-                onChange={(checkedValue: string[]) => {
-                  store?.setRootState({
-                    ...(store?.rootState ?? {}),
-                    tlist: checkedValue,
-                  });
-                }}
-              />
-              <div
-                className={cn({
-                  [styles.score]: true,
-                  [styles.baselist]: true,
-                })}
-              >
-                <p className={styles.desc}>Score: </p>
-                <div className={styles.content}>
-                  <CheckBox
-                    className={cn({
-                      [styles.tdlist]: true,
-                      [styles.baselist]: true,
-                    })}
-                    desc="2-dimension"
-                    options={tdlist}
-                    value={store?.rootState?.tdlist ?? []}
-                    onChange={(checkedValue: string[]) => {
-                      store?.setRootState({
-                        ...(store?.rootState ?? {}),
-                        tdlist: checkedValue,
-                      });
-                    }}
-                  />
-                  <CheckBox
-                    className={cn({
-                      [styles.fdlist]: true,
-                      [styles.baselist]: true,
-                    })}
-                    desc="1-dimension"
-                    options={fdlist}
-                    value={store?.rootState?.fdlist ?? []}
-                    onChange={(checkedValue: string[]) => {
-                      store?.setRootState({
-                        ...(store?.rootState ?? {}),
-                        fdlist: checkedValue,
-                      });
-                    }}
-                  />
-                  <CheckBox
-                    className={cn({
-                      [styles.stat]: true,
-                      [styles.baselist]: true,
-                    })}
-                    desc="statistics"
-                    options={statlist}
-                    value={store?.rootState?.statlist ?? []}
-                    onChange={(checkedValue: string[]) => {
-                      store?.setRootState({
-                        ...(store?.rootState ?? {}),
-                        statlist: checkedValue,
-                      });
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </Drawer>
           <div
             className={cn({
               [styles.content]: true,
@@ -225,14 +113,16 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
                 className={styles.table}
                 columns={mapHeadersToColumns(dataSource?.headers ?? [])}
                 dataSource={tableBody}
-                rowSelection={{
-                  selectedRowKeys,
-                  onChange: handleSelectionChange,
-                }}
+                rowSelection={
+                  editing
+                    ? {
+                        selectedRowKeys,
+                        onChange: handleSelectionChange,
+                      }
+                    : undefined
+                }
                 size="small"
-                pagination={{
-                  pageSize: 15,
-                }}
+                pagination={false}
                 scroll={{
                   x: 1000,
                 }}

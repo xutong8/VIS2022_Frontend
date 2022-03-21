@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Button, Card, List } from "antd";
+import { Button, Card, List, Drawer } from "antd";
 import { httpRequest } from "@/services";
 import {
   fdlist,
@@ -10,19 +10,32 @@ import {
   tdlist,
   tdmap,
   tmap,
+  vlist,
+  tlist,
 } from "@/constants";
-import { useContext, useMemo } from "react";
+import cn from "classnames";
+import { useContext, useMemo, useState } from "react";
 import { RootContext } from "@/store";
+import CheckBox from "../CheckBox";
 import { CloseOutlined } from "@ant-design/icons";
 export interface IClustersProps {
   clusters: string[][];
   setClusters: (clusters: string[][]) => void;
   setGraphData: (graphData: any) => void;
   setVisList: (visList: any[]) => void;
+  editing: boolean;
+  setEditing: (editing: boolean) => void;
 }
 
 const Clusters: React.FC<IClustersProps> = (props) => {
-  const { clusters, setClusters, setGraphData, setVisList } = props;
+  const {
+    clusters,
+    setClusters,
+    setGraphData,
+    setVisList,
+    editing,
+    setEditing,
+  } = props;
 
   const store = useContext(RootContext);
 
@@ -98,15 +111,129 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     setClusters(newClusters);
   };
 
+  const handleEdit = () => {
+    setEditing(!editing);
+  };
+
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
+
+  const openDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const closeDrawer = () => {
+    setDrawerVisible(false);
+  };
+
   return (
-    <Card title="Attribute Groups" className={styles.card}>
+    <Card
+      title="Attribute Groups"
+      className={styles.card}
+      extra={
+        <Button type={!editing ? "primary" : "default"} onClick={handleEdit}>
+          {!editing ? "Edit Groups" : "Cancel Edit"}
+        </Button>
+      }
+    >
+      <Drawer
+        title="Menu Checkbox"
+        placement="left"
+        onClose={closeDrawer}
+        visible={drawerVisible}
+        size="large"
+      >
+        <div className={styles.drawer}>
+          <CheckBox
+            className={cn({
+              [styles.vislist]: true,
+              [styles.baselist]: true,
+            })}
+            desc="VIS"
+            options={vlist}
+            value={store?.rootState?.vlist ?? []}
+            onChange={(checkedValue: string[]) => {
+              store?.setRootState({
+                ...(store?.rootState ?? {}),
+                vlist: checkedValue,
+              });
+            }}
+          />
+          <CheckBox
+            className={cn({
+              [styles.tlist]: true,
+              [styles.baselist]: true,
+            })}
+            desc="transformation"
+            options={tlist}
+            value={store?.rootState?.tlist ?? []}
+            onChange={(checkedValue: string[]) => {
+              store?.setRootState({
+                ...(store?.rootState ?? {}),
+                tlist: checkedValue,
+              });
+            }}
+          />
+          <div
+            className={cn({
+              [styles.score]: true,
+              [styles.baselist]: true,
+            })}
+          >
+            <p className={styles.desc}>Score: </p>
+            <div className={styles.main}>
+              <CheckBox
+                className={cn({
+                  [styles.tdlist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="2-dimension"
+                options={tdlist}
+                value={store?.rootState?.tdlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    tdlist: checkedValue,
+                  });
+                }}
+              />
+              <CheckBox
+                className={cn({
+                  [styles.fdlist]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="1-dimension"
+                options={fdlist}
+                value={store?.rootState?.fdlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    fdlist: checkedValue,
+                  });
+                }}
+              />
+              <CheckBox
+                className={cn({
+                  [styles.stat]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="statistics"
+                options={statlist}
+                value={store?.rootState?.statlist ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    statlist: checkedValue,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </Drawer>
       <div className={styles.clusters}>
         <List
           itemLayout="horizontal"
-          pagination={{
-            pageSize: 5,
-            size: 'small'
-          }}
+          pagination={false}
           dataSource={dataSource}
           renderItem={(cluster: string[]) => (
             <div className={styles.cluster}>
@@ -117,13 +244,25 @@ const Clusters: React.FC<IClustersProps> = (props) => {
                   </div>
                 ))}
               </div>
-              <CloseOutlined
+              {editing ? (
+                <CloseOutlined
                   onClick={() => handleDelete((cluster as any).id)}
                 />
+              ) : null}
             </div>
           )}
         />
-        <Button onClick={handleClick} className={styles.btn}>
+      </div>
+      <div className={styles.btns}>
+        <Button onClick={openDrawer} type="primary" className={styles.btn}>
+          Config
+        </Button>
+        <Button
+          onClick={handleClick}
+          type="primary"
+          danger
+          className={styles.btn}
+        >
           Query
         </Button>
       </div>

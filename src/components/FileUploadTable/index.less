@@ -8,7 +8,7 @@
   height: 100%;
 
   .add {
-
+    margin-top: 8px;
     .desc {
       margin-left: 12px;
     }
@@ -17,6 +17,8 @@
   .content {
     flex: 1 0 0;
     display: flex;
+    overflow-x: auto;
+    &:extend(.scrollbar all);
     
     .table {
       width: 100%;
@@ -35,45 +37,6 @@
   }
 }
 
-.drawer {
-  display: flex;
-  flex-direction: column;
-
-  .baselist {
-    margin: 12px 0;
-    padding: 16px 8px;
-    display: flex;
-  }
-
-  .vislist {
-    
-  }
-
-  .tlist {
-
-  }
-
-  .score {
-    flex-direction: column;
-
-    .desc {
-      margin-right: 12px;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-}
-
-.menu {
-  position: fixed;
-  top: 5px;
-  left: 8px;
-  z-index: 1;
-}
-
 .fileupload {
   display: flex;
   height: 36px;
@@ -81,10 +44,19 @@
 
 .card {
   margin-bottom: 16px !important;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  overflow-x: auto;
+  
   :global {
     .ant-card-body {
-      flex-shrink: 0;
-      height: 780px;
+      flex: 1 0 0;
     }
+  }
+
+  :global(.ant-card-body) {
+    overflow-x: auto;
+    &:extend(.scrollbar all);
   }
 }

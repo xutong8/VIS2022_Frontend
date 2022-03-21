@@ -114,14 +114,13 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
-    const newEdges = edges
-      .map((edge, index: number) => ({
-        id: `edge_${index}`,
-        source: edge.source,
-        target: edge.target,
-        animated: true,
-        className: edge?.stress ?? false ? styles["stressed-edge"] : "",
-      }));
+    const newEdges = edges.map((edge, index: number) => ({
+      id: `edge_${index}`,
+      source: edge.source,
+      target: edge.target,
+      animated: true,
+      className: edge?.stress ?? false ? styles["stressed-edge"] : "",
+    }));
     setElements([...newNodes, ...newEdges]);
   };
 
@@ -193,9 +192,12 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       })
       .then((res: any) => {
         const graphData = res?.data?.result ?? {};
-        const highlight = res?.data?.highlight ?? '';
+        const highlight = res?.data?.highlight ?? "";
         const nodes = graphData?.nodes ?? [];
-        const newNodes = nodes.map((node: any) => ({...node, stress: node.id === highlight}));
+        const newNodes = nodes.map((node: any) => ({
+          ...node,
+          stress: node.id === highlight,
+        }));
         graphData.nodes = newNodes;
         setGraphData(graphData);
       })
