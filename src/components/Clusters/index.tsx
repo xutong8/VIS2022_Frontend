@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Button, Card, List, Drawer, Collapse } from "antd";
+import { Button, Card, Drawer, Collapse } from "antd";
 import { httpRequest } from "@/services";
 import {
   fdlist,
