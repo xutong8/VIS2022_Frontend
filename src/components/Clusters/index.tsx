@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { Button, Card, List, Drawer } from "antd";
+import { Button, Card, List, Drawer, Collapse } from "antd";
 import { httpRequest } from "@/services";
 import {
   fdlist,
@@ -18,6 +18,8 @@ import { useContext, useMemo, useState } from "react";
 import { RootContext } from "@/store";
 import CheckBox from "../CheckBox";
 import { CloseOutlined } from "@ant-design/icons";
+
+const { Panel } = Collapse;
 export interface IClustersProps {
   clusters: string[][];
   setClusters: (clusters: string[][]) => void;
@@ -231,27 +233,39 @@ const Clusters: React.FC<IClustersProps> = (props) => {
         </div>
       </Drawer>
       <div className={styles.clusters}>
-        <List
+        {/* <List
           itemLayout="horizontal"
           pagination={false}
           dataSource={dataSource}
           renderItem={(cluster: string[]) => (
-            <div className={styles.cluster}>
-              <div className={styles.item}>
-                {cluster.map((item: string, index: number) => (
-                  <div key={index} className={styles.cell}>
-                    {item}
-                  </div>
-                ))}
-              </div>
-              {editing ? (
-                <CloseOutlined
-                  onClick={() => handleDelete((cluster as any).id)}
-                />
-              ) : null}
-            </div>
+            
           )}
-        />
+        /> */}
+        <Collapse>
+          {dataSource.map((cluster: any, index: number) => (
+            <Panel
+              key={index}
+              header={"Group" + index}
+              extra={
+                editing ? (
+                  <CloseOutlined
+                    onClick={() => handleDelete((cluster as any).id)}
+                  />
+                ) : null
+              }
+            >
+              <div className={styles.cluster}>
+                <div className={styles.item}>
+                  {cluster.map((item: string, index: number) => (
+                    <div key={index} className={styles.cell}>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Panel>
+          ))}
+        </Collapse>
       </div>
       <div className={styles.btns}>
         <Button onClick={openDrawer} type="primary" className={styles.btn}>
