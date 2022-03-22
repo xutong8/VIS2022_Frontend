@@ -94,7 +94,7 @@ const BasicLayout = () => {
                 edges: simpleGraphData?.edges ?? [],
               }}
               setGraphData={setGraphData}
-              title="Simple Flow Chart"
+              title="Transformation Overview"
               extra={true}
               direction="TB"
             />

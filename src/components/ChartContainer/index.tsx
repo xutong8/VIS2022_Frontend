@@ -68,7 +68,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
   };
 
   return (
-    <Card title="Chart Container" className={styles.card}>
+    <Card title="Visualization Navigation" className={styles.card}>
       <div className={styles.chartContainer}>
         {visList.map((item, index: number) => {
           if (item.chart_type === ChartType.SCATTER) {
