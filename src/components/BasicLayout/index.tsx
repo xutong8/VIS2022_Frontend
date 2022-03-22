@@ -12,7 +12,44 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   const [editing, setEditing] = useState<boolean>(false);
 
-  console.log('graphData: ', graphData);
+  console.log("graphData: ", graphData);
+
+  const getSimpleGraphData = () => {
+    const getParentId = (target: string) => {
+      return edges.find((edge: any) => edge.target === target).source;
+    };
+
+    const nodes = graphData?.nodes ?? [];
+    const edges = graphData?.edges ?? [];
+    // 对nodes进行修改
+    const newNodes = nodes.map((node: any, index: number) => {
+      const id = node?.id ?? "";
+      if (id === "r") {
+        return {
+          ...node,
+          isRoot: true,
+        };
+      }
+      const outputMode = node?.data["output mode"];
+      const parent = nodes.find((node: any) => node.id === getParentId(id));
+      const curLen = node?.data.headers?.length ?? 0;
+      const parLen = parent?.data?.headers?.length ?? 0;
+      return {
+        ...node,
+        title: `Table${index}`,
+        newAttributes:
+          outputMode && outputMode === "append" ? curLen - parLen : curLen,
+      };
+    });
+
+    return {
+      nodes: newNodes,
+      edges
+    };
+  };
+  // 缩略图
+  const simpleGraphData = getSimpleGraphData();
+  console.log('simple: ', simpleGraphData);
 
   return (
     <div className={styles.layout}>
@@ -46,10 +83,34 @@ const BasicLayout = () => {
         </div>
         <div className={styles.item}>
           <div className={styles.top}>
-            <FlowChart graphData={graphData} setGraphData={setGraphData} />
+            <FlowChart
+              graphData={{
+                nodes: (simpleGraphData?.nodes ?? []).map((node: any) => {
+                  if(node.node_type === 'D') {
+                    return {
+                      ...node,
+                      isSimple: true
+                    }
+                  }
+                  return node;
+                }),
+                edges: simpleGraphData?.edges ?? []
+              }}
+              setGraphData={setGraphData}
+              title="Simple Flow Chart"
+              extra={true}
+            />
           </div>
           <div className={styles.bot}>
-            <FlowChart graphData={graphData} />
+            <FlowChart
+              graphData={{
+                nodes:
+                  graphData?.nodes.filter((node: any) => node.stress) ?? [],
+                edges:
+                  graphData?.edges.filter((edge: any) => edge.stress) ?? [],
+              }}
+              title="Transformation Paths"
+            />
           </div>
         </div>
       </div>

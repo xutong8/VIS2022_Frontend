@@ -11,6 +11,7 @@ import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 import { Button, Card, Popover } from "antd";
 import { ChartTypeContext } from "@/store/chartType";
 import { httpRequest } from "@/services";
+import Ordinary from "./Ordinary";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -20,6 +21,7 @@ const nodeTypes = {
   scatterNode: Scatter,
   lineNode: Line,
   barNode: Bar,
+  ordinaryNode: Ordinary,
 };
 
 const nodeBoundingRect = {
@@ -75,10 +77,12 @@ const getLayoutedElements = (elements: any[], direction = "TB") => {
 export interface IFlowChartProps {
   graphData: any;
   setGraphData?: (graphData: any) => void;
+  title: string;
+  extra?: boolean;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
-  const { graphData, setGraphData = () => {} } = props;
+  const { graphData, setGraphData = () => {}, title, extra = false } = props;
 
   const layoutGraph = () => {
     const nodes = (graphData?.nodes ?? []) as any[];
@@ -110,7 +114,12 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         node?.stress ?? false
           ? styles["stressed-node"]
           : styles["ordinary-node"],
-      type: node.node_type === NodeType.D ? "headersNode" : getNodeType(node),
+      type:
+        node.node_type === NodeType.D && !node.isSimple
+          ? "headersNode"
+          : node.node_type === NodeType.V
+          ? getNodeType(node)
+          : "ordinaryNode",
       ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
@@ -230,38 +239,40 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
 
   return (
     <Card
-      title="FlowChart"
+      title={title}
       className={styles.card}
       extra={
-        <div className={styles.title}>
-          <Popover
-            visible={popVisible}
-            title={
-              <div className={styles.popoverTitle}>
-                <div>Please choose a chart type</div>
-                <CloseOutlined
-                  className={styles.close}
-                  onClick={() => setPopVisible(false)}
-                />
-              </div>
-            }
-            content={popoverContent}
-          >
-            <span style={{ marginRight: 8 }}>New Visualization</span>
-            <PlusOutlined
-              className={styles.plus}
-              onMouseEnter={() => setPopVisible(true)}
-            />
-          </Popover>
-          <Button
-            onClick={handleConfirm}
-            type="primary"
-            size="small"
-            disabled={disabled()}
-          >
-            Confirm
-          </Button>
-        </div>
+        extra && (
+          <div className={styles.title}>
+            <Popover
+              visible={popVisible}
+              title={
+                <div className={styles.popoverTitle}>
+                  <div>Please choose a chart type</div>
+                  <CloseOutlined
+                    className={styles.close}
+                    onClick={() => setPopVisible(false)}
+                  />
+                </div>
+              }
+              content={popoverContent}
+            >
+              <span style={{ marginRight: 8 }}>New Visualization</span>
+              <PlusOutlined
+                className={styles.plus}
+                onMouseEnter={() => setPopVisible(true)}
+              />
+            </Popover>
+            <Button
+              onClick={handleConfirm}
+              type="primary"
+              size="small"
+              disabled={disabled()}
+            >
+              Confirm
+            </Button>
+          </div>
+        )
       }
     >
       <ChartTypeContext.Provider
@@ -277,7 +288,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
             <ReactFlow
               elements={getLayoutedElements(elements, "LR")}
               nodeTypes={nodeTypes}
-              minZoom={0.2}
+              minZoom={0.15}
               className={styles.flowchart}
             />
           </ReactFlowProvider>
