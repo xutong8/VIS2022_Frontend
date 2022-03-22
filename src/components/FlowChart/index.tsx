@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./index.less";
 import { ChartType, NodeType } from "@/constants";
-import ReactFlow, { isNode } from "react-flow-renderer";
+import ReactFlow, { isNode, ReactFlowProvider } from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "./Headers";
 import Scatter from "./Scatter";
@@ -74,11 +74,11 @@ const getLayoutedElements = (elements: any[], direction = "TB") => {
 };
 export interface IFlowChartProps {
   graphData: any;
-  setGraphData: (graphData: any) => void;
+  setGraphData?: (graphData: any) => void;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
-  const { graphData, setGraphData } = props;
+  const { graphData, setGraphData = () => {} } = props;
 
   const layoutGraph = () => {
     const nodes = (graphData?.nodes ?? []) as any[];
@@ -273,12 +273,14 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         }}
       >
         <div id={styles.container}>
-          <ReactFlow
-            elements={getLayoutedElements(elements, "LR")}
-            nodeTypes={nodeTypes}
-            minZoom={0.2}
-            className={styles.flowchart}
-          />
+          <ReactFlowProvider>
+            <ReactFlow
+              elements={getLayoutedElements(elements, "LR")}
+              nodeTypes={nodeTypes}
+              minZoom={0.2}
+              className={styles.flowchart}
+            />
+          </ReactFlowProvider>
         </div>
       </ChartTypeContext.Provider>
     </Card>

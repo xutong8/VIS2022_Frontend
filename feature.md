@@ -24,9 +24,10 @@ para：
 
 1. 添加 edit groups 按钮，换文本 Cancel Edit，Data Table 的第一列复选框和 Attribute Groups 默认不开启，点击 edit 才开启；✅
 2. config 按钮；✅
-3. highlight 高亮节点和边，优化效果；ChartContainer 里的图表 dbclick 后也要高亮；
-4. Attribute Groups 做成折叠面板，折叠面板的 title 为 Group + ${index}，同时上下分页取消；Attribute Groups 和 Data Table 均要滚动条；
-5. Chart Container 窄一点；
+3. highlight 高亮节点和边，优化效果；ChartContainer 里的图表 dbclick 后也要高亮；✅
+4. Attribute Groups 做成折叠面板，折叠面板的 title 为 Group + ${index}，同时上下分页取消；Attribute Groups 和 Data Table 均要滚动条；✅
+5. Chart Container 窄一点；✅
+7. FlowChart 的 header 部分在 ➕ 号按钮左侧添加一个文本叫 new visualization；✅
 6. FlowChart 拆分为两个 Card，下面的 Card title 为 Transformation Paths；
   6.1 FlowChart 展示为缩略图，根节点展示 Source Table，
   D 节点展示为
@@ -40,4 +41,3 @@ para：
   </template>
   V节点原样展示；
   6.2 Transformation Paths按照原来的逻辑展示；
-7. FlowChart 的 header 部分在 ➕ 号按钮左侧添加一个文本叫 new visualization；

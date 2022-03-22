@@ -5,7 +5,7 @@ import cn from "classnames";
 import { UploadChangeParam } from "antd/lib/upload";
 import Ellipsis from "../Ellipsis";
 import { BASE_URL } from "@/services";
-import { MenuOutlined, UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 
 export interface IDataSource {
   headers: string[];

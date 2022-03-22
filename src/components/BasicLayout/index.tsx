@@ -12,6 +12,8 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   const [editing, setEditing] = useState<boolean>(false);
 
+  console.log('graphData: ', graphData);
+
   return (
     <div className={styles.layout}>
       <div
@@ -43,7 +45,12 @@ const BasicLayout = () => {
           />
         </div>
         <div className={styles.item}>
-          <FlowChart graphData={graphData} setGraphData={setGraphData} />
+          <div className={styles.top}>
+            <FlowChart graphData={graphData} setGraphData={setGraphData} />
+          </div>
+          <div className={styles.bot}>
+            <FlowChart graphData={graphData} />
+          </div>
         </div>
       </div>
     </div>

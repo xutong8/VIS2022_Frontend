@@ -6,6 +6,7 @@ import LineChart from "../LineChart";
 import { generateBarChartProps, generateLineChartProps } from "@/utils";
 import BarChart from "../BarChart";
 import { Card } from "antd";
+import cn from "classnames";
 export interface IChartContainerProps {
   visList: any[];
   graphData: any;
@@ -75,6 +76,9 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <div
                 key={index}
                 onDoubleClick={() => handleDBClick(item.paths, index)}
+                className={cn({
+                  [styles.selected]: index === selectedIndex,
+                })}
               >
                 <ScatterChart
                   dataSource={item.data}
@@ -91,6 +95,9 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <div
                 key={index}
                 onDoubleClick={() => handleDBClick(item.paths, index)}
+                className={cn({
+                  [styles.selected]: index === selectedIndex,
+                })}
               >
                 <LineChart
                   dataSource={lineProps.series}
@@ -107,6 +114,9 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <div
                 key={index}
                 onDoubleClick={() => handleDBClick(item.paths, index)}
+                className={cn({
+                  [styles.selected]: index === selectedIndex,
+                })}
               >
                 <LineChart
                   yaxis={yaxis}
@@ -122,6 +132,9 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               <div
                 key={index}
                 onDoubleClick={() => handleDBClick(item.paths, index)}
+                className={cn({
+                  [styles.selected]: index === selectedIndex,
+                })}
               >
                 <BarChart
                   xTicks={barProps.xTicks}
