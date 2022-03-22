@@ -12,8 +12,6 @@ const BasicLayout = () => {
   const [visList, setVisList] = useState<any[]>([]);
   const [editing, setEditing] = useState<boolean>(false);
 
-  console.log("graphData: ", graphData);
-
   const getSimpleGraphData = () => {
     const getParentId = (target: string) => {
       return edges.find((edge: any) => edge.target === target).source;
@@ -44,12 +42,11 @@ const BasicLayout = () => {
 
     return {
       nodes: newNodes,
-      edges
+      edges,
     };
   };
   // 缩略图
   const simpleGraphData = getSimpleGraphData();
-  console.log('simple: ', simpleGraphData);
 
   return (
     <div className={styles.layout}>
@@ -86,15 +83,15 @@ const BasicLayout = () => {
             <FlowChart
               graphData={{
                 nodes: (simpleGraphData?.nodes ?? []).map((node: any) => {
-                  if(node.node_type === 'D') {
+                  if (node.node_type === "D") {
                     return {
                       ...node,
-                      isSimple: true
-                    }
+                      isSimple: true,
+                    };
                   }
                   return node;
                 }),
-                edges: simpleGraphData?.edges ?? []
+                edges: simpleGraphData?.edges ?? [],
               }}
               setGraphData={setGraphData}
               title="Simple Flow Chart"
