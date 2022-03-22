@@ -96,6 +96,7 @@ const BasicLayout = () => {
               setGraphData={setGraphData}
               title="Simple Flow Chart"
               extra={true}
+              direction="TB"
             />
           </div>
           <div className={styles.bot}>
@@ -107,6 +108,7 @@ const BasicLayout = () => {
                   graphData?.edges.filter((edge: any) => edge.stress) ?? [],
               }}
               title="Transformation Paths"
+              isSmooth={true}
             />
           </div>
         </div>

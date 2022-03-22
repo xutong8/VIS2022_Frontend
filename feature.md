@@ -28,7 +28,7 @@ para：
 4. Attribute Groups 做成折叠面板，折叠面板的 title 为 Group + ${index}，同时上下分页取消；Attribute Groups 和 Data Table 均要滚动条；✅
 5. Chart Container 窄一点；✅
 7. FlowChart 的 header 部分在 ➕ 号按钮左侧添加一个文本叫 new visualization；✅
-6. FlowChart 拆分为两个 Card，下面的 Card title 为 Transformation Paths；
+6. FlowChart 拆分为两个 Card，下面的 Card title 为 Transformation Paths；✅
   6.1 FlowChart 展示为缩略图，根节点展示 Source Table，
   D 节点展示为
   <template>
@@ -41,3 +41,12 @@ para：
   </template>
   V节点原样展示；
   6.2 Transformation Paths按照原来的逻辑展示；✅
+
+3.22
+
+1. Tranformation Paths布局算法调整；✅
+2. Simple Flow Chart调整布局方向；✅
+3. Attribute Groups：
+  3.1 长度最长的Group：title处展示Group ${index}  Dimension Matching(斜体)  Containing ${len} attributes
+  3.2 其他的Group：title处展示Group ${index}  最长匹配的子串(对每个item split('')，逐个比较) Containing ${len} attributes；
+4. Chart Container和FlowChart高亮样式保持一致；✅

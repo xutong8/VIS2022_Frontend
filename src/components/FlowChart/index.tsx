@@ -39,7 +39,7 @@ const nodeBoundingRect = {
 
 const getLayoutedElements = (elements: any[], direction = "TB") => {
   const isHorizontal = direction === "LR";
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 400, nodesep: 400 });
+  dagreGraph.setGraph({ rankdir: direction, ranksep: 100, nodesep: 80 });
 
   elements.forEach((el) => {
     if (isNode(el)) {
@@ -79,10 +79,19 @@ export interface IFlowChartProps {
   setGraphData?: (graphData: any) => void;
   title: string;
   extra?: boolean;
+  direction?: string;
+  isSmooth?: boolean;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
-  const { graphData, setGraphData = () => {}, title, extra = false } = props;
+  const {
+    graphData,
+    setGraphData = () => {},
+    title,
+    extra = false,
+    direction = "LR",
+    isSmooth = false,
+  } = props;
 
   const layoutGraph = () => {
     const nodes = (graphData?.nodes ?? []) as any[];
@@ -128,6 +137,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       source: edge.source,
       target: edge.target,
       animated: true,
+      type: isSmooth ? "smoothstep" : undefined,
       className: edge?.stress ?? false ? styles["stressed-edge"] : "",
     }));
     setElements([...newNodes, ...newEdges]);
@@ -286,7 +296,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         <div id={styles.container}>
           <ReactFlowProvider>
             <ReactFlow
-              elements={getLayoutedElements(elements, "LR")}
+              elements={getLayoutedElements(elements, direction)}
               nodeTypes={nodeTypes}
               minZoom={0.15}
               className={styles.flowchart}

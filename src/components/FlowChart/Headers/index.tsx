@@ -650,7 +650,7 @@ const Headers = ({
         type="source"
         /*@ts-ignore*/
         position="right"
-        style={{ top: 10, background: "#555" }}
+        style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
     </>

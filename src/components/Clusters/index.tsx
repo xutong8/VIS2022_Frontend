@@ -127,6 +127,23 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     setDrawerVisible(false);
   };
 
+  const maxLen = Math.max(...dataSource.map((cluster) => cluster.length));
+  const maxIdx = dataSource.findIndex((cluster) => cluster.length === maxLen);
+
+  const getLargestCommonStr = (cluster: string[]) => {
+    const items = cluster.map((cluster) => cluster.split(" "));
+    const str = [];
+    const len = items[0].length;
+    for (let i = 0; i < len; i++) {
+      let flag = true;
+      for (let j = 0; j < items.length - 1; j++) {
+        if (items[j][i] !== items[j + 1][i]) flag = false;
+      }
+      if (flag) str.push(items[0][i]);
+    }
+    return str.join(',');
+  };
+
   return (
     <Card
       title="Attribute Groups"
@@ -238,7 +255,25 @@ const Clusters: React.FC<IClustersProps> = (props) => {
             {dataSource.map((cluster: any, index: number) => (
               <Panel
                 key={index}
-                header={"Group" + index}
+                header={
+                  <div>
+                    <span style={{ marginRight: 4 }}>Group{index}</span>
+                    <span
+                      style={{
+                        marginRight: 4,
+                        fontStyle:
+                          maxLen === cluster.length && maxIdx === index
+                            ? "italic"
+                            : "normal",
+                      }}
+                    >
+                      {maxLen === cluster.length && maxIdx === index
+                        ? "Dimension Matching"
+                        : getLargestCommonStr(cluster)}
+                    </span>
+                    <span>Containing {cluster.length} attributes</span>
+                  </div>
+                }
                 extra={
                   editing ? (
                     <CloseOutlined
