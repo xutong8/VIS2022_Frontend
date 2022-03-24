@@ -13,8 +13,6 @@ const Ordinary = (props: {
   const title = data?.title ?? "";
   const newAttributes = data?.newAttributes ?? 0;
 
-  console.log('props: ', props);
-
   return (
     <>
       <Handle
@@ -41,7 +39,7 @@ const Ordinary = (props: {
         type="source"
         /*@ts-ignore*/
         position={sourcePosition}
-        style={{ top: 10, background: "#555" }}
+        style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
     </>

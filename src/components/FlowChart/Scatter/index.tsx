@@ -29,7 +29,7 @@ const Scatter = (props: {
         type="source"
         /*@ts-ignore*/
         position={sourcePosition}
-        style={{ top: 10, background: "#555" }}
+        style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
     </>

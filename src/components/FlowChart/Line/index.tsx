@@ -26,7 +26,7 @@ const Line = (props: { data: any; isConnectable: any, sourcePosition: string, ta
         type="source"
         /*@ts-ignore*/
         position={sourcePosition}
-        style={{ top: 10, background: "#555" }}
+        style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
     </>
