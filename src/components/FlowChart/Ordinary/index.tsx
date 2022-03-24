@@ -13,6 +13,8 @@ const Ordinary = (props: {
   const title = data?.title ?? "";
   const newAttributes = data?.newAttributes ?? 0;
 
+  console.log('props: ', props);
+
   return (
     <>
       <Handle

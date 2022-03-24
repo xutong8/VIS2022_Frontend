@@ -129,7 +129,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
           : node.node_type === NodeType.V
           ? getNodeType(node)
           : "ordinaryNode",
-      ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
+      // ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
     const newEdges = edges.map((edge, index: number) => ({

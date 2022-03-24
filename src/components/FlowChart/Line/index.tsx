@@ -6,7 +6,8 @@ import { generateLineChartProps } from "@/utils";
 
 const Line = (props: { data: any; isConnectable: any, sourcePosition: string, targetPosition: string }) => {
   const { data, isConnectable, sourcePosition, targetPosition } = props;
-  const lineChartProps = generateLineChartProps(data.data.data, data.data.legend);
+  const isCatLine = (data?.data?.chart_type ?? 'line') === 'cat_line';
+  const lineChartProps = generateLineChartProps(data.data.data, data.data.legend, isCatLine);
   return (
     <>
       <Handle
