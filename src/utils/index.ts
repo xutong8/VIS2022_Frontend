@@ -35,7 +35,8 @@ export { clustersMerge, clustersLarge };
 function generateLineChartProps(
   data: any[],
   legend: any[],
-  isCatLine?: boolean
+  isCatLine?: boolean,
+  symbolSize = 4
 ): any {
   const xTicks = [] as any[];
   data.forEach((item) => {
@@ -61,7 +62,7 @@ function generateLineChartProps(
       type: isCatLine ? "scatter" : "line",
       data,
       name: legend[index],
-      ...(isCatLine ? { symbolSize: 4 } : {}),
+      ...(isCatLine ? { symbolSize } : {}),
     })),
   };
 }

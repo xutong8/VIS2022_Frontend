@@ -1,6 +1,8 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import styles from "./index.less";
 import { Handle } from "react-flow-renderer";
+import { RootContext } from "@/store";
+import { tvmap } from "@/constants";
 
 const Ordinary = (props: {
   data: any;
@@ -10,9 +12,11 @@ const Ordinary = (props: {
 }) => {
   const { data, isConnectable, sourcePosition, targetPosition } = props;
   const isRoot = data?.isRoot ?? false;
-  const title = data?.title ?? "";
   const newAttributes = data?.newAttributes ?? 0;
-
+  const T = data?.data?.T ?? "";
+  const store = useContext(RootContext);
+  const tvlist = store?.rootState?.tvlist ?? [];
+  const isIncluded = tvlist.includes(T);
   return (
     <>
       <Handle
@@ -27,7 +31,7 @@ const Ordinary = (props: {
           "Source Table"
         ) : (
           <>
-            <div>{title}</div>
+            <div>{isIncluded ? (tvmap as any)[T] : T}</div>
             <div>
               <span>new attributes: </span>
               <span>{newAttributes}</span>

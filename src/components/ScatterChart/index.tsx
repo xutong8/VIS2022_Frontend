@@ -21,7 +21,7 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
     xlabel = "",
     ylabel = "",
     legend,
-    symbolSize = 20,
+    symbolSize = 12,
     visualMapClassName = "",
   } = props;
 

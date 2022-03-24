@@ -32,7 +32,17 @@ const tmap = {
   DBSCAN: "dbscan",
   LDA: "lda",
 };
+const tvmap = {
+  pca: "PCA",
+  tsne: "t-SNE",
+  mds: "MDS",
+  umap: "UMAP",
+  kmeans: "k-Means",
+  dbscan: "DBSCAN",
+  lda: "LDA",
+};
 const tlist = ["PCA", "t-SNE", "MDS", "UMAP", "k-Means", "DBSCAN", "LDA"];
+const tvlist = ["pca", "tsne", "mds", "umap", "kmeans", "dbscan", "lda"];
 
 const tdlist = [
   "CDM",
@@ -81,10 +91,10 @@ const statmap = {
 const actions = [...tlist, "select", "sum", "mul", "astype", "rank"];
 const default_action = actions[0];
 
-const i_types = ['==', 'like', 'all', 'num'];
+const i_types = ["==", "like", "all", "num"];
 const default_i_type = i_types[0];
 
-const o_types = ['new_table', 'append', 'replace'];
+const o_types = ["new_table", "append", "replace"];
 const default_o_type = o_types[0];
 
 export {
@@ -96,6 +106,7 @@ export {
   vlist,
   // tlist
   tlist,
+  tvlist,
   tmap,
   // 2-dimension
   tdlist,
@@ -114,5 +125,6 @@ export {
   default_i_type,
   // o_types
   o_types,
-  default_o_type
+  default_o_type,
+  tvmap
 };

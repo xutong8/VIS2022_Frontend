@@ -1,4 +1,4 @@
-import { vlist, tlist, tdlist, fdlist, statlist } from "@/constants";
+import { vlist, tlist, tdlist, fdlist, statlist, tvlist } from "@/constants";
 import { createContext } from "react";
 
 const store = {
@@ -6,7 +6,8 @@ const store = {
   tlist,
   tdlist,
   fdlist,
-  statlist
+  statlist,
+  tvlist
 };
 
 export type ContextType = {
