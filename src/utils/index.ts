@@ -32,7 +32,11 @@ function clustersMerge(clusters: string[][]) {
 export { clustersMerge, clustersLarge };
 
 // 生成linechart props
-function generateLineChartProps(data: any[], legend: any[]): any {
+function generateLineChartProps(
+  data: any[],
+  legend: any[],
+  isCatLine?: boolean
+): any {
   const xTicks = [] as any[];
   data.forEach((item) => {
     xTicks.push({
@@ -54,9 +58,10 @@ function generateLineChartProps(data: any[], legend: any[]): any {
   return {
     xTicks,
     series: series.map((data, index: number) => ({
-      type: "line",
+      type: isCatLine ? "scatter" : "line",
       data,
       name: legend[index],
+      ...(isCatLine ? { symbolSize: 4 } : {}),
     })),
   };
 }

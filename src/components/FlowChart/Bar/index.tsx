@@ -4,7 +4,8 @@ import { Handle } from "react-flow-renderer";
 import BarChart from "@/components/BarChart";
 import { generateBarChartProps } from "@/utils";
 
-const Bar = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
+const Bar = (props: { data: any; isConnectable: any, sourcePosition: string, targetPosition: string }) => {
+  const { data, isConnectable, sourcePosition, targetPosition } = props;
   const barChartProps = generateBarChartProps(data.data.data, data.data.legend);
   const legend = data.data.legend;
   return (
@@ -12,7 +13,7 @@ const Bar = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
       <Handle
         type="target"
         /*@ts-ignore*/
-        position="left"
+        position={targetPosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
@@ -25,7 +26,7 @@ const Bar = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
       <Handle
         type="source"
         /*@ts-ignore*/
-        position="right"
+        position={sourcePosition}
         style={{ top: 10, background: "#555" }}
         isConnectable={isConnectable}
       />

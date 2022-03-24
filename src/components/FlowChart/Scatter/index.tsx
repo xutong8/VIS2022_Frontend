@@ -3,19 +3,19 @@ import { memo } from "react";
 import { Handle } from "react-flow-renderer";
 import ScatterChart from "@/components/ScatterChart";
 
-const Scatter = ({
-  data,
-  isConnectable,
-}: {
+const Scatter = (props: {
   data: any;
   isConnectable: any;
+  sourcePosition: string;
+  targetPosition: string;
 }) => {
+  const { data, isConnectable, sourcePosition, targetPosition } = props;
   return (
     <>
       <Handle
         type="target"
         /*@ts-ignore*/
-        position="left"
+        position={targetPosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
@@ -28,7 +28,7 @@ const Scatter = ({
       <Handle
         type="source"
         /*@ts-ignore*/
-        position="right"
+        position={sourcePosition}
         style={{ top: 10, background: "#555" }}
         isConnectable={isConnectable}
       />

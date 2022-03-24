@@ -93,13 +93,8 @@ const Obj: React.FC<IObjProps> = (props) => {
   );
 };
 
-const Headers = ({
-  data,
-  isConnectable,
-}: {
-  data: any;
-  isConnectable: any;
-}) => {
+const Headers = (props: { data: any; isConnectable: any, sourcePosition: string, targetPosition: string }) => {
+  const { data, isConnectable, sourcePosition, targetPosition } = props;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   // reset states
@@ -402,7 +397,7 @@ const Headers = ({
       <Handle
         type="target"
         /*@ts-ignore*/
-        position="left"
+        position={targetPosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
@@ -649,7 +644,7 @@ const Headers = ({
       <Handle
         type="source"
         /*@ts-ignore*/
-        position="right"
+        position={sourcePosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />

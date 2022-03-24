@@ -4,14 +4,15 @@ import { Handle } from "react-flow-renderer";
 import LineChart from "@/components/LineChart";
 import { generateLineChartProps } from "@/utils";
 
-const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
+const Line = (props: { data: any; isConnectable: any, sourcePosition: string, targetPosition: string }) => {
+  const { data, isConnectable, sourcePosition, targetPosition } = props;
   const lineChartProps = generateLineChartProps(data.data.data, data.data.legend);
   return (
     <>
       <Handle
         type="target"
         /*@ts-ignore*/
-        position="left"
+        position={targetPosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
@@ -23,7 +24,7 @@ const Line = ({ data, isConnectable }: { data: any; isConnectable: any }) => {
       <Handle
         type="source"
         /*@ts-ignore*/
-        position="right"
+        position={sourcePosition}
         style={{ top: 10, background: "#555" }}
         isConnectable={isConnectable}
       />

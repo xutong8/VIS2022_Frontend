@@ -85,7 +85,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                   xlabel={item.xlabel}
                   ylabel={item.ylabel}
                   legend={item.legend}
-                  symbolSize={10}
+                  symbolSize={4}
                 />
               </div>
             );
@@ -108,7 +108,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               </div>
             );
           } else if (item.chart_type === ChartType.CAT_LINE) {
-            const lineProps = generateLineChartProps(item.data, item.legend);
+            const lineProps = generateLineChartProps(item.data, item.legend, true);
             const yaxis = item.yaxis;
             return (
               <div

@@ -83,11 +83,21 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
     setClusters(newClusters);
   };
 
+  const columns = mapHeadersToColumns(dataSource?.headers ?? []);
+
   return (
     <>
       <Card
         className={styles.card}
-        title="Data Table"
+        title={
+          <div className={styles.title}>
+            <span>Data Table</span>
+            <p className={styles.right}>
+              <span>rows: {tableBody.length}</span>
+              <span style={{ marginLeft: 8 }}>columns: {columns.length}</span>
+            </p>
+          </div>
+        }
         extra={
           <div className={styles.fileupload}>
             <Upload
@@ -111,7 +121,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
             {dataSource && (
               <Table
                 className={styles.table}
-                columns={mapHeadersToColumns(dataSource?.headers ?? [])}
+                columns={columns}
                 dataSource={tableBody}
                 rowSelection={
                   editing

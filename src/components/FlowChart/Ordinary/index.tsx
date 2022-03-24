@@ -2,13 +2,13 @@ import { memo } from "react";
 import styles from "./index.less";
 import { Handle } from "react-flow-renderer";
 
-const Ordinary = ({
-  data,
-  isConnectable,
-}: {
+const Ordinary = (props: {
   data: any;
   isConnectable: any;
+  sourcePosition: string;
+  targetPosition: string;
 }) => {
+  const { data, isConnectable, sourcePosition, targetPosition } = props;
   const isRoot = data?.isRoot ?? false;
   const title = data?.title ?? "";
   const newAttributes = data?.newAttributes ?? 0;
@@ -18,7 +18,7 @@ const Ordinary = ({
       <Handle
         type="target"
         /*@ts-ignore*/
-        position="left"
+        position={targetPosition}
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
@@ -38,7 +38,7 @@ const Ordinary = ({
       <Handle
         type="source"
         /*@ts-ignore*/
-        position="right"
+        position={sourcePosition}
         style={{ top: 10, background: "#555" }}
         isConnectable={isConnectable}
       />

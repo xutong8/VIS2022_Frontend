@@ -50,3 +50,11 @@ para：
   3.1 长度最长的Group：title处展示Group ${index}  Dimension Matching(斜体)  Containing ${len} attributes
   3.2 其他的Group：title处展示Group ${index}  最长匹配的子串(对每个item split('')，逐个比较) Containing ${len} attributes；
 4. Chart Container和FlowChart高亮样式保持一致；✅
+
+3.24
+
+1. Data Table和Attribute Group加title；✅
+2. ScatterChart的symbolSize小一点；✅
+3. ChartContainer中selected的阴影小一点；✅
+4. cat_line变成scatter；✅
+5. flowchart的handle组件需要调整连接方向；✅

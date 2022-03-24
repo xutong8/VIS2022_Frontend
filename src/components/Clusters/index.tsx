@@ -141,12 +141,17 @@ const Clusters: React.FC<IClustersProps> = (props) => {
       }
       if (flag) str.push(items[0][i]);
     }
-    return str.join(',');
+    return str.join(",");
   };
 
   return (
     <Card
-      title="Attribute Groups"
+      title={
+        <div className={styles.title}>
+          <span>Attribute Groups</span>
+          <span className={styles.right}>count: {dataSource.length}</span>
+        </div>
+      }
       className={styles.card}
       extra={
         <Button type={!editing ? "primary" : "default"} onClick={handleEdit}>
