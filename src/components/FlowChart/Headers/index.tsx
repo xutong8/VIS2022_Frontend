@@ -26,6 +26,7 @@ import {
   Button,
   Space,
   Popover,
+  Table,
 } from "antd";
 import cn from "classnames";
 import { httpRequest } from "@/services";
@@ -93,7 +94,12 @@ const Obj: React.FC<IObjProps> = (props) => {
   );
 };
 
-const Headers = (props: { data: any; isConnectable: any, sourcePosition: string, targetPosition: string }) => {
+const Headers = (props: {
+  data: any;
+  isConnectable: any;
+  sourcePosition: string;
+  targetPosition: string;
+}) => {
   const { data, isConnectable, sourcePosition, targetPosition } = props;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -392,6 +398,10 @@ const Headers = (props: { data: any; isConnectable: any, sourcePosition: string,
     };
   }, []);
 
+  const headerList = data?.data["headers"] ?? [];
+  console.log("data?.data: ", data?.data);
+  const T = data?.data['T'] ?? '';
+
   return (
     <>
       <Handle
@@ -622,23 +632,42 @@ const Headers = (props: { data: any; isConnectable: any, sourcePosition: string,
             setPopVisible(true);
           }}
         >
-          {initial_list.map((key) => {
-            const item = data?.data?.[key];
-            if (!item) return null;
-            if (typeof item === "undefined") return null;
-            if (Array.isArray(item) && item.length === 0) return null;
-            if (typeof item === "object" && Object.keys(item).length === 0)
-              return null;
-            return (
-              <div className={styles.item} key={key}>
-                {typeof item === "string" && <Text desc={key} text={item} />}
-                {Array.isArray(item) && <List desc={key} data={item} />}
-                {typeof item === "object" && !Array.isArray(item) && (
-                  <Obj desc={key} data={item} />
-                )}
-              </div>
-            );
-          })}
+          <div className={styles.headers}>
+            <Table
+              className={styles.table}
+              columns={[
+                {
+                  title: "headers",
+                  dataIndex: "headers",
+                  key: "headers",
+                },
+              ]}
+              dataSource={headerList.map((item: string) => ({
+                headers: item,
+              }))}
+              pagination={false}
+            />
+          </div>
+          <div className={styles.T}>{T}</div>
+          {initial_list
+            .filter((item) => !(item === "headers" || item === "T"))
+            .map((key) => {
+              const item = data?.data?.[key];
+              if (!item) return null;
+              if (typeof item === "undefined") return null;
+              if (Array.isArray(item) && item.length === 0) return null;
+              if (typeof item === "object" && Object.keys(item).length === 0)
+                return null;
+              return (
+                <div className={styles.item} key={key}>
+                  {typeof item === "string" && <Text desc={key} text={item} />}
+                  {Array.isArray(item) && <List desc={key} data={item} />}
+                  {typeof item === "object" && !Array.isArray(item) && (
+                    <Obj desc={key} data={item} />
+                  )}
+                </div>
+              );
+            })}
         </div>
       </Popover>
       <Handle

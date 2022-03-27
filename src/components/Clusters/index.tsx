@@ -12,6 +12,7 @@ import {
   tmap,
   vlist,
   tlist,
+  configuration,
 } from "@/constants";
 import cn from "classnames";
 import { useContext, useMemo, useState } from "react";
@@ -148,13 +149,13 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     <Card
       title={
         <div className={styles.title}>
-          <span>Attribute Groups</span>
+          <span>Attribute Group</span>
           <span className={styles.right}>count: {dataSource.length}</span>
         </div>
       }
       className={styles.card}
       extra={
-        <Button type={!editing ? "primary" : "default"} onClick={handleEdit}>
+        <Button type={!editing ? "primary" : "default"} onClick={handleEdit} className={styles.extra}>
           {!editing ? "Edit Groups" : "Cancel Edit"}
         </Button>
       }
@@ -250,6 +251,22 @@ const Clusters: React.FC<IClustersProps> = (props) => {
                   });
                 }}
               />
+              {/* Configuration */}
+              <CheckBox
+                className={cn({
+                  [styles.stat]: true,
+                  [styles.baselist]: true,
+                })}
+                desc="configuration"
+                options={configuration}
+                value={store?.rootState?.configuration ?? []}
+                onChange={(checkedValue: string[]) => {
+                  store?.setRootState({
+                    ...(store?.rootState ?? {}),
+                    configuration: checkedValue,
+                  });
+                }}
+              />
             </div>
           </div>
         </div>
@@ -305,7 +322,11 @@ const Clusters: React.FC<IClustersProps> = (props) => {
         )}
       </div>
       <div className={styles.btns}>
-        <Button onClick={openDrawer} type="primary" className={styles.btn}>
+        <Button
+          onClick={openDrawer}
+          type="primary"
+          className={styles.btn}
+        >
           Config
         </Button>
         <Button

@@ -81,6 +81,8 @@ export interface IFlowChartProps {
   extra?: boolean;
   direction?: string;
   isSmooth?: boolean;
+  preventZoom?: boolean;
+  preventTranslate?: boolean;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
@@ -91,6 +93,8 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     extra = false,
     direction = "LR",
     isSmooth = false,
+    preventZoom = false,
+    preventTranslate = false,
   } = props;
 
   const layoutGraph = () => {
@@ -138,7 +142,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       target: edge.target,
       animated: true,
       type: isSmooth ? "smoothstep" : undefined,
-      className: edge?.stress ?? false ? styles["stressed-edge"] : "",
+      className:
+        edge?.stress ?? false
+          ? styles["stressed-edge"]
+          : styles["ordinary-edge"],
     }));
     setElements([...newNodes, ...newEdges]);
   };
@@ -252,7 +259,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
       title={title}
       className={styles.card}
       extra={
-        extra && (
+        extra ? (
           <div className={styles.title}>
             <Popover
               visible={popVisible}
@@ -282,6 +289,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
               Confirm
             </Button>
           </div>
+        ) : (
+          <Button type="primary" className={styles.extra}>
+            Export
+          </Button>
         )
       }
     >
@@ -298,8 +309,20 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
             <ReactFlow
               elements={getLayoutedElements(elements, direction)}
               nodeTypes={nodeTypes}
-              minZoom={0.15}
+              minZoom={preventZoom ? 1 : 0.15}
+              maxZoom={preventZoom ? 1 : 2}
               className={styles.flowchart}
+              translateExtent={
+                preventTranslate
+                  ? [
+                      [0, 0],
+                      [0, 0],
+                    ]
+                  : [
+                      [-Infinity, -Infinity],
+                      [Infinity, Infinity],
+                    ]
+              }
             />
           </ReactFlowProvider>
         </div>

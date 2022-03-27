@@ -82,6 +82,8 @@ const fdmap = {
 
 const statlist = ["dispersion", "skew", "heavy tail"];
 
+const configuration = ['distribution-wise', 'point-wise', 'compound', 'all'];
+
 const statmap = {
   dispersion: "sta_dispersion",
   skew: "sta_skew",
@@ -126,5 +128,7 @@ export {
   // o_types
   o_types,
   default_o_type,
-  tvmap
+  tvmap,
+  // configuration
+  configuration
 };

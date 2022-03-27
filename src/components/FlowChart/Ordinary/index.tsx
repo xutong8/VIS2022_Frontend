@@ -3,6 +3,7 @@ import styles from "./index.less";
 import { Handle } from "react-flow-renderer";
 import { RootContext } from "@/store";
 import { tvmap } from "@/constants";
+import cn from 'classnames';
 
 const Ordinary = (props: {
   data: any;
@@ -26,15 +27,18 @@ const Ordinary = (props: {
         style={{ background: "#555" }}
         isConnectable={isConnectable}
       />
-      <div className={styles.ordinary}>
+      <div className={cn({
+        [styles.ordinary]: true,
+        [styles.root]: isRoot
+      })}>
         {isRoot ? (
           "Source Table"
         ) : (
           <>
-            <div>{isIncluded ? (tvmap as any)[T] : T}</div>
+            <div>{isIncluded ? (tvmap as any)[T] : T.split(" ")[0]}</div>
             <div>
-              <span>new attributes: </span>
               <span>{newAttributes}</span>
+              <span style={{ fontSize: 56 }}>new</span>
             </div>
           </>
         )}

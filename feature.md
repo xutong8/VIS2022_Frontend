@@ -58,3 +58,20 @@ para：
 3. ChartContainer中selected的阴影小一点；✅
 4. cat_line变成scatter；✅
 5. flowchart的handle组件需要调整连接方向；✅
+
+3.27
+
+1. ordinary节点添加border-radius；✅
+2. ordinary节点的title只要第一个item；✅
+3. 20 new；✅
+4. 边颜色加深；✅
+5. ordinary节点边框颜色加深；✅
+6. 选中的节点蓝色阴影加深；✅
+7. Transformation Paths；
+8. 散点图的legend位置往上偏移；✅
+9. Card的title字号编好，Paths和Groups把s都去掉，不用复数；✅
+10. Configuration：✅
+  10.1 distribution-wise
+  10.2 point-wise
+  10.3 compound
+  10.4 all

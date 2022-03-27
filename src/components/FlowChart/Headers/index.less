@@ -1,3 +1,5 @@
+@import url('../../../styles/base.less');
+
 .content {
   display: flex;
   width: 550px;
@@ -6,6 +8,7 @@
   flex-direction: column;
   font-size: 48px;
   position: relative;
+  // align-items: center;
   z-index: 3;
   background-color: white;
 
@@ -74,4 +77,24 @@
 
 .btn {
   margin: 8px 0;
+}
+
+.headers {
+  display: flex;
+  height: 250px;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  &:extend(.scrollbar all);
+
+  .table {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.T {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
 }

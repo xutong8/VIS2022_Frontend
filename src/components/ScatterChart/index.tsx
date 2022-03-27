@@ -86,10 +86,17 @@ const ScatterChart: React.FC<IScatterChartProps> = (props) => {
       },
       yAxis: {
         name: ylabel,
+        nameTextStyle: {
+          align: 'right'
+        }
       },
       tooltip: {
         position: "top",
         formatter: (param: any) => param.data[3],
+      },
+      grid: {
+        top: 80,
+        bottom: 20
       },
       legend:
         legend && legend.hasOwnProperty("__Max")

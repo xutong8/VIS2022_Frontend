@@ -107,8 +107,10 @@ const BasicLayout = () => {
                 edges:
                   graphData?.edges.filter((edge: any) => edge.stress) ?? [],
               }}
-              title="Transformation Paths"
+              title="Transformation Path"
               isSmooth={true}
+              // preventTranslate={true}
+              // preventZoom={true}
             />
           </div>
         </div>
