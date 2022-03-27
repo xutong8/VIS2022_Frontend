@@ -111,6 +111,7 @@ const BasicLayout = () => {
               isSmooth={true}
               // preventTranslate={true}
               // preventZoom={true}
+              customLayout={true}
             />
           </div>
         </div>

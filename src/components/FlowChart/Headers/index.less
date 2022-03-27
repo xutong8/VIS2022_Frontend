@@ -1,12 +1,13 @@
 @import url('../../../styles/base.less');
 
+@fontSize: 28px;
+
 .content {
   display: flex;
   width: 550px;
   padding: 8px 0;
   overflow: auto;
   flex-direction: column;
-  font-size: 48px;
   position: relative;
   // align-items: center;
   z-index: 3;
@@ -14,10 +15,13 @@
 
   .item {
     display: flex;
+    font-size: @fontSize;
   }
 
   .list {
     display: flex;
+    overflow: auto;
+    &:extend(.scrollbar all);
 
     .column {
       display: flex;
@@ -95,6 +99,13 @@
 
 .T {
   display: flex;
-  justify-content: center;
-  font-size: 14px;
+  font-size: @fontSize;
+  margin: 8px 0;
+  padding-left: 16px;
+}
+
+.args {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
 }

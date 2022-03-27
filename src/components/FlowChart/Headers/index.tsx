@@ -44,7 +44,7 @@ const List: React.FC<IListProps> = (props) => {
   const { data, desc } = props;
   return (
     <>
-      <span>{desc}: </span>
+      <span style={{ flexShrink: 0 }}>{desc}: </span>
       <div className={styles.list}>
         {data.map((item: string) => (
           <div key={item} className={styles.column}>
@@ -399,8 +399,7 @@ const Headers = (props: {
   }, []);
 
   const headerList = data?.data["headers"] ?? [];
-  console.log("data?.data: ", data?.data);
-  const T = data?.data['T'] ?? '';
+  const T = data?.data["T"] ?? "";
 
   return (
     <>
@@ -634,7 +633,8 @@ const Headers = (props: {
         >
           <div className={styles.headers}>
             <Table
-              className={styles.table}
+              className={styles.table}  
+              rowKey={(record: any) => record.index}            
               columns={[
                 {
                   title: "headers",
@@ -642,32 +642,37 @@ const Headers = (props: {
                   key: "headers",
                 },
               ]}
-              dataSource={headerList.map((item: string) => ({
+              dataSource={headerList.map((item: string, index: number) => ({
                 headers: item,
+                index
               }))}
               pagination={false}
             />
           </div>
           <div className={styles.T}>{T}</div>
-          {initial_list
-            .filter((item) => !(item === "headers" || item === "T"))
-            .map((key) => {
-              const item = data?.data?.[key];
-              if (!item) return null;
-              if (typeof item === "undefined") return null;
-              if (Array.isArray(item) && item.length === 0) return null;
-              if (typeof item === "object" && Object.keys(item).length === 0)
-                return null;
-              return (
-                <div className={styles.item} key={key}>
-                  {typeof item === "string" && <Text desc={key} text={item} />}
-                  {Array.isArray(item) && <List desc={key} data={item} />}
-                  {typeof item === "object" && !Array.isArray(item) && (
-                    <Obj desc={key} data={item} />
-                  )}
-                </div>
-              );
-            })}
+          <div className={styles.args}>
+            {initial_list
+              .filter((item) => !(item === "headers" || item === "T"))
+              .map((key) => {
+                const item = data?.data?.[key];
+                if (!item) return null;
+                if (typeof item === "undefined") return null;
+                if (Array.isArray(item) && item.length === 0) return null;
+                if (typeof item === "object" && Object.keys(item).length === 0)
+                  return null;
+                return (
+                  <div className={styles.item} key={key}>
+                    {typeof item === "string" && (
+                      <Text desc={key} text={item} />
+                    )}
+                    {Array.isArray(item) && <List desc={key} data={item} />}
+                    {typeof item === "object" && !Array.isArray(item) && (
+                      <Obj desc={key} data={item} />
+                    )}
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </Popover>
       <Handle

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./index.less";
 import { ChartType, NodeType } from "@/constants";
-import ReactFlow, { isNode, ReactFlowProvider } from "react-flow-renderer";
+import ReactFlow, {
+  isEdge,
+  isNode,
+  ReactFlowProvider,
+} from "react-flow-renderer";
 import dagre from "dagre";
 import Headers from "./Headers";
 import Scatter from "./Scatter";
@@ -37,42 +41,117 @@ const nodeBoundingRect = {
   [key: string]: any;
 };
 
-const getLayoutedElements = (elements: any[], direction = "TB") => {
-  const isHorizontal = direction === "LR";
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 100, nodesep: 80 });
+const isStart = (el: any, edges: any[]) => {
+  return !edges.find((edge) => edge.target === el.id);
+};
 
-  elements.forEach((el) => {
-    if (isNode(el)) {
-      const node_type = el.data.node_type as string;
-      const layout = nodeBoundingRect[node_type];
-      dagreGraph.setNode(el.id, { width: layout.width, height: layout.height });
-    } else {
-      dagreGraph.setEdge(el.source, el.target);
+const isEnd = (el: any, edges: any[]) => {
+  return !edges.find((edge) => edge.source === el.id);
+};
+
+const getLayoutedElements = (
+  elements: any[],
+  direction = "TB",
+  customLayout = false
+) => {
+  if (customLayout) {
+    if (elements.length === 0) return [];
+    const edges = elements.filter((el) => isEdge(el));
+    const startNode = elements.find((el) => isStart(el, edges));
+    const endNode = elements.find((el) => isEnd(el, edges));
+    const startPos = {
+      x: -1800,
+      y: 0,
+    };
+    const endPos = {
+      x: 1800,
+      y: 0,
+    };
+    const paths = [] as any[];
+    const queue = [] as string[];
+    queue.push(startNode.id);
+    // 寻找邻接点
+    const dfs = (node: any, edges: any[], path: any[]) => {
+      if (node === endNode.id) {
+        paths.push(path);
+        return;
+      }
+      for (const edge of edges) {
+        if (edge.source === node) {
+          dfs(edge.target, edges, [...path, edge.target]);
+        }
+      }
+    };
+    for (const edge of edges) {
+      if (edge.source === startNode.id) {
+        const path = [startNode.id, edge.target] as any[];
+        dfs(edge.target, edges, path);
+      }
     }
-  });
+    return elements.map((el) => {
+      if (isNode(el)) {
+        const isHorizontal = direction === "LR";
+        /*@ts-ignore */
+        el.targetPosition = isHorizontal ? "left" : "top";
+        /*@ts-ignore */
+        el.sourcePosition = isHorizontal ? "right" : "bottom";
+        if (isStart(el, edges)) {
+          el.position = startPos;
+        } else if (isEnd(el, edges)) {
+          el.position = endPos;
+        } else {
+          const rowIndex = paths.findIndex((path) => path.includes(el.id));
+          const path = paths[rowIndex];
+          const colIndex = path.indexOf(el.id);
+          el.position = {
+            x:
+              (colIndex * (endPos.x - startPos.x)) / (path.length - 1) +
+              startPos.x,
+            y: rowIndex === 0 ? -300 : 300,
+          };
+        }
+      }
+      return el;
+    });
+  } else {
+    const isHorizontal = direction === "LR";
+    dagreGraph.setGraph({ rankdir: direction, ranksep: 100, nodesep: 80 });
+    elements.forEach((el) => {
+      if (isNode(el)) {
+        const node_type = el.data.node_type as string;
+        const layout = nodeBoundingRect[node_type];
+        dagreGraph.setNode(el.id, {
+          width: layout.width,
+          height: layout.height,
+        });
+      } else {
+        dagreGraph.setEdge(el.source, el.target);
+      }
+    });
 
-  dagre.layout(dagreGraph);
+    dagre.layout(dagreGraph);
 
-  return elements.map((el) => {
-    if (isNode(el)) {
-      const nodeWithPosition = dagreGraph.node(el.id);
-      /*@ts-ignore */
-      el.targetPosition = isHorizontal ? "left" : "top";
-      /*@ts-ignore */
-      el.sourcePosition = isHorizontal ? "right" : "bottom";
-      const node_type = el.data.node_type as string;
-      const layout = nodeBoundingRect[node_type];
-      const nodeWidth = layout.width;
-      const nodeHeight = layout.height;
+    return elements.map((el) => {
+      if (isNode(el)) {
+        const nodeWithPosition = dagreGraph.node(el.id);
+        /*@ts-ignore */
+        el.targetPosition = isHorizontal ? "left" : "top";
+        /*@ts-ignore */
+        el.sourcePosition = isHorizontal ? "right" : "bottom";
+        const node_type = el.data.node_type as string;
+        const layout = nodeBoundingRect[node_type];
+        const nodeWidth = layout.width;
+        const nodeHeight = layout.height;
 
-      el.position = {
-        x: nodeWithPosition.x - nodeWidth / 2 + Math.random() / 1000,
-        y: nodeWithPosition.y - nodeHeight / 2,
-      };
-    }
+        el.position = {
+          x: nodeWithPosition.x - nodeWidth / 2 + Math.random() / 1000,
+          y: nodeWithPosition.y - nodeHeight / 2,
+        };
+      }
 
-    return el;
-  });
+      return el;
+    });
+  }
 };
 export interface IFlowChartProps {
   graphData: any;
@@ -83,6 +162,7 @@ export interface IFlowChartProps {
   isSmooth?: boolean;
   preventZoom?: boolean;
   preventTranslate?: boolean;
+  customLayout?: boolean;
 }
 
 const FlowChart: React.FC<IFlowChartProps> = (props) => {
@@ -95,6 +175,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     isSmooth = false,
     preventZoom = false,
     preventTranslate = false,
+    customLayout = false,
   } = props;
 
   const layoutGraph = () => {
@@ -133,7 +214,6 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
           : node.node_type === NodeType.V
           ? getNodeType(node)
           : "ordinaryNode",
-      // ...(node.node_type === NodeType.D ? { targetPosition: "left" } : {}),
     }));
     const edges = (graphData?.edges ?? []) as any[];
     const newEdges = edges.map((edge, index: number) => ({
@@ -307,10 +387,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
         <div id={styles.container}>
           <ReactFlowProvider>
             <ReactFlow
-              elements={getLayoutedElements(elements, direction)}
+              elements={getLayoutedElements(elements, direction, customLayout)}
               nodeTypes={nodeTypes}
-              minZoom={preventZoom ? 1 : 0.15}
-              maxZoom={preventZoom ? 1 : 2}
+              minZoom={preventZoom ? 0.2 : 0.15}
+              maxZoom={preventZoom ? 0.2 : 2}
               className={styles.flowchart}
               translateExtent={
                 preventTranslate
