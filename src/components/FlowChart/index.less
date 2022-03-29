@@ -35,7 +35,7 @@
 }
 
 .stressed-node {
-  box-shadow: 0 0 5px 15px skyblue;
+  box-shadow: 0 0 5px 15px #0098d6;
 }
 
 .ordinary-node {
@@ -46,13 +46,14 @@
 .ordinary-edge {
   path {
     stroke-width: 5px;
+    stroke: rgb(190, 190, 220);
   }
 }
 
 .stressed-edge {
   path {
-    stroke: skyblue;
-    stroke-width: 5px;
+    stroke: #0098d6;
+    stroke-width: 15px;
   }
 }
 
@@ -61,6 +62,7 @@
   top: 0;
   z-index: 1;
   display: flex;
+  align-items: center;
 
   .plus {
     border: 1px solid black;
@@ -99,9 +101,30 @@
       height: 100%;
       display: flex;
     }
+
+    .ant-card-head-title {
+      padding: 0 !important;
+    }
+
+    .ant-card-head-wrapper {
+      height: 100%;
+      align-items: center;
+    }
+
+    .ant-card-extra {
+      padding: 0;
+    }
   }
 }
 
 .extra {
   &:extend(.blueBtn);
+}
+
+.transform {
+  &:extend(.blueBtn);
+}
+
+.visual {
+  &:extend(.redBtn);
 }

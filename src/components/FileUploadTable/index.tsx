@@ -91,7 +91,7 @@ const FileUploadTable: React.FC<IFileUploadTableProps> = (props) => {
         className={styles.card}
         title={
           <div className={styles.title}>
-            <span>Data Table</span>
+            <span style={{ fontSize: 25 }}>Data Table</span>
             <p className={styles.right}>
               <span>rows: {tableBody.length}</span>
               <span style={{ marginLeft: 8 }}>columns: {columns.length}</span>

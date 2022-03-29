@@ -68,7 +68,10 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
   };
 
   return (
-    <Card title="Visualization Navigation" className={styles.card}>
+    <Card
+      title={<span style={{ fontSize: 25 }}>Visualization Navigation</span>}
+      className={styles.card}
+    >
       <div className={styles.chartContainer}>
         {visList.map((item, index: number) => {
           if (item.chart_type === ChartType.SCATTER) {
@@ -108,7 +111,11 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
               </div>
             );
           } else if (item.chart_type === ChartType.CAT_LINE) {
-            const lineProps = generateLineChartProps(item.data, item.legend, true);
+            const lineProps = generateLineChartProps(
+              item.data,
+              item.legend,
+              true
+            );
             const yaxis = item.yaxis;
             return (
               <div
@@ -145,7 +152,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 />
               </div>
             );
-          }
+          } else return null
         })}
       </div>
     </Card>

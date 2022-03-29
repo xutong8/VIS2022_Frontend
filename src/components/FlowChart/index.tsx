@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import styles from "./index.less";
 import { ChartType, NodeType } from "@/constants";
 import ReactFlow, {
@@ -31,7 +31,7 @@ const nodeTypes = {
 const nodeBoundingRect = {
   [NodeType.D]: {
     width: 550,
-    height: 400,
+    height: 500,
   },
   [NodeType.V]: {
     width: 550,
@@ -156,7 +156,7 @@ const getLayoutedElements = (
 export interface IFlowChartProps {
   graphData: any;
   setGraphData?: (graphData: any) => void;
-  title: string;
+  title: string | ReactElement;
   extra?: boolean;
   direction?: string;
   isSmooth?: boolean;
@@ -354,11 +354,25 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
               }
               content={popoverContent}
             >
-              <span style={{ marginRight: 8 }}>New Visualization</span>
+              {/* <span style={{ marginRight: 8 }}>New Visualization</span>
               <PlusOutlined
                 className={styles.plus}
                 onMouseEnter={() => setPopVisible(true)}
-              />
+              /> */}
+              <Button
+                type="primary"
+                className={styles.transform}
+                style={{ marginRight: 8 }}
+              >
+                New Transformation
+              </Button>
+              <Button
+                type="primary"
+                className={styles.visual}
+                style={{ marginRight: 8 }}
+              >
+                New Visualization
+              </Button>
             </Popover>
             <Button
               onClick={handleConfirm}

@@ -44,7 +44,7 @@ const List: React.FC<IListProps> = (props) => {
   const { data, desc } = props;
   return (
     <>
-      <span style={{ flexShrink: 0 }}>{desc}: </span>
+      <div style={{ flexShrink: 0 }} className={styles.itemDesc}>{desc}</div>
       <div className={styles.list}>
         {data.map((item: string) => (
           <div key={item} className={styles.column}>
@@ -65,8 +65,8 @@ const Text: React.FC<ITextProps> = (props) => {
   const { text, desc } = props;
   return (
     <>
-      <span>{desc}: </span>
-      <span>{text}</span>
+      <div className={styles.itemDesc}>{desc}</div>
+      <div>{text}</div>
     </>
   );
 };
@@ -81,7 +81,7 @@ const Obj: React.FC<IObjProps> = (props) => {
   const keys = Object.keys(data);
   return (
     <>
-      <span>{desc}: </span>
+      <div className={styles.itemDesc}>{desc}</div>
       <div className={styles.list}>
         {keys.map((key: string) => (
           <div key={key} className={styles.column}>
@@ -633,18 +633,23 @@ const Headers = (props: {
         >
           <div className={styles.headers}>
             <Table
-              className={styles.table}  
-              rowKey={(record: any) => record.index}            
+              className={styles.table}
+              rowClassName={styles.row}
+              rowKey={(record: any) => record.index}
               columns={[
                 {
-                  title: "headers",
-                  dataIndex: "headers",
-                  key: "headers",
+                  title: "Attribute",
+                  dataIndex: "Attribute",
+                  key: "Attribute",
+                  className: styles.attribute,
+                  render: (item: any) => {
+                    return <span className={styles.row}>{item}</span>;
+                  },
                 },
               ]}
               dataSource={headerList.map((item: string, index: number) => ({
-                headers: item,
-                index
+                Attribute: item,
+                index,
               }))}
               pagination={false}
             />

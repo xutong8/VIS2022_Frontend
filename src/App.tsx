@@ -6,7 +6,7 @@ import { RootContext, store } from "./store";
 
 function App() {
   const [rootState, setRootState] = useState<any>(store);
-
+  
   return (
     <RootContext.Provider
       value={{

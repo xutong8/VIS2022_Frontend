@@ -75,3 +75,28 @@ para：
   10.2 point-wise
   10.3 compound
   10.4 all
+
+
+3.29
+
+1. Card的title字体调整为25px，调整周围部分的间距✅
+
+
+缩略图
+2. Source Table字体调整为120px，上下居中✅
+3. 普通D节点的T换成100px✅
+4. 高亮的边和节点border颜色换成#0098d6，高亮的边stroke-width为15px✅
+5. 不高亮的边颜色换成rgb(190, 190, 220)✅
+14. 贴图✅
+15. 加号按钮砍掉、new transformation和new viualization蓝色假按钮✅
+
+
+Transformation Path
+6. 取消高亮效果✅ 
+7. 节点增加padding✅
+8. 节点表格的headers文字居中，字体大小为32px，文字替换为Attribute✅
+9. 表格中item字体大小为30px✅
+10. T换成38px，文字居中✅
+11. 下面的样式要像一个表格，只有上下边框和中间的边框，key要居中，增加灰背景✅
+12. headers的padding要小一点
+13. 节点高度要固定，不要自适应，屏幕高度的一半

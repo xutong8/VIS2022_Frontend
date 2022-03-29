@@ -1,10 +1,11 @@
 @import url('../../../styles/base.less');
 
-@fontSize: 28px;
+@fontSize: 30px;
 
 .content {
   display: flex;
   width: 550px;
+  height: 500px;
   padding: 8px 0;
   overflow: auto;
   flex-direction: column;
@@ -16,11 +17,13 @@
   .item {
     display: flex;
     font-size: @fontSize;
+    border-bottom: 1px solid black;
   }
 
   .list {
     display: flex;
     overflow: auto;
+    font-size: 30px;
     &:extend(.scrollbar all);
 
     .column {
@@ -89,6 +92,7 @@
   flex-direction: column;
   align-items: center;
   overflow: auto;
+  padding: 16px;
   &:extend(.scrollbar all);
 
   .table {
@@ -100,12 +104,35 @@
 .T {
   display: flex;
   font-size: @fontSize;
+  justify-content: center;
   margin: 8px 0;
   padding-left: 16px;
+  font-weight: 500;
 }
 
 .args {
   display: flex;
   flex-direction: column;
   padding: 16px;
+}
+
+.attribute {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  padding: 4px 0 !important;
+}
+
+.row {
+  font-size: 30px;
+}
+
+.itemDesc {
+  width: 240px;
+  border-right: 1px solid black;
+  background-color: #fafafa;
+  // font-weight: 500;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
 }

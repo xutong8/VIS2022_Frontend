@@ -94,7 +94,9 @@ const BasicLayout = () => {
                 edges: simpleGraphData?.edges ?? [],
               }}
               setGraphData={setGraphData}
-              title="Transformation Overview"
+              title={
+                <span style={{ fontSize: 25 }}>Transformation Overview</span>
+              }
               extra={true}
               direction="TB"
             />
@@ -103,14 +105,12 @@ const BasicLayout = () => {
             <FlowChart
               graphData={{
                 nodes:
-                  graphData?.nodes.filter((node: any) => node.stress) ?? [],
+                  graphData?.nodes.filter((node: any) => node.stress).map((node: any) => ({...node, stress: false})) ?? [],
                 edges:
-                  graphData?.edges.filter((edge: any) => edge.stress) ?? [],
+                  graphData?.edges.filter((edge: any) => edge.stress).map((edge: any) => ({...edge, stress: false})) ?? [],
               }}
-              title="Transformation Path"
+              title={<span style={{ fontSize: 25 }}>Transformation Path</span>}
               isSmooth={true}
-              // preventTranslate={true}
-              // preventZoom={true}
               customLayout={true}
             />
           </div>
