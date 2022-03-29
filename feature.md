@@ -98,5 +98,5 @@ Transformation Path
 9. 表格中item字体大小为30px✅
 10. T换成38px，文字居中✅
 11. 下面的样式要像一个表格，只有上下边框和中间的边框，key要居中，增加灰背景✅
-12. headers的padding要小一点
+12. headers的padding要小一点✅
 13. 节点高度要固定，不要自适应，屏幕高度的一半
