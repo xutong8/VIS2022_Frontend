@@ -119,6 +119,59 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
     y: 49,
   };
 
+  const positions = paths.map((path: any[]) => {
+    return path.slice(1, -1).map((node_id: string) => {
+      const rowIndex = paths.findIndex((path) => path.includes(node_id));
+      const path = paths[rowIndex];
+      const colIndex = path.indexOf(node_id);
+      const position = {
+        x:
+          (colIndex * (endPos.x - startPos.x)) / (path.length - 1) + startPos.x,
+        y: len === 1 ? 100 : rowIndex === 0 ? 40 : 220,
+      };
+      return position;
+    });
+  });
+
+  // 中间的headers节点的一半高度
+  const HALF_HEIGHT = 75;
+  const NODE_WIDTH = 240;
+
+  // startNode的转折点
+  const MIN_X =
+    len === 0
+      ? 0
+      : len === 1
+      ? positions[0][0].x
+      : Math.min(positions[0][0].x, positions[1][0].x);
+  // endNode的转折点
+  const MAX_X =
+    len === 0
+      ? 0
+      : len === 1
+      ? positions[0][positions[0].length - 1].x
+      : Math.max(
+          positions[0][positions[0].length - 1].x,
+          positions[1][positions[1].length - 1].x
+        );
+
+  // 起始转折点
+  const startTuringX =
+    startPos.x + NODE_WIDTH + Math.floor((MIN_X - startPos.x - NODE_WIDTH) / 2);
+
+  const lastFirstPosition =
+    positions.length !== 0
+      ? positions[0][positions[0].length - 1]
+      : { x: 0, y: 0 };
+  const lastSecondPosition =
+    positions.length >= 2
+      ? positions[1][positions[1].length - 1]
+      : { x: 0, y: 0 };
+
+  // 终止转折点
+  const endTurningX =
+    endPos.x - Math.floor((endPos.x - MAX_X - NODE_WIDTH) / 2);
+
   return (
     <Card
       title="Transformation Path"
@@ -137,7 +190,14 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
                 className={styles.nodeContainer}
                 style={{ width: contentWidth, height: contentHeight }}
               >
-                <div className={styles.start}>{drawNode(startNode, true)}</div>
+                <div
+                  className={styles.start}
+                  style={{
+                    display: positions.length === 0 ? "none" : "block",
+                  }}
+                >
+                  {drawNode(startNode, true)}
+                </div>
                 {paths.map((path: any[], pathIndex: number) => {
                   return (
                     <Fragment key={pathIndex}>
@@ -172,11 +232,91 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
                     </Fragment>
                   );
                 })}
-                <div className={styles.end}>{drawNode(endNode, true)}</div>
+                <div
+                  className={styles.end}
+                  style={{
+                    display: positions.length === 0 ? "none" : "block",
+                  }}
+                >
+                  {drawNode(endNode, true)}
+                </div>
               </div>
             </foreignObject>
           </g>
-          <g className={styles.edges}></g>
+          <g className={styles.edges}>
+            {positions.map((position: any[], rowIndex: number) => {
+              return position.map((cord: any, cordIndex: number) => {
+                // start -> 第一行的第一个节点的线
+                if (cordIndex === 0 && rowIndex === 0) {
+                  return (
+                    <path
+                      d={`M ${NODE_WIDTH} 175 L ${startTuringX} 175 L ${startTuringX} ${
+                        positions[0][0].y + HALF_HEIGHT
+                      } L ${positions[0][0].x} ${
+                        positions[0][0].y + HALF_HEIGHT
+                      }`}
+                      key={"0_0"}
+                      stroke="black"
+                      strokeWidth={1}
+                      fill="none"
+                    />
+                  );
+                }
+                // start -> 第二行的第一个节点的线
+                if (rowIndex === 1 && cordIndex === 0) {
+                  return (
+                    <path
+                      d={`M ${NODE_WIDTH} 175 L ${startTuringX} 175 L ${startTuringX} ${
+                        positions[1][0].y + HALF_HEIGHT
+                      } L ${positions[1][0].x} ${
+                        positions[1][0].y + HALF_HEIGHT
+                      }`}
+                      key={"1_0"}
+                      stroke="black"
+                      strokeWidth={1}
+                      fill="none"
+                    />
+                  );
+                }
+                const prevPosition = positions[rowIndex][cordIndex - 1];
+                return (
+                  <path
+                    key={`${rowIndex}_${cordIndex}`}
+                    stroke="black"
+                    strokeWidth={1}
+                    fill="none"
+                    d={`M ${prevPosition.x + NODE_WIDTH} ${
+                      prevPosition.y + HALF_HEIGHT
+                    } L ${cord.x} ${prevPosition.y + HALF_HEIGHT}`}
+                  />
+                );
+              });
+            })}
+            {positions.length !== 0 && (
+              <path
+                key={`0_${positions[0].length - 1}`}
+                stroke="black"
+                strokeWidth={1}
+                fill="none"
+                d={`M ${lastFirstPosition.x + NODE_WIDTH} ${
+                  lastFirstPosition.y + HALF_HEIGHT
+                } L ${endTurningX} ${lastFirstPosition.y + HALF_HEIGHT}
+                L ${endTurningX} 175 L ${endPos.x} 175`}
+              />
+            )}
+            {positions.length === 2 && (
+              <path
+                key={`1_${positions[1].length - 1}`}
+                stroke="black"
+                strokeWidth={1}
+                fill="none"
+                d={`M ${lastSecondPosition.x + NODE_WIDTH} ${
+                  lastSecondPosition.y + HALF_HEIGHT
+                } L ${endTurningX} ${lastSecondPosition.y + HALF_HEIGHT}
+                L ${endTurningX} 175 L ${endPos.x} 175`}
+              />
+            )}
+          </g>
         </svg>
       </div>
     </Card>
