@@ -5,6 +5,7 @@ import Clusters from "@/components/Clusters";
 import { useState } from "react";
 import ChartContainer from "../ChartContainer";
 import cn from "classnames";
+import CustomFlowChart from "../CustomFlowChart";
 
 const BasicLayout = () => {
   const [clusters, setClusters] = useState<string[][]>([]);
@@ -102,7 +103,7 @@ const BasicLayout = () => {
             />
           </div>
           <div className={styles.bot}>
-            <FlowChart
+            {/* <FlowChart
               graphData={{
                 nodes:
                   graphData?.nodes.filter((node: any) => node.stress).map((node: any) => ({...node, stress: false})) ?? [],
@@ -112,6 +113,19 @@ const BasicLayout = () => {
               title={<span style={{ fontSize: 25 }}>Transformation Path</span>}
               isSmooth={true}
               customLayout={true}
+            /> */}
+            
+            <CustomFlowChart
+              graphData={{
+                nodes:
+                  graphData?.nodes
+                    .filter((node: any) => node.stress)
+                    .map((node: any) => ({ ...node, stress: false })) ?? [],
+                edges:
+                  graphData?.edges
+                    .filter((edge: any) => edge.stress)
+                    .map((edge: any) => ({ ...edge, stress: false })) ?? [],
+              }}
             />
           </div>
         </div>
