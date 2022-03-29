@@ -81,6 +81,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 onDoubleClick={() => handleDBClick(item.paths, index)}
                 className={cn({
                   [styles.selected]: index === selectedIndex,
+                  [styles.border]: true
                 })}
               >
                 <ScatterChart
@@ -100,6 +101,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 onDoubleClick={() => handleDBClick(item.paths, index)}
                 className={cn({
                   [styles.selected]: index === selectedIndex,
+                  [styles.border]: true
                 })}
               >
                 <LineChart
@@ -123,6 +125,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 onDoubleClick={() => handleDBClick(item.paths, index)}
                 className={cn({
                   [styles.selected]: index === selectedIndex,
+                  [styles.border]: true
                 })}
               >
                 <LineChart
@@ -141,6 +144,7 @@ const ChartContainer: React.FC<IChartContainerProps> = (props) => {
                 onDoubleClick={() => handleDBClick(item.paths, index)}
                 className={cn({
                   [styles.selected]: index === selectedIndex,
+                  [styles.border]: true
                 })}
               >
                 <BarChart

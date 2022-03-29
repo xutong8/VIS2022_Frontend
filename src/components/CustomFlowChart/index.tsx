@@ -174,7 +174,9 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
 
   return (
     <Card
-      title="Transformation Path"
+      title={
+        <span style={{ fontSize: 25 }}>Transformation Path</span>
+      }
       className={styles.card}
       extra={
         <Button type="primary" className={styles.extra}>
