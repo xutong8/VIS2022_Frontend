@@ -115,7 +115,7 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
     y: 49,
   };
   const endPos = {
-    x: 1286,
+    x: contentWidth - 350,
     y: 49,
   };
 

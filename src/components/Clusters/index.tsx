@@ -60,8 +60,6 @@ const Clusters: React.FC<IClustersProps> = (props) => {
     return str.join(",");
   };
 
-  const hasSelected = selectedRowKeys.length > 0;
-
   const handleAdd = () => {
     const newClusters = [
       ...clusters,
