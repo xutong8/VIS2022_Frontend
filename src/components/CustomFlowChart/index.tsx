@@ -32,7 +32,7 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
     if (!node) return null;
     const node_type = node?.node_type ?? "D";
     if (node_type === NodeType.D) {
-      return <Headers data={node} className={side ? styles.headers : ""} />;
+      return <Headers data={node} />;
     } else {
       const chart_type = node?.data?.chart_type ?? "line";
       if (chart_type === ChartType.BAR) {
@@ -174,16 +174,14 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
 
   return (
     <Card
-      title={
-        <span style={{ fontSize: 25 }}>Transformation Path</span>
-      }
+      title={<span style={{ fontSize: 25 }}>Transformation Path</span>}
       className={styles.card}
-      extra={
-        <Button type="primary" className={styles.extra}>
+    >
+      <div className={styles.top}>
+        <Button type="default" className={styles.extra}>
           Export
         </Button>
-      }
-    >
+      </div>
       <div className={styles.content} ref={contentRef}>
         <svg width={contentWidth} height={contentHeight}>
           <g className={styles.nodes}>

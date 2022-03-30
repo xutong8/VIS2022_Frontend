@@ -335,61 +335,7 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
   };
 
   return (
-    <Card
-      title={title}
-      className={styles.card}
-      extra={
-        extra ? (
-          <div className={styles.title}>
-            <Popover
-              visible={popVisible}
-              title={
-                <div className={styles.popoverTitle}>
-                  <div>Please choose a chart type</div>
-                  <CloseOutlined
-                    className={styles.close}
-                    onClick={() => setPopVisible(false)}
-                  />
-                </div>
-              }
-              content={popoverContent}
-            >
-              {/* <span style={{ marginRight: 8 }}>New Visualization</span>
-              <PlusOutlined
-                className={styles.plus}
-                onMouseEnter={() => setPopVisible(true)}
-              /> */}
-              <Button
-                type="primary"
-                className={styles.transform}
-                style={{ marginRight: 8 }}
-              >
-                New Transformation
-              </Button>
-              <Button
-                type="primary"
-                className={styles.visual}
-                style={{ marginRight: 8 }}
-              >
-                New Visualization
-              </Button>
-            </Popover>
-            <Button
-              onClick={handleConfirm}
-              type="primary"
-              size="small"
-              disabled={disabled()}
-            >
-              Confirm
-            </Button>
-          </div>
-        ) : (
-          <Button type="primary" className={styles.extra}>
-            Export
-          </Button>
-        )
-      }
-    >
+    <Card title={title} className={styles.card}>
       <ChartTypeContext.Provider
         value={{
           chartType,
@@ -398,6 +344,34 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
           setPara,
         }}
       >
+        <div className={styles.top}>
+          <div className={styles.title}>
+            <div style={{ display: "flex" }}>
+              <Button
+                type="default"
+                className={styles.transform}
+                style={{ marginRight: 8 }}
+              >
+                New Transformation
+              </Button>
+              <Button
+                type="default"
+                className={styles.visual}
+                style={{ marginRight: 8 }}
+              >
+                New Visualization
+              </Button>
+            </div>
+
+            <Button
+              onClick={handleConfirm}
+              type="default"
+              className={styles.btn}
+            >
+              Confirm
+            </Button>
+          </div>
+        </div>
         <div id={styles.container}>
           <ReactFlowProvider>
             <ReactFlow

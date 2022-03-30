@@ -41,20 +41,6 @@
   }
 }
 
-.btns {
-  margin-top: 8px;
-  display: flex;
-
-  .btn {
-    flex: 1 0 0;
-    &:first-child {
-      margin-right: 8px;
-      &:extend(.blueBtn);
-    }
-    &:extend(.redBtn);
-  }
-}
-
 .card {
   flex: 1 0 0;
   display: flex;
@@ -63,7 +49,12 @@
   &:extend(.scrollbar all);
 
   :global {
+    .ant-card-head {
+      background-color: #75a3c9;
+    }
+    
     .ant-card-body {
+      padding-top: 12px;
       flex: 1 0 0;
       display: flex;
       flex-direction: column;
@@ -131,6 +122,16 @@
   }
 }
 
-.extra {
-  &:extend(.blueBtn);
+.edit {
+  margin-left: 8px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.btns {
+  
 }
