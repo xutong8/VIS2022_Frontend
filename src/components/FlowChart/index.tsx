@@ -230,11 +230,25 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     setElements([...newNodes, ...newEdges]);
   };
 
+  const [customCase, setCustomCase] = useState<number>(0);
+
+  const case1Layout = () => {};
+
+  const case2Layout = () => {};
+
   useEffect(() => {
-    if (graphData?.nodes && graphData?.edges) {
+    if (graphData?.nodes && graphData?.edges && customCase === 0) {
       layoutGraph();
     }
-  }, [graphData]);
+
+    if (customCase === 1) {
+      case1Layout();
+    }
+
+    if (customCase === 2) {
+      case2Layout();
+    }
+  }, [graphData, customCase]);
 
   const [elements, setElements] = useState<any[]>([]);
 
@@ -334,6 +348,14 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     return false;
   };
 
+  const handleCase1 = () => {
+    setCustomCase(1);
+  };
+
+  const handleCase2 = () => {
+    setCustomCase(2);
+  };
+
   return (
     <Card title={title} className={styles.card}>
       <ChartTypeContext.Provider
@@ -362,23 +384,42 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
                 New Visualization
               </Button>
             </div>
-
-            <Button
+            {/* <Button
               onClick={handleConfirm}
               type="default"
               className={styles.btn}
             >
               Confirm
-            </Button>
+            </Button> */}
+            <div>
+              <Button
+                onClick={handleCase1}
+                type="default"
+                className={styles.btn}
+              >
+                Case 1
+              </Button>
+              <Button
+                onClick={handleCase2}
+                type="default"
+                className={styles.btn}
+                style={{ marginLeft: 8 }}
+              >
+                Case 2
+              </Button>
+            </div>
           </div>
         </div>
         <div id={styles.container}>
           <ReactFlowProvider>
             <ReactFlow
+              /**@ts-ignore */
               elements={getLayoutedElements(elements, direction, customLayout)}
               nodeTypes={nodeTypes}
-              minZoom={preventZoom ? 0.2 : 0.15}
-              maxZoom={preventZoom ? 0.2 : 2}
+              // minZoom={preventZoom ? 0.2 : 0.15}
+              // maxZoom={preventZoom ? 0.2 : 2}
+              minZoom={0.18}
+              maxZoom={0.18}
               className={styles.flowchart}
               translateExtent={
                 preventTranslate

@@ -32,7 +32,9 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
     if (!node) return null;
     const node_type = node?.node_type ?? "D";
     if (node_type === NodeType.D) {
-      return <Headers data={node} />;
+      return (
+        <Headers data={node} className={!side ? styles.headers : styles.side} />
+      );
     } else {
       const chart_type = node?.data?.chart_type ?? "line";
       if (chart_type === ChartType.BAR) {
