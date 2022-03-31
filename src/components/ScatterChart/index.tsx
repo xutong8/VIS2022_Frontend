@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, memo } from "react";
 import * as echarts from "echarts";
 import cn from "classnames";
 import { isSameArray } from "@/utils";

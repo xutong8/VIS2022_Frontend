@@ -1,6 +1,6 @@
 import styles from "./index.less";
 import * as echarts from "echarts";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, memo } from "react";
 import cn from "classnames";
 
 export interface IBarChartProps {
