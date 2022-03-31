@@ -223,6 +223,7 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
                               left: position.x,
                               top: position.y,
                             }}
+                            key={node_id}
                           >
                             {drawNode(
                               nodes.find((node: any) => node.id === node_id),

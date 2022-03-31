@@ -88,6 +88,7 @@ const BasicLayout = () => {
   };
   // 缩略图
   const simpleGraphData = getSimpleGraphData();
+  const [customCase, setCustomCase] = useState<number>(0);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
   const handleSelectionChange = (selectedRowKeys: any[]) => {
@@ -151,6 +152,7 @@ const BasicLayout = () => {
         setGraphData(graphData);
         const visList = data?.vis_list ?? [];
         setVisList(visList);
+        setCustomCase(0);
       })
       .catch((err) => {
         console.error("err: ", err);
@@ -322,6 +324,8 @@ const BasicLayout = () => {
         <div className={styles.item}>
           <div className={styles.top}>
             <FlowChart
+              customCase={customCase}
+              setCustomCase={setCustomCase}
               graphData={{
                 nodes: (simpleGraphData?.nodes ?? []).map((node: any) => {
                   if (node.node_type === "D") {
