@@ -54,257 +54,271 @@ const isEnd = (el: any, edges: any[]) => {
 const case1Layout = (elements: any[], direction: string) => {
   const defaultPositions = [
     {
-        "id": "r",
-        "position": {
-            "x": 3663.5003959494557,
-            "y": -254
-        }
+      id: "r",
+      position: {
+        x: 3663.5003959494557,
+        y: -254,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 410.00040717035995,
-            "y": 3025
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 410.00040717035995,
+        y: 3025,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 1854.5007377655147,
-            "y": 539
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 1854.5007377655147,
+        y: 539,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
-        "position": {
-            "x": 315.00091935268034,
-            "y": 1200
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
+      position: {
+        x: 315.00091935268034,
+        y: 1200,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}",
-        "position": {
-            "x": 2562.0000715319243,
-            "y": 547
-        }
+      id: "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}",
+      position: {
+        x: 2562.0000715319243,
+        y: 547,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (group0)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 2085.000185176711,
-            "y": 3032
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (group0)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 2085.000185176711,
+        y: 3032,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}",
-        "position": {
-            "x": 3292.0009647871016,
-            "y": 547
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}",
+      position: {
+        x: 3292.0009647871016,
+        y: 547,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 1617.5007427441365,
-            "y": 1193
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 1617.5007427441365,
+        y: 1193,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
-        "position": {
-            "x": 2377.500088321491,
-            "y": 1800
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
+      position: {
+        x: 2377.500088321491,
+        y: 1800,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (group0)'], dtype='object')}",
-        "position": {
-            "x": 5395.000924363526,
-            "y": 546
-        }
+      id: "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (group0)'], dtype='object')}",
+      position: {
+        x: 5395.000924363526,
+        y: 546,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": -147,
-            "y": 3034
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: -147,
+        y: 3034,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 2947.0008945537315,
-            "y": 1207
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 2947.0008945537315,
+        y: 1207,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
-        "position": {
-            "x": 3180.500393884196,
-            "y": 1800
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
+      position: {
+        x: 3180.500393884196,
+        y: 1800,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": -51.49925356099084,
-            "y": 1793
-        }
+      id: "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: -51.49925356099084,
+        y: 1793,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}",
-        "position": {
-            "x": 2638.500429174508,
-            "y": 3038
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 7627,
+        y: 3027,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 6065.00061765734,
-            "y": 567
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 6747,
+        y: 534.0000000000001,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}",
-        "position": {
-            "x": 5963.000202521651,
-            "y": 3032
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
+      position: {
+        x: 7160,
+        y: 1173,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 4016.5001515055446,
-            "y": 539
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 6500,
+        y: 1180,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
-        "position": {
-            "x": 4368.000492285182,
-            "y": 1187
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}",
+      position: {
+        x: 2638.500429174508,
+        y: 3038,
+      },
     },
     {
-        "id": "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": 7067,
-            "y": 3033
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 6072.00061765734,
+        y: 540,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": 945.0005455603691,
-            "y": 1200
-        }
+      id: "scatter<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}",
+      position: {
+        x: 5963.000202521651,
+        y: 3032,
+      },
     },
     {
-        "id": "line<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 5411.000688878764,
-            "y": 3031
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
+      position: {
+        x: 4016.5001515055446,
+        y: 539,
+      },
     },
     {
-        "id": "line<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 6516.500985509419,
-            "y": 3027
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'pca', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 2, 'type': 'num'}, 'para': {'n_components': 2}}",
+      position: {
+        x: 4368.000492285182,
+        y: 1187,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}",
-        "position": {
-            "x": 3622.0003525168995,
-            "y": 1200
-        }
+      id: "line<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 5411.000688878764,
+        y: 3031,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}",
-        "position": {
-            "x": 5124.500651907206,
-            "y": 1799
-        }
+      id: "line<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 6516.500985509419,
+        y: 3027,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}",
-        "position": {
-            "x": 5124.5006719385765,
-            "y": 2226
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}",
+      position: {
+        x: 3622.0003525168995,
+        y: 1200,
+      },
     },
     {
-        "id": "line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 972.5005506772427,
-            "y": 3027
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}",
+      position: {
+        x: 5124.500651907206,
+        y: 1799,
+      },
     },
     {
-        "id": "cat_line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": 4858.50018982435,
-            "y": 3039
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}",
+      position: {
+        x: 5124.5006719385765,
+        y: 2226,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}",
-        "position": {
-            "x": 4731.00092353145,
-            "y": 540
-        }
+      id: "line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (export)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 972.5005506772427,
+        y: 3027,
+      },
     },
     {
-        "id": "cat_line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": 3749.0003300132194,
-            "y": 3038
-        }
+      id: "cat_line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 4858.50018982435,
+        y: 3039,
+      },
     },
     {
-        "id": "sum_bar<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 4287,
-            "y": 3040
-        }
+      id: "r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}",
+      position: {
+        x: 4731.00092353145,
+        y: 540,
+      },
     },
     {
-        "id": "sum_bar<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 7627,
-            "y": 3033
-        }
+      id: "cat_line<VIS>r<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['sum: (import)'], dtype='object')}<SEPERATION>{'name': 'null_num1', 'input': {'dim': 1, 'type': 'num'}, 'output': {'dim': 1, 'type': 'num'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 3749.0003300132194,
+        y: 3038,
+      },
     },
     {
-        "id": "sum_bar<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 1520,
-            "y": 3033
-        }
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 945.0005455603691,
+        y: 1200,
+      },
     },
     {
-        "id": "count_bar<VIS>r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export', 'rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
-        "position": {
-            "x": 3180,
-            "y": 3040
-        }
+      id: "sum_bar<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['continent'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_nom1', 'input': {'dim': 1, 'type': 'nominal'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 4287,
+        y: 3040,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export', 'rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}",
-        "position": {
-            "x": 6713,
-            "y": 1180
-        }
+      id: "sum_bar<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group0'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group1'], dtype='object')}<SEPERATION>{'t': 'sum', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 1}, 'index': Index(['group2'], dtype='object')}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 7073,
+        y: 3027,
+      },
     },
     {
-        "id": "r<SEPERATION>{'t': 'rank', 'i_type': 'like', 'i': ['float'], 'o_type': 'append', 'args': (), 'kwargs': {'axis': 0, 'method': 'first', 'numeric_only': True, 'na_option': 'keep', 'ascending': True, 'pct': False}, 'index': Index(['rank textiles export', 'rank agriculture export', 'rank stone export',\n       'rank minerals export', 'rank metals export', 'rank chemicals export',\n       'rank vehicles export', 'rank machinery export',\n       'rank electronics export', 'rank other export', 'rank textiles import',\n       'rank agriculture import', 'rank stone import', 'rank minerals import',\n       'rank metals import', 'rank chemicals import', 'rank vehicles import',\n       'rank machinery import', 'rank electronics import',\n       'rank other import'],\n      dtype='object')}<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['rank textiles export', 'rank agriculture export', 'rank stone export', 'rank minerals export', 'rank metals export', 'rank chemicals export', 'rank vehicles export', 'rank machinery export', 'rank electronics export', 'rank other export', 'rank textiles import', 'rank agriculture import', 'rank stone import', 'rank minerals import', 'rank metals import', 'rank chemicals import', 'rank vehicles import', 'rank machinery import', 'rank electronics import', 'rank other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
-        "position": {
-            "x": 5140,
-            "y": 1186
-        }
-    }
+      id: "sum_bar<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 3207,
+        y: 3047,
+      },
+    },
+    {
+      id: "count_bar<VIS>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}<SEPERATION><SEPERATION>r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'null_num', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': None, 'type': 'num'}, 'para': {}}",
+      position: {
+        x: 1534,
+        y: 3027,
+      },
+    },
+    {
+      id: "r<SEPERATION>{'t': 'select', 'i_type': '==', 'i': ['textiles export', 'agriculture export', 'stone export', 'minerals export', 'metals export', 'chemicals export', 'vehicles export', 'machinery export', 'electronics export', 'other export', 'textiles import', 'agriculture import', 'stone import', 'minerals import', 'metals import', 'chemicals import', 'vehicles import', 'machinery import', 'electronics import', 'other import'], 'o_type': 'new_table', 'args': (), 'kwargs': {}, 'index': 'default'}<SEPERATION>{'name': 'lda', 'input': {'dim': None, 'type': 'num'}, 'output': {'dim': 1, 'type': 'cat'}, 'para': {'n_components': 4}}",
+      position: {
+        x: 5027,
+        y: 1194,
+      },
+    },
   ];
   return elements.map((el: any) => {
     if (isNode(el)) {
@@ -321,6 +335,7 @@ const case1Layout = (elements: any[], direction: string) => {
     return el;
   });
 };
+
 const case2Layout = (elements: any[], direction: string) => {
   const defaultPositions = [
     {
@@ -803,11 +818,6 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     graph.filter((el: any) => isEdge(el))
   );
 
-  // console.log(
-  //   "nodes: ",
-  //   nodes.map((node) => ({ id: node.id, position: node.position }))
-  // );
-
   useEffect(() => {
     if (customCase !== 0) {
       const graph = getLayoutedElements(
@@ -824,6 +834,23 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
   useEffect(() => {
     const handleKeyDown = (ev: any) => {
       const keyCode = ev.keyCode;
+      if (keyCode === 69) {
+        console.log(
+          "nodes: ",
+          nodes.map((node) => ({ id: node.id, position: node.position }))
+        );
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [nodes]);
+
+  useEffect(() => {
+    const handleKeyDown = (ev: any) => {
+      const keyCode = ev.keyCode;
+      console.log(keyCode);
       if (keyCode === 81) {
         handleCase1();
       } else if (keyCode === 87) {
