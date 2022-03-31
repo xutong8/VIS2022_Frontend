@@ -76,6 +76,7 @@ const CustomFlowChart: React.FC<ICustomFlowChartProps> = (props) => {
             className={styles.chart}
             visualMapClassName={styles.visualMap}
             legend={node?.data?.legend}
+            symbolSize={8}
           />
         );
       }
