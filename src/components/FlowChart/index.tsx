@@ -838,10 +838,10 @@ const FlowChart: React.FC<IFlowChartProps> = (props) => {
     graph.filter((el: any) => isEdge(el))
   );
 
-  console.log(
-    "nodes: ",
-    nodes.map((node) => ({ id: node.id, position: node.position }))
-  );
+  // console.log(
+  //   "nodes: ",
+  //   nodes.map((node) => ({ id: node.id, position: node.position }))
+  // );
 
   useEffect(() => {
     if (customCase !== 0) {
